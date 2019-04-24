@@ -74,18 +74,7 @@ namespace MeetMe.Data
 
           base.OnModelCreating(builder);
 
-            /*Admin*/
-            /*Seed Method*/
-            /*
-            Proverka za Cascade delete, za vsichki Entitys
-           
-            //AddAdmin No work
             
-            //Automapper
-          
-           // AppConst class with proparties
-
-            */
         }
     }
 }

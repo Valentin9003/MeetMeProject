@@ -1,0 +1,11 @@
+C:\Users\user\source\repos\MeetMeProject\MeetMeData\obj\Debug\netcoreapp2.1\MeetMeData.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\MeetMeProject\MeetMeData\obj\Debug\netcoreapp2.1\MeetMeData.AssemblyInfoInputs.cache
+C:\Users\user\source\repos\MeetMeProject\MeetMeData\obj\Debug\netcoreapp2.1\MeetMeData.AssemblyInfo.cs
+C:\Users\user\source\repos\MeetMeProject\MeetMeData\bin\Debug\netcoreapp2.1\MeetMeData.deps.json
+C:\Users\user\source\repos\MeetMeProject\MeetMeData\bin\Debug\netcoreapp2.1\MeetMeData.dll
+C:\Users\user\source\repos\MeetMeProject\MeetMeData\bin\Debug\netcoreapp2.1\MeetMeData.pdb
+C:\Users\user\source\repos\MeetMeProject\MeetMeData\obj\Debug\netcoreapp2.1\MeetMeData.csprojAssemblyReference.cache
+C:\Users\user\source\repos\MeetMeProject\MeetMeData\obj\Debug\netcoreapp2.1\MeetMeData.dll
+C:\Users\user\source\repos\MeetMeProject\MeetMeData\obj\Debug\netcoreapp2.1\MeetMeData.pdb
+C:\Users\user\source\repos\MeetMeProject\MeetMeData\bin\Debug\netcoreapp2.1\MeetMeData.runtimeconfig.json
+C:\Users\user\source\repos\MeetMeProject\MeetMeData\bin\Debug\netcoreapp2.1\MeetMeData.runtimeconfig.dev.json

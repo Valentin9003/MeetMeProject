@@ -1,0 +1,9 @@
+C:\Users\user\source\repos\MeetMeProject\MeetMe.Services\bin\Debug\netcoreapp2.1\MeetMe.Services.deps.json
+C:\Users\user\source\repos\MeetMeProject\MeetMe.Services\bin\Debug\netcoreapp2.1\MeetMe.Services.dll
+C:\Users\user\source\repos\MeetMeProject\MeetMe.Services\bin\Debug\netcoreapp2.1\MeetMe.Services.pdb
+C:\Users\user\source\repos\MeetMeProject\MeetMe.Services\obj\Debug\netcoreapp2.1\MeetMe.Services.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\MeetMeProject\MeetMe.Services\obj\Debug\netcoreapp2.1\MeetMe.Services.AssemblyInfoInputs.cache
+C:\Users\user\source\repos\MeetMeProject\MeetMe.Services\obj\Debug\netcoreapp2.1\MeetMe.Services.AssemblyInfo.cs
+C:\Users\user\source\repos\MeetMeProject\MeetMe.Services\obj\Debug\netcoreapp2.1\MeetMe.Services.dll
+C:\Users\user\source\repos\MeetMeProject\MeetMe.Services\obj\Debug\netcoreapp2.1\MeetMe.Services.pdb
+C:\Users\user\source\repos\MeetMeProject\MeetMe.Services\obj\Debug\netcoreapp2.1\MeetMe.Services.csprojAssemblyReference.cache

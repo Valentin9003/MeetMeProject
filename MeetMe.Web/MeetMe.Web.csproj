@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>aspnet-MeetMeProject-9EA32F19-6C49-4EE8-AA4E-58062DD5361F</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.1" PrivateAssets="All" />
+   <PackageReference Include="Microsoft.AspNetCore.Authentication.Abstractions" Version="2.1.1" PrivateAsserts="ALL" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.1" PrivateAsserts="ALL" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MeetMe.Services\MeetMe.Services.csproj" />
+    <ProjectReference Include="..\MeetMe.Data\MeetMe.Data.csproj" />
+  </ItemGroup>
+
+</Project>

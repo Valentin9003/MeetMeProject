@@ -1,6 +1,6 @@
 # MeetMeProject
 
-#Dating site
+# DATING SITE
 
-Used technology: Asp.Net Core, C #, EntityFramework
+# Used technology: Asp.Net Core, C# 8.0, EntityFramework
 

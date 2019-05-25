@@ -16,7 +16,7 @@ namespace MeetMe.Web.Infrastructure.Mapping
             var AllTypes = AppDomain
                 .CurrentDomain.
                 GetAssemblies()
-                .Where(a => a.GetName().Name.Contains("MeetMe.Web"))
+                .Where(a => a.GetName().Name.Contains("MeetMe"))
                 .SelectMany(a => a.GetTypes());
             AllTypes
                 .Where(t => t.IsClass && !t.IsAbstract &&

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace MeetMeData.Migrations
+namespace MeetMe.Data.Migrations
 {
     [DbContext(typeof(MeetMeDbContext))]
     partial class MeetMeDbContextModelSnapshot : ModelSnapshot
@@ -19,33 +19,7 @@ namespace MeetMeData.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("MeetMeData.Models.Comment", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("CommentValue")
-                        .IsRequired()
-                        .HasMaxLength(300);
-
-                    b.Property<string>("NotificationId");
-
-                    b.Property<string>("PictureId");
-
-                    b.Property<string>("ProfilePictureId");
-
-                    b.Property<DateTime>("WritingТime");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PictureId");
-
-                    b.HasIndex("ProfilePictureId");
-
-                    b.ToTable("Comments");
-                });
-
-            modelBuilder.Entity("MeetMeData.Models.Friends", b =>
+            modelBuilder.Entity("MeetMe.Data.Models.Friends", b =>
                 {
                     b.Property<string>("UserId");
 
@@ -60,7 +34,7 @@ namespace MeetMeData.Migrations
                     b.ToTable("Friends");
                 });
 
-            modelBuilder.Entity("MeetMeData.Models.Messages", b =>
+            modelBuilder.Entity("MeetMe.Data.Models.Messages", b =>
                 {
                     b.Property<string>("MessagesId")
                         .ValueGeneratedOnAdd();
@@ -90,36 +64,7 @@ namespace MeetMeData.Migrations
                     b.ToTable("Messages");
                 });
 
-            modelBuilder.Entity("MeetMeData.Models.Notification", b =>
-                {
-                    b.Property<string>("NotificationId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("CommentId");
-
-                    b.Property<string>("FromUserId");
-
-                    b.Property<DateTime>("NotificationТime");
-
-                    b.Property<string>("PictureId");
-
-                    b.Property<string>("UserId");
-
-                    b.Property<string>("informationForNotification")
-                        .IsRequired();
-
-                    b.HasKey("NotificationId");
-
-                    b.HasIndex("CommentId")
-                        .IsUnique()
-                        .HasFilter("[CommentId] IS NOT NULL");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Notifications");
-                });
-
-            modelBuilder.Entity("MeetMeData.Models.Picture", b =>
+            modelBuilder.Entity("MeetMe.Data.Models.Picture", b =>
                 {
                     b.Property<string>("PictureId")
                         .ValueGeneratedOnAdd();
@@ -133,6 +78,8 @@ namespace MeetMeData.Migrations
 
                     b.Property<string>("UserId");
 
+                    b.Property<bool>("isProfilePicture");
+
                     b.HasKey("PictureId");
 
                     b.HasIndex("UserId");
@@ -140,27 +87,7 @@ namespace MeetMeData.Migrations
                     b.ToTable("Picture");
                 });
 
-            modelBuilder.Entity("MeetMeData.Models.ProfilePicture", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(100);
-
-                    b.Property<byte[]>("PictureByteArray")
-                        .IsRequired()
-                        .HasMaxLength(10485760);
-
-                    b.Property<string>("UserId")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ProfilePicture");
-                });
-
-            modelBuilder.Entity("MeetMeData.Models.User", b =>
+            modelBuilder.Entity("MeetMe.Data.Models.User", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -216,8 +143,6 @@ namespace MeetMeData.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
-                    b.Property<string>("ProfilePictureId");
-
                     b.Property<string>("SecurityStamp");
 
                     b.Property<int>("Sex");
@@ -239,10 +164,6 @@ namespace MeetMeData.Migrations
                         .IsUnique()
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.HasIndex("ProfilePictureId")
-                        .IsUnique()
-                        .HasFilter("[ProfilePictureId] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -357,67 +278,37 @@ namespace MeetMeData.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("MeetMeData.Models.Comment", b =>
+            modelBuilder.Entity("MeetMe.Data.Models.Friends", b =>
                 {
-                    b.HasOne("MeetMeData.Models.Picture", "Picture")
-                        .WithMany("Comments")
-                        .HasForeignKey("PictureId");
-
-                    b.HasOne("MeetMeData.Models.ProfilePicture")
-                        .WithMany("Comments")
-                        .HasForeignKey("ProfilePictureId");
-                });
-
-            modelBuilder.Entity("MeetMeData.Models.Friends", b =>
-                {
-                    b.HasOne("MeetMeData.Models.User", "Contact")
+                    b.HasOne("MeetMe.Data.Models.User", "Contact")
                         .WithMany("Contacts")
                         .HasForeignKey("ContactId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("MeetMeData.Models.User", "User")
+                    b.HasOne("MeetMe.Data.Models.User", "User")
                         .WithMany("Friends")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
-            modelBuilder.Entity("MeetMeData.Models.Messages", b =>
+            modelBuilder.Entity("MeetMe.Data.Models.Messages", b =>
                 {
-                    b.HasOne("MeetMeData.Models.User", "Received")
+                    b.HasOne("MeetMe.Data.Models.User", "Received")
                         .WithMany("Received")
                         .HasForeignKey("RecievedId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("MeetMeData.Models.User", "Sender")
+                    b.HasOne("MeetMe.Data.Models.User", "Sender")
                         .WithMany("Send")
                         .HasForeignKey("SenderId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
-            modelBuilder.Entity("MeetMeData.Models.Notification", b =>
+            modelBuilder.Entity("MeetMe.Data.Models.Picture", b =>
                 {
-                    b.HasOne("MeetMeData.Models.Comment", "Comment")
-                        .WithOne("Notification")
-                        .HasForeignKey("MeetMeData.Models.Notification", "CommentId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("MeetMeData.Models.User", "User")
-                        .WithMany("Notification")
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("MeetMeData.Models.Picture", b =>
-                {
-                    b.HasOne("MeetMeData.Models.User", "User")
+                    b.HasOne("MeetMe.Data.Models.User", "User")
                         .WithMany("Pictures")
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("MeetMeData.Models.User", b =>
-                {
-                    b.HasOne("MeetMeData.Models.ProfilePicture", "ProfilePicture")
-                        .WithOne("User")
-                        .HasForeignKey("MeetMeData.Models.User", "ProfilePictureId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -430,7 +321,7 @@ namespace MeetMeData.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("MeetMeData.Models.User")
+                    b.HasOne("MeetMe.Data.Models.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -438,7 +329,7 @@ namespace MeetMeData.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("MeetMeData.Models.User")
+                    b.HasOne("MeetMe.Data.Models.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -451,7 +342,7 @@ namespace MeetMeData.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("MeetMeData.Models.User")
+                    b.HasOne("MeetMe.Data.Models.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -459,7 +350,7 @@ namespace MeetMeData.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("MeetMeData.Models.User")
+                    b.HasOne("MeetMe.Data.Models.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

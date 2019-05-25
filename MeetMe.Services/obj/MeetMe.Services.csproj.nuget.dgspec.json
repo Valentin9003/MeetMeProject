@@ -4,14 +4,14 @@
     "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Services\\MeetMe.Services.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Services\\MeetMe.Services.csproj": {
+    "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Data\\MeetMe.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Services\\MeetMe.Services.csproj",
-        "projectName": "MeetMe.Services",
-        "projectPath": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Services\\MeetMe.Services.csproj",
+        "projectUniqueName": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Data\\MeetMe.Data.csproj",
+        "projectName": "MeetMe.Data",
+        "projectPath": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Data\\MeetMe.Data.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Services\\obj\\",
+        "outputPath": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -41,6 +41,78 @@
       "frameworks": {
         "netcoreapp2.1": {
           "dependencies": {
+            "Microsoft.AspNetCore.App": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Services\\MeetMe.Services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Services\\MeetMe.Services.csproj",
+        "projectName": "MeetMe.Services",
+        "projectPath": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Services\\MeetMe.Services.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Services\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {
+              "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Data\\MeetMe.Data.csproj": {
+                "projectPath": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Data\\MeetMe.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[8.1.0, )"
+            },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",

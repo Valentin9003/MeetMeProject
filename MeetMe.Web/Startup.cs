@@ -13,10 +13,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MeetMe.Data.Models;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.Facebook;
 using MeetMe.Web.Infrastructure.Mapping;
 using MeetMe.Web.Infrastructure.Extensions;
 using MeetMe.Data;
 using MeetMe.Web.Infrastructure;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using MeetMe.Services.Implementations;
+using MeetMe.Services;
+
 
 namespace MeetMe.Web
 {
@@ -37,7 +42,9 @@ namespace MeetMe.Web
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
+                
             });
+            
 
               services.AddDbContext<MeetMeDbContext>(options =>
                   options.UseSqlServer(
@@ -55,22 +62,37 @@ namespace MeetMe.Web
               .AddEntityFrameworkStores<MeetMeDbContext>()
               .AddDefaultTokenProviders();
 
+            
+
             services.AddAutoMapper();
             services.AddDomainServices();
 
-           services.AddAuthentication();
-
-              services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-        
-           
+            services.AddAuthentication();
+           /* services.AddAuthentication(options =>
             {
- }
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            })
+            .AddFacebook(options =>
+            {
+              options.AppId = "Authentication:Facebook:2617203478350569";
+              options.AppSecret = "Authentication:Facebook:24843157ec3dc2dcfe9219c8f8525ed0";
+            });*/
+
+            services.AddMvc(
+                option => {
+                    option.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+                }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+
+           
         }
         
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env,IServiceProvider serviceProvider)
         {
-            
+           
             app.UseDataBaseMigration();
             serviceProvider.AddAdministrator();
             if (env.IsDevelopment())
@@ -83,13 +105,22 @@ namespace MeetMe.Web
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-          
+            app.UseDatabaseErrorPage(); 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                   name: "Profile",
+                   template: "{area:exists}/{controller=ProfileController}/{action=Info}"
+                    );
+                routes.MapRoute(
+                   name: "EditProfilePicture",
+                   template: "{area:exists}/{controller=ProfileController}/{action=ProfilePicture}/{page?}"
+                    );
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

@@ -49,9 +49,7 @@ namespace MeetMe.Data.Models
         [StringLength(500, ErrorMessage = DataConstants.UserBiographyMaxLengthErrorMessage)]
         public string Biography { get; set; }     
                                                   
-        public string ProfilePictureId { get; set; }
-
-        public ProfilePicture ProfilePicture { get; set; }
+      
 
         public List<Picture> Pictures { get; set; } = new List<Picture>();
 
@@ -59,9 +57,10 @@ namespace MeetMe.Data.Models
         public List<Friends> Friends { get; set; } = new List<Friends>();             //self
         public List<Friends> Contacts { get; set; } = new List<Friends>();
 
-        
+       
 
-        public List<Notification> Notification { get; set; }
+
+        
 
          public  List<Messages> Send { get; set; } = new List<Messages>();           //Send Messages
         public  List<Messages> Received { get; set; } = new List<Messages>();        //Received Messages

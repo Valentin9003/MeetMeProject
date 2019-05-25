@@ -52,14 +52,12 @@ C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\Meet
 C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\MeetMe.Web.csproj.CoreCompileInputs.cache
 C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\MeetMe.Web.RazorAssemblyInfo.cache
 C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\MeetMe.Web.RazorAssemblyInfo.cs
-C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
 C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\MeetMe.Web.AssemblyInfoInputs.cache
 C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\MeetMe.Web.AssemblyInfo.cs
 C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\MeetMe.Web.TagHelpers.input.cache
 C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\MeetMe.Web.TagHelpers.output.cache
 C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\MeetMe.Web.RazorCoreGenerate.cache
 C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\Razor\Areas\Identity\Pages\_ViewStart.g.cshtml.cs
-C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\Razor\Views\Home\About.g.cshtml.cs
 C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\Razor\Views\Home\Contact.g.cshtml.cs
 C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\Razor\Views\Home\Index.g.cshtml.cs
 C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\Razor\Views\Home\Privacy.g.cshtml.cs
@@ -76,3 +74,11 @@ C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\Meet
 C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\MeetMe.Web.csproj.CopyComplete
 C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\MeetMe.Web.dll
 C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\MeetMe.Web.pdb
+C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
+C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\Razor\Views\PrivacyPolicy.g.cshtml.cs
+C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\Razor\Areas\Edit\_ViewImports.g.cshtml.cs
+C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\Razor\Areas\Edit\_ViewStart.g.cshtml.cs
+C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\Razor\Areas\Edit\Views\Profile\ProfilePicture.g.cshtml.cs
+C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\Razor\Areas\Edit\Views\Profile\Info.g.cshtml.cs
+C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\Razor\Areas\Edit\Views\Profile\Friends.g.cshtml.cs
+C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_NavigationMenuEditProfile.g.cshtml.cs

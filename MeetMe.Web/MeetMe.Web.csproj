@@ -8,14 +8,25 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="2.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.1" PrivateAssets="All" />
    <PackageReference Include="Microsoft.AspNetCore.Authentication.Abstractions" Version="2.1.1" PrivateAsserts="ALL" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.1" PrivateAsserts="ALL" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MeetMe.Services\MeetMe.Services.csproj" />
     <ProjectReference Include="..\MeetMe.Data\MeetMe.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Areas\Edit\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Edit\_ViewStart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 
 </Project>

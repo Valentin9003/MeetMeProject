@@ -93,7 +93,11 @@
         },
         "frameworks": {
           "netcoreapp2.1": {
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Data\\MeetMe.Data.csproj": {
+                "projectPath": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Data\\MeetMe.Data.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -105,6 +109,10 @@
       "frameworks": {
         "netcoreapp2.1": {
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[8.1.0, )"
+            },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",
@@ -178,6 +186,10 @@
               "target": "Package",
               "version": "[2.1.1, )"
             },
+            "Microsoft.AspNetCore.Authentication.Facebook": {
+              "target": "Package",
+              "version": "[2.1.2, )"
+            },
             "Microsoft.AspNetCore.Http.Abstractions": {
               "target": "Package",
               "version": "[2.1.1, )"
@@ -191,6 +203,10 @@
               "target": "Package",
               "version": "[2.1.0, )",
               "autoReferenced": true
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[2.1.9, )"
             }
           },
           "imports": [

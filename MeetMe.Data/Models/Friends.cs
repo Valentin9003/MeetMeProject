@@ -8,10 +8,10 @@ namespace MeetMe.Data.Models
     public class Friends
     {
         
-        public string UserId { get; set; }
+        public string UserId { get; set; }  //UserSender
         public  User User { get; set; }
         
-        public string ContactId { get; set; } 
+        public string ContactId { get; set; } //UserRecipient
         public  User Contact { get; set; }
 
         [Required]

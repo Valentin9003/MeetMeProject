@@ -1,0 +1,24 @@
+﻿
+@{
+    Layout = null;
+}
+    <style>
+
+        a {
+            color: white;
+        }
+
+        container {
+            background-color: black;
+        }
+    </style>
+<br />
+<div class="container" style="background-color:black">
+    <div class="row">
+        <div class="col-sm-3"><a asp-area="Edit" asp-controller="Profile" asp-action="Info">Редактиране на данните</a></div>
+        <div class="col-sm-3"><a asp-area="Edit" asp-controller="Profile" asp-action="ProfilePicture">Редактиране на профилната снимка</a></div>
+        <div class="col-sm-3"><a asp-area="Edit" asp-controller="Profile" asp-action="Friends">Редактиране на приятелите</a></div>
+        <div class="col-sm-3"><a asp-area="Edit" asp-controller="Profile" asp-action="ViewProfile">Преглед на профила</a></div>
+    </div>
+</div>
+<br/>

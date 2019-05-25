@@ -1,0 +1,116 @@
+﻿@model EditProfilePictureViewModel
+@{
+    ViewData["Title"] = "Редактиране на профилна снимка";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    img {
+        height: 500px;
+        font-weight: 500;
+        width: 500px;
+    }
+ </style>
+
+   <partial name="_NavigationMenuEditProfile"/>
+
+<h4 class="alert-warning" style="text-align:center;">Редактиране на профила</h4>
+
+
+
+
+@{ if (Model.PictureByteArray != null)
+    {
+        var base64 = Convert.ToBase64String(Model.PictureByteArray);
+        var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+
+        <div><strong>Текуща профилна снимка</strong></div>
+        <br />
+        <div class="col-lg-12"><img src="@imgSrc" style="width:130px; height:130px " /></div>
+
+    }
+    else
+    {
+        <div><h3>Няма налична профилна снимка, моля изберете от наличните снимки или качете нова</h3></div>
+        }
+
+    }
+<br/>
+    <form method="post" enctype="multipart/form-data" asp-area="Edit" asp-controller="Profile" asp-action="UploadProfilePicture">
+        <div class="form-group">
+            <div class="col-md-12">
+                <p>Добави нова профилна снимка</p>
+                <input type="file" name="picture">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <input type="submit" value="Качи">
+            </div>
+        </div>
+    </form>
+
+<br />
+
+@if (Model.Pictures.Count == 0)
+{
+    <div style="text-align:center"><strong>Няма налични снимки</strong></div>
+}
+else
+{
+    <div style="text-align:center"><strong>Изберете от текущите снимки</strong></div>
+}
+
+@{
+    int rowCounter = Model.Pictures.Count % 5 == 0 ? (Model.Pictures.Count / 5) : ((Model.Pictures.Count / 5) + 1);
+}
+
+<div class="container">
+
+    <br />
+
+    @for (int row = 0; row < rowCounter; row++)
+    {
+        <br />
+        <div class="row">
+
+            @for (int col = 0; col <5; col++)
+            {
+                <div class="col-lg-2">
+
+
+
+                    @if (((row * 5) + col) < Model.Pictures.Count())
+                    {
+                        var base64 = Convert.ToBase64String(Model.Pictures[(row * 5) + col].PictureByteArray);
+                        var imgSrc = String.Format("data:image/gif;base64,{0}", @base64);
+                        <img src="@imgSrc" style="width:130px; height:130px" />
+                        <div><br /></div>
+                        <div class="alert-danger">
+                            <form style="Background:white" class="col-lg-1" method="post" asp-area="Edit" asp-controller="Profile" asp-action="ChooseProfilePicture">
+                                <input type="hidden" value="@Model.Pictures[(row * 5) + col].Id" name="futurePictureId" />
+              <input type="hidden" value="@Model.Id" name="currentPictureId" />
+
+              <button type="submit" class="btn-group-sm">Избери</button>
+                            </form>
+                            <div style="background-color:white"><br /></div>
+                        </div>
+                     }
+
+                 </div>
+
+             }
+         </div>
+
+     }
+</div>
+<br/>
+
+
+@if(Model.maxPage>1)
+ {
+   <ul class="pagination">
+     <li class="@(Model.currentPage == 1 ? "disabled" : string.Empty)"><a asp-route-page="@Model.previousPage"> <span aria-hidden="true">&laquo;</span></a></li>
+     <li><a a asp-route-page="@Model.currentPage">@Model.currentPage</a></li>
+     <li class="@(Model.currentPage == Model.maxPage ? "disabled" : string.Empty)"><a a asp-route-page="@Model.nextPage"> <span aria-hidden="true">&raquo;</span></a></li>
+  </ul>
+ }

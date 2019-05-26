@@ -76,8 +76,8 @@ namespace MeetMe.Web
             })
             .AddFacebook(options =>
             {
-              options.AppId = "Authentication:Facebook:2617203478350569";
-              options.AppSecret = "Authentication:Facebook:24843157ec3dc2dcfe9219c8f8525ed0";
+              options.AppId = "Authentication:Facebook:id";
+              options.AppSecret = "Authentication:Facebook:password";
             });*/
 
             services.AddMvc(

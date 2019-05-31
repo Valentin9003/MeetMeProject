@@ -91,7 +91,7 @@ using MeetMe.Data.Models.Enums;
             WriteLiteral("\r\n\r\n\r\n");
             EndContext();
             BeginContext(121, 44, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "6d41d67fb1a14b149127e53e23c12ba0", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "a770ce02e28a45bf8f565da830e7d5e1", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHelper>();
@@ -175,7 +175,7 @@ WriteAttributeValue("", 1105, imgSrc, 1105, 7, false);
             WriteLiteral(" style=\"width:130px; height:130px\" />\r\n                        <div><br /></div>\r\n                        <div>");
             EndContext();
             BeginContext(1224, 120, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8761bf3ee63d472fbbe5a1f5b61445b9", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d89d4b279f5e44ba97ab2ce941b6e200", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
@@ -207,7 +207,7 @@ WriteAttributeValue("", 1105, imgSrc, 1105, 7, false);
             WriteLiteral("</div>\r\n                        <div class=\"alert-danger\">\r\n                            ");
             EndContext();
             BeginContext(1432, 386, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ec2d147439874c3a93dd7b70e753022f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1a66ee94fa3849e78aac2df74abc401a", async() => {
                 BeginContext(1561, 54, true);
                 WriteLiteral("\r\n                                <input type=\"hidden\"");
                 EndContext();
@@ -294,7 +294,7 @@ WriteAttributeValue("", 2114, Model.currentPage == 1 ? "disabled" : string.Empty
             WriteLiteral(">");
             EndContext();
             BeginContext(2169, 84, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b4907154c79f479d821ce52d3a6dbdc8", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "718e5ab74dde48198d1b81748cc5f70b", async() => {
                 BeginContext(2209, 40, true);
                 WriteLiteral(" <span aria-hidden=\"true\">&laquo;</span>");
                 EndContext();
@@ -327,7 +327,7 @@ WriteAttributeValue("", 2114, Model.currentPage == 1 ? "disabled" : string.Empty
             WriteLiteral("</li>\r\n        <li>");
             EndContext();
             BeginContext(2272, 63, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6c4468aa7a6843bc817d88450ba65a0c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d52ec506f2c8483aa751977071180b9f", async() => {
                 BeginContext(2314, 17, false);
 #line 67 "C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\Areas\Edit\Views\Profile\Friends.cshtml"
                                                 Write(Model.currentPage);
@@ -377,7 +377,7 @@ WriteAttributeValue("", 2361, Model.currentPage == Model.allPages ? "disabled" :
             WriteLiteral(">");
             EndContext();
             BeginContext(2429, 82, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a54244d2e29f4f43b001caa52541ee14", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "eb2e5396e806435aa7bb26f41c5c0d2d", async() => {
                 BeginContext(2467, 40, true);
                 WriteLiteral(" <span aria-hidden=\"true\">&raquo;</span>");
                 EndContext();

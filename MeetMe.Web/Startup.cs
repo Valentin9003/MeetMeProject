@@ -49,7 +49,7 @@ namespace MeetMe.Web
               services.AddDbContext<MeetMeDbContext>(options =>
                   options.UseSqlServer(
                       Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<User>(
+            services.AddDefaultIdentity<User>(  //addidentitt<User, IdentityRole<User>
                 options =>
                 {
                     options.Password.RequireDigit = false;
@@ -58,7 +58,7 @@ namespace MeetMe.Web
                     options.Password.RequireNonAlphanumeric = false;
                 }
                 )
-              .AddRoles<IdentityRole>()
+              .AddRoles<IdentityRole>() 
               .AddEntityFrameworkStores<MeetMeDbContext>()
               .AddDefaultTokenProviders();
 
@@ -66,19 +66,21 @@ namespace MeetMe.Web
 
             services.AddAutoMapper();
             services.AddDomainServices();
+            
 
             services.AddAuthentication();
-           /* services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            })
-            .AddFacebook(options =>
-            {
-              options.AppId = "Authentication:Facebook:2617203478350569";
-              options.AppSecret = "Authentication:Facebook:24843157ec3dc2dcfe9219c8f8525ed0";
-            });*/
+            //services.AddAuthentication(options =>
+            //{
+            //    //options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            //    //options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            //    //options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            //})
+            //.AddFacebook(options =>
+            //{
+            //    options.AppId = "Authentication:Facebook:2617203478350569";
+            //    options.AppSecret = "Authentication:Facebook:24843157ec3dc2dcfe9219c8f8525ed0";
+            //});
+            services.AddSignalR();
 
             services.AddMvc(
                 option => {
@@ -94,6 +96,7 @@ namespace MeetMe.Web
         {
            
             app.UseDataBaseMigration();
+            app.Seed(); // Add Users and Pictures in DataBase
             serviceProvider.AddAdministrator();
             if (env.IsDevelopment())
             {
@@ -107,9 +110,18 @@ namespace MeetMe.Web
             }
             app.UseDatabaseErrorPage(); 
             app.UseHttpsRedirection();
+            app.UseSignalR(routes => 
+            {
+                //routes.MapHub<ChatHub>("/chat");
+
+            });
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
+            //app.Run(async (context) => 
+            //{
+            //  information for all APP
+            //});
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

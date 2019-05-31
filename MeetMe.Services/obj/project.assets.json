@@ -4342,6 +4342,19 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
+      "MeetMe.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "AutoMapper": "8.1.0"
+        },
+        "compile": {
+          "bin/placeholder/MeetMe.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MeetMe.Common.dll": {}
+        }
+      },
       "MeetMe.Data/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
@@ -11832,6 +11845,11 @@
         "system.xml.xpath.xdocument.nuspec"
       ]
     },
+    "MeetMe.Common/1.0.0": {
+      "type": "project",
+      "path": "../MeetMe.Common/MeetMe.Common.csproj",
+      "msbuildProject": "../MeetMe.Common/MeetMe.Common.csproj"
+    },
     "MeetMe.Data/1.0.0": {
       "type": "project",
       "path": "../MeetMe.Data/MeetMe.Data.csproj",
@@ -11841,6 +11859,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
       "AutoMapper >= 8.1.0",
+      "MeetMe.Common >= 1.0.0",
       "MeetMe.Data >= 1.0.0",
       "Microsoft.NETCore.App >= 2.1.0"
     ]
@@ -11875,6 +11894,9 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
+            "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Common\\MeetMe.Common.csproj": {
+              "projectPath": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Common\\MeetMe.Common.csproj"
+            },
             "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Data\\MeetMe.Data.csproj": {
               "projectPath": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Data\\MeetMe.Data.csproj"
             }

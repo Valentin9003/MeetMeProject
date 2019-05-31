@@ -82,3 +82,6 @@ C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\Razo
 C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\Razor\Areas\Edit\Views\Profile\Info.g.cshtml.cs
 C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\Razor\Areas\Edit\Views\Profile\Friends.g.cshtml.cs
 C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_NavigationMenuEditProfile.g.cshtml.cs
+C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\bin\Debug\netcoreapp2.1\MeetMe.Common.dll
+C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\bin\Debug\netcoreapp2.1\MeetMe.Common.pdb
+C:\Users\user\source\repos\MeetMeProject\MeetMe.Web\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Chat.g.cshtml.cs

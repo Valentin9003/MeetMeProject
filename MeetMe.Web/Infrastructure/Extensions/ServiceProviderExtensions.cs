@@ -16,7 +16,7 @@ namespace MeetMe.Web.Infrastructure.Extensions
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
             Task<IdentityResult> roleResult;
-            //string email = "Administrator@abv.bg";
+           
 
             //Check that there is an Administrator role and create if not
             Task<bool> hasAdminRole = roleManager.RoleExistsAsync(ProjectConstants.AdministratorRole);
@@ -29,8 +29,7 @@ namespace MeetMe.Web.Infrastructure.Extensions
             }
 
             //Check if the admin user exists and create it if not
-            //Add to the Administrator role
-
+           
             Task<User> testUser = userManager.FindByEmailAsync(ProjectConstants.AdministratorEmail);
             testUser.Wait();
 
@@ -51,6 +50,8 @@ namespace MeetMe.Web.Infrastructure.Extensions
 
 
             }
+            
+
             return serviceProvider;
         }
 

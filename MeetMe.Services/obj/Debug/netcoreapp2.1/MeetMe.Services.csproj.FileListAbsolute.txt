@@ -10,3 +10,5 @@ C:\Users\user\source\repos\MeetMeProject\MeetMe.Services\obj\Debug\netcoreapp2.1
 C:\Users\user\source\repos\MeetMeProject\MeetMe.Services\bin\Debug\netcoreapp2.1\MeetMe.Data.dll
 C:\Users\user\source\repos\MeetMeProject\MeetMe.Services\bin\Debug\netcoreapp2.1\MeetMe.Data.pdb
 C:\Users\user\source\repos\MeetMeProject\MeetMe.Services\obj\Debug\netcoreapp2.1\MeetMe.Services.csproj.CopyComplete
+C:\Users\user\source\repos\MeetMeProject\MeetMe.Services\bin\Debug\netcoreapp2.1\MeetMe.Common.dll
+C:\Users\user\source\repos\MeetMeProject\MeetMe.Services\bin\Debug\netcoreapp2.1\MeetMe.Common.pdb

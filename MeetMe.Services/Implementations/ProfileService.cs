@@ -25,11 +25,13 @@ namespace MeetMe.Services.Implementations
     {
         private readonly MeetMeDbContext db;
         public readonly UserManager<User> userManager;
+        public readonly IMapper mapper;
        
-        public ProfileService(MeetMeDbContext db, UserManager<User> userManager)
+        public ProfileService(MeetMeDbContext db, UserManager<User> userManager, IMapper mapper)
         {
             this.db = db;
             this.userManager = userManager;
+            this.mapper = mapper;
            
         }
 
@@ -38,26 +40,12 @@ namespace MeetMe.Services.Implementations
         public async Task<ProfileInfoServiceModel> GetProfileInformationAsync(string id)
         {
             var user = await db.Users.FindAsync(id);
-            
-           return new ProfileInfoServiceModel()
-                 {
-                     Biography = user.Biography,
-                     BirthDay = user.BirthDay,
-                     City = user.City,
-                     Country = user.Country,
-                     EyeColor = user.EyeColor,
-                     FirstName = user.FirstName,
-                     Height = user.Height,
-                     LastName = user.LastName,
-                     LookingFor = user.LookingFor,
-                     Sex = user.Sex,
-                     Weight = user.Weight
+          
+           var userProfilInfo = mapper.Map<ProfileInfoServiceModel>(user);
+           
+           return userProfilInfo;
 
-                 };
-                
-            
-
-        }
+         }
 
         public async Task<bool> SafeProfileInformationAsync(string UserId,string FirstName, string Biography, DateTime BirthDay,
             string City, string Country, EyeColor EyeColor, double Height,
@@ -140,10 +128,15 @@ namespace MeetMe.Services.Implementations
             {
                 return false;
             }
-            var ProfilePictureExist = await db.Picture.Where(k => k.isProfilePicture == true && k.UserId == userId).AnyAsync();
+            var ProfilePictureExist = await db.Picture
+                .Where(k => k.isProfilePicture == true && k.UserId == userId)
+                .AnyAsync();
             if (ProfilePictureExist)
             {
-                var CurrentProfilePicture = await db.Picture.Where(k => k.isProfilePicture == true && k.UserId == userId).FirstOrDefaultAsync();
+                var CurrentProfilePicture = await db
+                    .Picture
+                    .Where(k => k.isProfilePicture == true && k.UserId == userId)
+                    .FirstOrDefaultAsync();
 
                 CurrentProfilePicture.isProfilePicture = false;
 
@@ -163,11 +156,18 @@ namespace MeetMe.Services.Implementations
 
         public async Task<bool> ChooseProfilePictureAsync(string futurePictureId, string currentPictureId, string userId)
         {
-            var currentProfilePictureExist =  await db.Picture.Where(p => p.UserId == userId && p.isProfilePicture == true).AnyAsync();
+            var currentProfilePictureExist =  await db
+                .Picture.Where(p => p.UserId == userId && p.isProfilePicture == true)
+                .AnyAsync();
             if (currentProfilePictureExist)
             {
-               var currentProfilePicture = await db.Picture.Where(p => p.UserId == userId && p.isProfilePicture == true).FirstOrDefaultAsync();
+               var currentProfilePicture = await db
+                    .Picture
+                    .Where(p => p.UserId == userId && p.isProfilePicture == true)
+                    .FirstOrDefaultAsync();
+
                 currentProfilePicture.isProfilePicture = false;
+
                 await db.SaveChangesAsync();
             }
             else
@@ -176,9 +176,12 @@ namespace MeetMe.Services.Implementations
             }
             if (db.Picture.AnyAsync(p => p.UserId == userId && p.PictureId == futurePictureId).Result)
             {
-                var newProfilePicture = await db.Picture.FirstOrDefaultAsync(p => p.UserId == userId && p.PictureId == futurePictureId);
+                var newProfilePicture = await db
+                    .Picture.FirstOrDefaultAsync(p => p.UserId == userId && p.PictureId == futurePictureId);
+
                 newProfilePicture.isProfilePicture = true;
-               await db.SaveChangesAsync();
+
+                await db.SaveChangesAsync();
             }
             else
             {

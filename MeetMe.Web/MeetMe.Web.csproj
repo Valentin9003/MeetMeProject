@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MeetMe.Common\MeetMe.Common.csproj" />
     <ProjectReference Include="..\MeetMe.Services\MeetMe.Services.csproj" />
     <ProjectReference Include="..\MeetMe.Data\MeetMe.Data.csproj" />
   </ItemGroup>

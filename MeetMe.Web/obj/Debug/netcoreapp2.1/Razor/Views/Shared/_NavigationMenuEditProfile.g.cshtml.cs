@@ -91,7 +91,7 @@ using Microsoft.AspNetCore.Identity;
         <div class=""col-sm-3"">");
             EndContext();
             BeginContext(298, 88, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "07ae9e8e292b49fe8111977e5bd61e49", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "954ac7c019f64936a3e69d861ef8bb19", async() => {
                 BeginContext(360, 22, true);
                 WriteLiteral("Редактиране на данните");
                 EndContext();
@@ -117,7 +117,7 @@ using Microsoft.AspNetCore.Identity;
             WriteLiteral("</div>\r\n        <div class=\"col-sm-3\">");
             EndContext();
             BeginContext(424, 108, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "64698dc014f04a2e93af5353e2489144", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "eb76080440ea4f6a85e5cc2cf2c05fb2", async() => {
                 BeginContext(496, 32, true);
                 WriteLiteral("Редактиране на профилната снимка");
                 EndContext();
@@ -143,7 +143,7 @@ using Microsoft.AspNetCore.Identity;
             WriteLiteral("</div>\r\n        <div class=\"col-sm-3\">");
             EndContext();
             BeginContext(570, 94, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "70afd12bccd048e0a6faa70011a3c4a0", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b53f62a26a5342c0a729460aa9a918ae", async() => {
                 BeginContext(635, 25, true);
                 WriteLiteral("Редактиране на приятелите");
                 EndContext();
@@ -169,7 +169,7 @@ using Microsoft.AspNetCore.Identity;
             WriteLiteral("</div>\r\n        <div class=\"col-sm-3\">");
             EndContext();
             BeginContext(702, 91, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6e19838b9907427a8326e0105913ca25", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "da1a01005c0f4661a0058e21f63c044d", async() => {
                 BeginContext(771, 18, true);
                 WriteLiteral("Преглед на профила");
                 EndContext();

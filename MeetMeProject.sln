@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetMe.Web", "MeetMe.Web\Me
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetMe.Data", "MeetMe.Data\MeetMe.Data.csproj", "{1101C64E-78F8-44D8-81A2-1E7B9FADB69E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetMe.Services", "MeetMe.Services\MeetMe.Services.csproj", "{3C4A1308-7F93-4021-8E71-D87ED569F4BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetMe.Services", "MeetMe.Services\MeetMe.Services.csproj", "{3C4A1308-7F93-4021-8E71-D87ED569F4BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetMe.Test", "MeetMe.Test\MeetMe.Test.csproj", "{57596F0B-8EEA-434F-A15E-820CE003BFC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetMe.Test", "MeetMe.Test\MeetMe.Test.csproj", "{57596F0B-8EEA-434F-A15E-820CE003BFC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetMe.Common", "MeetMe.Common\MeetMe.Common.csproj", "{70F74DDE-A712-4B59-8BF2-987E57425CD1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{57596F0B-8EEA-434F-A15E-820CE003BFC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57596F0B-8EEA-434F-A15E-820CE003BFC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57596F0B-8EEA-434F-A15E-820CE003BFC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70F74DDE-A712-4B59-8BF2-987E57425CD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70F74DDE-A712-4B59-8BF2-987E57425CD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70F74DDE-A712-4B59-8BF2-987E57425CD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70F74DDE-A712-4B59-8BF2-987E57425CD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -23,6 +23,7 @@ using MeetMe.Web.Areas.Edit.Models.ChildViewModels;
 
 namespace MeetMe.Web.Areas.Edit.Controllers
 {
+    [Authorize]
     public class ProfileController : BaseProfileController
 
     {
@@ -45,6 +46,7 @@ namespace MeetMe.Web.Areas.Edit.Controllers
 
 
         [HttpGet]
+        
         public async Task<IActionResult> Info()
         {
 
@@ -188,7 +190,7 @@ namespace MeetMe.Web.Areas.Edit.Controllers
             var userId = user.Id;
 
              var isSuccessful = await  profileService.deleteFriend(userId, friendId);
-
+           
             if (isSuccessful)
             {
                 return RedirectToAction(nameof(HomeController.Index), "Home", new { Area = string.Empty });

@@ -9,6 +9,7 @@
       "MeetMe.Services/1.0.0": {
         "dependencies": {
           "AutoMapper": "8.1.0",
+          "MeetMe.Common": "1.0.0",
           "MeetMe.Data": "1.0.0"
         },
         "runtime": {
@@ -3343,6 +3344,14 @@
           "System.Xml.XPath": "4.3.0"
         }
       },
+      "MeetMe.Common/1.0.0": {
+        "dependencies": {
+          "AutoMapper": "8.1.0"
+        },
+        "runtime": {
+          "MeetMe.Common.dll": {}
+        }
+      },
       "MeetMe.Data/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.App": "2.1.0",
@@ -5257,6 +5266,11 @@
       "sha512": "sha512-jw9oHHEIVW53mHY9PgrQa98Xo2IZ0ZjrpdOTmtvk+Rvg4tq7dydmxdNqUvJ5YwjDqhn75mBXWttWjiKhWP53LQ==",
       "path": "system.xml.xpath.xdocument/4.3.0",
       "hashPath": "system.xml.xpath.xdocument.4.3.0.nupkg.sha512"
+    },
+    "MeetMe.Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "MeetMe.Data/1.0.0": {
       "type": "project",

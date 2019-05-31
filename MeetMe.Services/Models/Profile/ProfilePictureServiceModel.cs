@@ -1,6 +1,6 @@
 ﻿
 using MeetMe.Data.Models;
-using MeetMe.Services.Mapping;
+using MeetMe.Common.Mapping;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

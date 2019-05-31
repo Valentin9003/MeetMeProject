@@ -3,5 +3,5 @@
 
 DATING SITE
 
-Used technology: Asp.Net Core, C# 8.0, EntityFramework, HTML, CSS, Bootstrap
+Used technology: Asp.Net Core, C# 8.0, EntityFramework, HTML, CSS, Bootstrap, SindalR, JavaScript
 

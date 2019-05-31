@@ -69,6 +69,7 @@ namespace MeetMe.Web
             
 
             services.AddAuthentication();
+<<<<<<< HEAD
             //services.AddAuthentication(options =>
             //{
             //    //options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -81,6 +82,19 @@ namespace MeetMe.Web
             //    options.AppSecret = "Authentication:Facebook:24843157ec3dc2dcfe9219c8f8525ed0";
             //});
             services.AddSignalR();
+=======
+           /* services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            })
+            .AddFacebook(options =>
+            {
+              options.AppId = "Authentication:Facebook:id";
+              options.AppSecret = "Authentication:Facebook:password";
+            });*/
+>>>>>>> 4d758fbfd25ebcc86d5f04b04caedb9f7792aca9
 
             services.AddMvc(
                 option => {

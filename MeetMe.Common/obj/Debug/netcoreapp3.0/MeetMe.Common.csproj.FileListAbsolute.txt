@@ -1,0 +1,9 @@
+C:\VS\MeetMeProject\MeetMe.Common\bin\Debug\netcoreapp3.0\MeetMe.Common.deps.json
+C:\VS\MeetMeProject\MeetMe.Common\bin\Debug\netcoreapp3.0\MeetMe.Common.dll
+C:\VS\MeetMeProject\MeetMe.Common\obj\Debug\netcoreapp3.0\MeetMe.Common.csprojAssemblyReference.cache
+C:\VS\MeetMeProject\MeetMe.Common\obj\Debug\netcoreapp3.0\MeetMe.Common.csproj.CoreCompileInputs.cache
+C:\VS\MeetMeProject\MeetMe.Common\obj\Debug\netcoreapp3.0\MeetMe.Common.AssemblyInfoInputs.cache
+C:\VS\MeetMeProject\MeetMe.Common\obj\Debug\netcoreapp3.0\MeetMe.Common.AssemblyInfo.cs
+C:\VS\MeetMeProject\MeetMe.Common\bin\Debug\netcoreapp3.0\MeetMe.Common.pdb
+C:\VS\MeetMeProject\MeetMe.Common\obj\Debug\netcoreapp3.0\MeetMe.Common.dll
+C:\VS\MeetMeProject\MeetMe.Common\obj\Debug\netcoreapp3.0\MeetMe.Common.pdb

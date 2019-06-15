@@ -1,0 +1,14 @@
+C:\VS\MeetMeProject\MeetMe.Services\bin\Debug\netcoreapp3.0\MeetMe.Services.deps.json
+C:\VS\MeetMeProject\MeetMe.Services\bin\Debug\netcoreapp3.0\MeetMe.Services.dll
+C:\VS\MeetMeProject\MeetMe.Services\obj\Debug\netcoreapp3.0\MeetMe.Services.csprojAssemblyReference.cache
+C:\VS\MeetMeProject\MeetMe.Services\obj\Debug\netcoreapp3.0\MeetMe.Services.csproj.CoreCompileInputs.cache
+C:\VS\MeetMeProject\MeetMe.Services\obj\Debug\netcoreapp3.0\MeetMe.Services.AssemblyInfoInputs.cache
+C:\VS\MeetMeProject\MeetMe.Services\obj\Debug\netcoreapp3.0\MeetMe.Services.AssemblyInfo.cs
+C:\VS\MeetMeProject\MeetMe.Services\bin\Debug\netcoreapp3.0\MeetMe.Services.pdb
+C:\VS\MeetMeProject\MeetMe.Services\bin\Debug\netcoreapp3.0\MeetMe.Common.dll
+C:\VS\MeetMeProject\MeetMe.Services\bin\Debug\netcoreapp3.0\MeetMe.Data.dll
+C:\VS\MeetMeProject\MeetMe.Services\bin\Debug\netcoreapp3.0\MeetMe.Common.pdb
+C:\VS\MeetMeProject\MeetMe.Services\bin\Debug\netcoreapp3.0\MeetMe.Data.pdb
+C:\VS\MeetMeProject\MeetMe.Services\obj\Debug\netcoreapp3.0\MeetMe.Services.csproj.CopyComplete
+C:\VS\MeetMeProject\MeetMe.Services\obj\Debug\netcoreapp3.0\MeetMe.Services.dll
+C:\VS\MeetMeProject\MeetMe.Services\obj\Debug\netcoreapp3.0\MeetMe.Services.pdb

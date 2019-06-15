@@ -4,7 +4,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
+<style>
+    .a {
+   color:green;
+   background-color:yellow;
+   
+    }
+    .mark{
+        background-color:yellow;
+      
+        
+    }
+</style>
 
 <partial name="_NavigationMenuEditProfile"/>
 
@@ -44,8 +55,10 @@
                         <div><br /></div>
                         <div><a asp-area="Edit" asp-controller="Profile" asp-action="View" asp-fragment="@Model.Friends[(row * 5) + col].UserId"></a></div>
                         <div class="alert-danger">
-                            <form style="Background:white" class="col-lg-1" method="post" asp-area="Edit" asp-controller="Profile" asp-action="DeleteFriend">
+                            <form style="Background:white" class="col-lg-1" method="post" asp-area="Edit" asp-controller="Profile" asp-action="Friends">
                                 <input type="hidden" value="@Model.Friends[(row * 5) + col].UserId" name="FriendId" />
+                                <a href="Линк към Профила"><mark>Профил</mark></a>
+                                <br/>
                                 <button type="submit" class="btn-group-sm">Изтрий приятел</button>
                             </form>
                             <div style="background-color:white"><br /></div>

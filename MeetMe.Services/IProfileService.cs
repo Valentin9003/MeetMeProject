@@ -15,7 +15,7 @@ namespace MeetMe.Services
         Task<ProfileInfoServiceModel> GetProfileInformationAsync(string id);
 
         Task<bool> SafeProfileInformationAsync(string UserId,string FirstName, string Biography,
-            DateTime BirthDay,string City, string Country,EyeColor EyeColor,
+            DateTime BirthDay,City City, Country Country,EyeColor EyeColor,
             double Height, int Weight, string LastName, LookingFor LookingFor, Sex Sex);
 
         Task<ProfilePictureServiceModel> EditProfilePictureAsync(string id,int page);
@@ -28,7 +28,7 @@ namespace MeetMe.Services
         Task<List<FriendsServiceModel>> GetFriendsAsync(string userId, int page);
         Task<int> GetFriendsMaxPageSizeAsync(string userId);
 
-        Task<bool> deleteFriend(string userId, string friendId);
+        Task<bool> DeleteFriendAsync(string userId, string friendId);
 
     }
 }

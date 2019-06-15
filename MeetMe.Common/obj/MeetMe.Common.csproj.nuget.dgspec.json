@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Common\\MeetMe.Common.csproj": {}
+    "C:\\VS\\MeetMeProject\\MeetMe.Common\\MeetMe.Common.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Common\\MeetMe.Common.csproj": {
+    "C:\\VS\\MeetMeProject\\MeetMe.Common\\MeetMe.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Common\\MeetMe.Common.csproj",
+        "projectUniqueName": "C:\\VS\\MeetMeProject\\MeetMe.Common\\MeetMe.Common.csproj",
         "projectName": "MeetMe.Common",
-        "projectPath": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Common\\MeetMe.Common.csproj",
+        "projectPath": "C:\\VS\\MeetMeProject\\MeetMe.Common\\MeetMe.Common.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Common\\obj\\",
+        "outputPath": "C:\\VS\\MeetMeProject\\MeetMe.Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -21,14 +21,14 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netstandard2.0"
+          "netcoreapp3.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netstandard2.0": {
+          "netcoreapp3.0": {
             "projectReferences": {}
           }
         },
@@ -39,21 +39,27 @@
         }
       },
       "frameworks": {
-        "netstandard2.0": {
+        "netcoreapp3.0": {
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[8.1.0, )"
+              "version": "[8.1.1, )"
             },
-            "NETStandard.Library": {
+            "Microsoft.NETCore.App": {
+              "include": "None",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[2.0.3, )",
+              "version": "[3.0.0-preview6-27804-01, )",
               "autoReferenced": true
             }
           },
           "imports": [
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true

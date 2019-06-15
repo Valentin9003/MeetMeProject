@@ -15,6 +15,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using MeetMe.Services.Models;
 using Microsoft.Extensions.DependencyInjection;
+
 using MeetMe.Web.Controllers;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
@@ -161,7 +162,7 @@ namespace MeetMe.Web.Areas.Edit.Controllers
             /*Async Аction to select user profile picture from the currents pictures*/
             var user = await userManager.GetUserAsync(User);
             var userId = user.Id;
-
+            
             var friendsListResult = await profileService.GetFriendsAsync(userId, page);
 
             var friendsList = mapper.Map<List<ChildFriendsViewModel>>(friendsListResult);
@@ -187,16 +188,18 @@ namespace MeetMe.Web.Areas.Edit.Controllers
         public async Task<IActionResult> Friends(string friendId)
         {
             var user = await userManager.FindByEmailAsync(User.Identity.Name);
+           
             var userId = user.Id;
+            
 
-             var isSuccessful = await  profileService.deleteFriend(userId, friendId);
+             var isSuccessful = await  profileService.DeleteFriendAsync(userId, friendId);
            
             if (isSuccessful)
             {
                 return RedirectToAction(nameof(HomeController.Index), "Home", new { Area = string.Empty });
             }
 
-            return BadRequest();
+            return NotFound();
         }
     }
 }

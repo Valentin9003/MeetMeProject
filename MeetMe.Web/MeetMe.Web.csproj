@@ -1,33 +1,37 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
-    <UserSecretsId>aspnet-MeetMeProject-9EA32F19-6C49-4EE8-AA4E-58062DD5361F</UserSecretsId>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UserSecretsId>aspnet-MeetMe.Web-9531CE69-D1AC-4A61-B6D2-B78426516513</UserSecretsId>
   </PropertyGroup>
 
+
   <ItemGroup>
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="2.1.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.1" PrivateAssets="All" />
-   <PackageReference Include="Microsoft.AspNetCore.Authentication.Abstractions" Version="2.1.1" PrivateAsserts="ALL" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.1" PrivateAsserts="ALL" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
+    <PackageReference Include="AutoMapper" Version="8.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="3.0.0-preview6.19307.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.0.0-preview6.19307.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.0.0-preview6.19307.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.0.0-preview6.19307.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0-preview6.19304.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0-preview6.19304.10" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.0.0-preview6.19304.6" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="3.0.0-preview-18579-0056" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0-preview5-19264-04" />
   </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Hubs\" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <ProjectReference Include="..\MeetMe.Common\MeetMe.Common.csproj" />
-    <ProjectReference Include="..\MeetMe.Services\MeetMe.Services.csproj" />
     <ProjectReference Include="..\MeetMe.Data\MeetMe.Data.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Update="Areas\Edit\_ViewImports.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Areas\Edit\_ViewStart.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
+    <ProjectReference Include="..\MeetMe.Services\MeetMe.Services.csproj" />
   </ItemGroup>
 
 </Project>

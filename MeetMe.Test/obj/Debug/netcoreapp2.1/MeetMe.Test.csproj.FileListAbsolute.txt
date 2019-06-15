@@ -1,9 +1,0 @@
-C:\Users\user\source\repos\MeetMeProject\MeetMe.Test\bin\Debug\netcoreapp2.1\MeetMe.Test.deps.json
-C:\Users\user\source\repos\MeetMeProject\MeetMe.Test\bin\Debug\netcoreapp2.1\MeetMe.Test.dll
-C:\Users\user\source\repos\MeetMeProject\MeetMe.Test\bin\Debug\netcoreapp2.1\MeetMe.Test.pdb
-C:\Users\user\source\repos\MeetMeProject\MeetMe.Test\obj\Debug\netcoreapp2.1\MeetMe.Test.csproj.CoreCompileInputs.cache
-C:\Users\user\source\repos\MeetMeProject\MeetMe.Test\obj\Debug\netcoreapp2.1\MeetMe.Test.AssemblyInfoInputs.cache
-C:\Users\user\source\repos\MeetMeProject\MeetMe.Test\obj\Debug\netcoreapp2.1\MeetMe.Test.AssemblyInfo.cs
-C:\Users\user\source\repos\MeetMeProject\MeetMe.Test\obj\Debug\netcoreapp2.1\MeetMe.Test.dll
-C:\Users\user\source\repos\MeetMeProject\MeetMe.Test\obj\Debug\netcoreapp2.1\MeetMe.Test.pdb
-C:\Users\user\source\repos\MeetMeProject\MeetMe.Test\obj\Debug\netcoreapp2.1\MeetMe.Test.csprojAssemblyReference.cache

@@ -1,27 +1,22 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using MeetMe.Data;
+using Microsoft.AspNetCore.Mvc;
+using MeetMe.Web.Infrastructure.Extensions;
 using MeetMe.Data.Models;
 using AutoMapper;
-using Microsoft.AspNetCore.Authentication.Facebook;
 using MeetMe.Web.Infrastructure.Mapping;
-using MeetMe.Web.Infrastructure.Extensions;
-using MeetMe.Data;
-using MeetMe.Web.Infrastructure;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using MeetMe.Services.Implementations;
-using MeetMe.Services;
-
 
 namespace MeetMe.Web
 {
@@ -41,35 +36,33 @@ namespace MeetMe.Web
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-                
             });
-            
 
-              services.AddDbContext<MeetMeDbContext>(options =>
-                  options.UseSqlServer(
-                      Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<User>(  //addidentitt<User, IdentityRole<User>
-                options =>
-                {
-                    options.Password.RequireDigit = false;
-                    options.Password.RequireLowercase = false;
-                    options.Password.RequireUppercase = false;
-                    options.Password.RequireNonAlphanumeric = false;
-                }
-                )
-              .AddRoles<IdentityRole>() 
-              .AddEntityFrameworkStores<MeetMeDbContext>()
-              .AddDefaultTokenProviders();
+            services.AddDbContext<MeetMeDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            
+            services.AddDefaultIdentity<User>(options => {
 
-            services.AddAutoMapper();
-            services.AddDomainServices();
-            
-
-            services.AddAuthentication();
-<<<<<<< HEAD
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+           } )
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<MeetMeDbContext>();
+            services.AddSignalR();
+            services.AddAutoMapper(typeof(Startup));
+            //var mappingConfig = new MapperConfiguration(mc =>
+            //{
+            //    mc.AddProfile(new AutoMapperProfile());
+            //});
+            //IMapper mapper = mappingConfig.CreateMapper();
+            //services.AddSingleton(mapper);
+           
+            services.AddControllersWithViews(option => option.Filters
+               .Add(new AutoValidateAntiforgeryTokenAttribute())
+               );
+            //services.AddAuthentication();
             //services.AddAuthentication(options =>
             //{
             //    //options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -81,37 +74,19 @@ namespace MeetMe.Web
             //    options.AppId = "Authentication:Facebook:2617203478350569";
             //    options.AppSecret = "Authentication:Facebook:24843157ec3dc2dcfe9219c8f8525ed0";
             //});
-            services.AddSignalR();
-=======
-           /* services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            })
-            .AddFacebook(options =>
-            {
-              options.AppId = "Authentication:Facebook:id";
-              options.AppSecret = "Authentication:Facebook:password";
-            });*/
->>>>>>> 4d758fbfd25ebcc86d5f04b04caedb9f7792aca9
-
-            services.AddMvc(
-                option => {
-                    option.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
-                }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-
-           
+            //services.AddSignalR();
+            services.AddRazorPages();
+            services.AddAuthentication();
+            services.AddMvc();
+            services.AddDomainServices();
         }
-        
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env,IServiceProvider serviceProvider)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-           
             app.UseDataBaseMigration();
             app.Seed(); // Add Users and Pictures in DataBase
-            serviceProvider.AddAdministrator();
+            app.AddAdministrator();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -120,40 +95,54 @@ namespace MeetMe.Web
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseDatabaseErrorPage(); 
+            
+
             app.UseHttpsRedirection();
-            app.UseSignalR(routes => 
-            {
-                //routes.MapHub<ChatHub>("/chat");
-
-            });
             app.UseStaticFiles();
-            app.UseCookiePolicy();
-            app.UseAuthentication();
-            //app.Run(async (context) => 
-            //{
-            //  information for all APP
-            //});
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                   name: "Profile",
-                   template: "{area:exists}/{controller=ProfileController}/{action=Info}"
-                    );
-                routes.MapRoute(
-                   name: "EditProfilePicture",
-                   template: "{area:exists}/{controller=ProfileController}/{action=ProfilePicture}/{page?}"
-                    );
 
-                routes.MapRoute(
+            app.UseCookiePolicy();
+
+            app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //       name: "Profile",
+            //       template: "{area:exists}/{controller=ProfileController}/{action=Info}"
+            //        );
+            //routes.MapRoute(
+            //   name: "EditProfilePicture",
+            //   template: "{area:exists}/{controller=ProfileController}/{action=ProfilePicture}/{page?}"
+            //    );
+
+            //routes.MapRoute(
+            //    name: "default",
+            //    template: "{controller=Home}/{action=Index}/{id?}");
+            //  });
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                name: "Profile",
+                pattern: "{area:exists}/{controller=ProfileController}/{action=Info}");
+
+                endpoints.MapControllerRoute(
+                  name: "EditProfilePicture",
+                  pattern: "{area:exists}/{controller=ProfileController}/{action=ProfilePicture}/{page?}");
+
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+               
+                endpoints.MapRazorPages();
             });
         }
-        
     }
-   
 }
-

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Web\\MeetMe.Web.csproj": {}
+    "C:\\VS\\MeetMeProject\\MeetMe.Web\\MeetMe.Web.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Common\\MeetMe.Common.csproj": {
+    "C:\\VS\\MeetMeProject\\MeetMe.Common\\MeetMe.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Common\\MeetMe.Common.csproj",
+        "projectUniqueName": "C:\\VS\\MeetMeProject\\MeetMe.Common\\MeetMe.Common.csproj",
         "projectName": "MeetMe.Common",
-        "projectPath": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Common\\MeetMe.Common.csproj",
+        "projectPath": "C:\\VS\\MeetMeProject\\MeetMe.Common\\MeetMe.Common.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Common\\obj\\",
+        "outputPath": "C:\\VS\\MeetMeProject\\MeetMe.Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -21,14 +21,14 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netstandard2.0"
+          "netcoreapp3.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netstandard2.0": {
+          "netcoreapp3.0": {
             "projectReferences": {}
           }
         },
@@ -39,35 +39,41 @@
         }
       },
       "frameworks": {
-        "netstandard2.0": {
+        "netcoreapp3.0": {
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[8.1.0, )"
+              "version": "[8.1.1, )"
             },
-            "NETStandard.Library": {
+            "Microsoft.NETCore.App": {
+              "include": "None",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[2.0.3, )",
+              "version": "[3.0.0-preview6-27804-01, )",
               "autoReferenced": true
             }
           },
           "imports": [
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true
         }
       }
     },
-    "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Data\\MeetMe.Data.csproj": {
+    "C:\\VS\\MeetMeProject\\MeetMe.Data\\MeetMe.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Data\\MeetMe.Data.csproj",
+        "projectUniqueName": "C:\\VS\\MeetMeProject\\MeetMe.Data\\MeetMe.Data.csproj",
         "projectName": "MeetMe.Data",
-        "projectPath": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Data\\MeetMe.Data.csproj",
+        "projectPath": "C:\\VS\\MeetMeProject\\MeetMe.Data\\MeetMe.Data.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Data\\obj\\",
+        "outputPath": "C:\\VS\\MeetMeProject\\MeetMe.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -77,14 +83,14 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp2.1"
+          "netcoreapp3.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp2.1": {
+          "netcoreapp3.0": {
             "projectReferences": {}
           }
         },
@@ -95,43 +101,49 @@
         }
       },
       "frameworks": {
-        "netcoreapp2.1": {
+        "netcoreapp3.0": {
           "dependencies": {
-            "Microsoft.AspNetCore.App": {
-              "target": "Package",
-              "version": "[2.1.0, )"
-            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[2.1.0, )"
+              "version": "[3.0.0-preview6.19307.2, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[2.1.0, )"
+              "version": "[3.0.0-preview6.19304.10, )"
+            },
+            "Microsoft.Extensions.Identity.Stores": {
+              "target": "Package",
+              "version": "[3.0.0-preview-18579-0056, )"
             },
             "Microsoft.NETCore.App": {
+              "include": "None",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[2.1.0, )",
+              "version": "[3.0.0-preview6-27804-01, )",
               "autoReferenced": true
             }
           },
           "imports": [
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true
         }
       }
     },
-    "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Services\\MeetMe.Services.csproj": {
+    "C:\\VS\\MeetMeProject\\MeetMe.Services\\MeetMe.Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Services\\MeetMe.Services.csproj",
+        "projectUniqueName": "C:\\VS\\MeetMeProject\\MeetMe.Services\\MeetMe.Services.csproj",
         "projectName": "MeetMe.Services",
-        "projectPath": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Services\\MeetMe.Services.csproj",
+        "projectPath": "C:\\VS\\MeetMeProject\\MeetMe.Services\\MeetMe.Services.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Services\\obj\\",
+        "outputPath": "C:\\VS\\MeetMeProject\\MeetMe.Services\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -141,20 +153,20 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp2.1"
+          "netcoreapp3.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp2.1": {
+          "netcoreapp3.0": {
             "projectReferences": {
-              "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Common\\MeetMe.Common.csproj": {
-                "projectPath": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Common\\MeetMe.Common.csproj"
+              "C:\\VS\\MeetMeProject\\MeetMe.Common\\MeetMe.Common.csproj": {
+                "projectPath": "C:\\VS\\MeetMeProject\\MeetMe.Common\\MeetMe.Common.csproj"
               },
-              "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Data\\MeetMe.Data.csproj": {
-                "projectPath": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Data\\MeetMe.Data.csproj"
+              "C:\\VS\\MeetMeProject\\MeetMe.Data\\MeetMe.Data.csproj": {
+                "projectPath": "C:\\VS\\MeetMeProject\\MeetMe.Data\\MeetMe.Data.csproj"
               }
             }
           }
@@ -166,35 +178,57 @@
         }
       },
       "frameworks": {
-        "netcoreapp2.1": {
+        "netcoreapp3.0": {
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[8.1.0, )"
+              "version": "[8.1.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[6.1.1, )"
+            },
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.Proxies": {
+              "target": "Package",
+              "version": "[3.0.0-preview6.19304.10, )"
             },
             "Microsoft.NETCore.App": {
+              "include": "None",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[2.1.0, )",
+              "version": "[3.0.0-preview6-27804-01, )",
               "autoReferenced": true
+            },
+            "Z.EntityFramework.Plus.EFCore": {
+              "target": "Package",
+              "version": "[3.0.0-preview5, )"
             }
           },
           "imports": [
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true
         }
       }
     },
-    "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Web\\MeetMe.Web.csproj": {
+    "C:\\VS\\MeetMeProject\\MeetMe.Web\\MeetMe.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Web\\MeetMe.Web.csproj",
+        "projectUniqueName": "C:\\VS\\MeetMeProject\\MeetMe.Web\\MeetMe.Web.csproj",
         "projectName": "MeetMe.Web",
-        "projectPath": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Web\\MeetMe.Web.csproj",
+        "projectPath": "C:\\VS\\MeetMeProject\\MeetMe.Web\\MeetMe.Web.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Web\\obj\\",
+        "outputPath": "C:\\VS\\MeetMeProject\\MeetMe.Web\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -204,23 +238,23 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp2.1"
+          "netcoreapp3.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp2.1": {
+          "netcoreapp3.0": {
             "projectReferences": {
-              "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Common\\MeetMe.Common.csproj": {
-                "projectPath": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Common\\MeetMe.Common.csproj"
+              "C:\\VS\\MeetMeProject\\MeetMe.Common\\MeetMe.Common.csproj": {
+                "projectPath": "C:\\VS\\MeetMeProject\\MeetMe.Common\\MeetMe.Common.csproj"
               },
-              "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Data\\MeetMe.Data.csproj": {
-                "projectPath": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Data\\MeetMe.Data.csproj"
+              "C:\\VS\\MeetMeProject\\MeetMe.Data\\MeetMe.Data.csproj": {
+                "projectPath": "C:\\VS\\MeetMeProject\\MeetMe.Data\\MeetMe.Data.csproj"
               },
-              "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Services\\MeetMe.Services.csproj": {
-                "projectPath": "C:\\Users\\user\\source\\repos\\MeetMeProject\\MeetMe.Services\\MeetMe.Services.csproj"
+              "C:\\VS\\MeetMeProject\\MeetMe.Services\\MeetMe.Services.csproj": {
+                "projectPath": "C:\\VS\\MeetMeProject\\MeetMe.Services\\MeetMe.Services.csproj"
               }
             }
           }
@@ -232,47 +266,75 @@
         }
       },
       "frameworks": {
-        "netcoreapp2.1": {
+        "netcoreapp3.0": {
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
-              "version": "[6.0.0, )"
-            },
-            "Microsoft.AspNetCore.App": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[2.1.1, )",
-              "autoReferenced": true
+              "version": "[6.1.1, )"
             },
             "Microsoft.AspNetCore.Authentication.Abstractions": {
               "target": "Package",
-              "version": "[2.1.1, )"
+              "version": "[2.2.0, )"
             },
             "Microsoft.AspNetCore.Authentication.Facebook": {
               "target": "Package",
-              "version": "[2.1.2, )"
+              "version": "[3.0.0-preview6.19307.2, )"
+            },
+            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.0.0-preview6.19307.2, )"
             },
             "Microsoft.AspNetCore.Http.Abstractions": {
               "target": "Package",
-              "version": "[2.1.1, )"
+              "version": "[2.2.0, )"
             },
-            "Microsoft.AspNetCore.Razor.Design": {
-              "suppressParent": "All",
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[2.1.1, )"
+              "version": "[3.0.0-preview6.19307.2, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[3.0.0-preview6.19307.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.0.0-preview6.19304.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "target": "Package",
+              "version": "[3.0.0-preview6.19304.10, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[3.0.0-preview6.19304.6, )"
+            },
+            "Microsoft.Extensions.Identity.Stores": {
+              "target": "Package",
+              "version": "[3.0.0-preview-18579-0056, )"
             },
             "Microsoft.NETCore.App": {
+              "include": "None",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[2.1.0, )",
+              "version": "[3.0.0-preview6-27804-01, )",
               "autoReferenced": true
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[2.1.9, )"
+              "version": "[3.0.0-preview5-19264-04, )"
             }
           },
           "imports": [
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true

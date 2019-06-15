@@ -1,9 +1,0 @@
-C:\Users\user\source\repos\MeetMeProject\MeetMe.Common\bin\Release\netstandard2.0\MeetMe.Common.deps.json
-C:\Users\user\source\repos\MeetMeProject\MeetMe.Common\bin\Release\netstandard2.0\MeetMe.Common.dll
-C:\Users\user\source\repos\MeetMeProject\MeetMe.Common\bin\Release\netstandard2.0\MeetMe.Common.pdb
-C:\Users\user\source\repos\MeetMeProject\MeetMe.Common\obj\Release\netstandard2.0\MeetMe.Common.csprojAssemblyReference.cache
-C:\Users\user\source\repos\MeetMeProject\MeetMe.Common\obj\Release\netstandard2.0\MeetMe.Common.csproj.CoreCompileInputs.cache
-C:\Users\user\source\repos\MeetMeProject\MeetMe.Common\obj\Release\netstandard2.0\MeetMe.Common.AssemblyInfoInputs.cache
-C:\Users\user\source\repos\MeetMeProject\MeetMe.Common\obj\Release\netstandard2.0\MeetMe.Common.AssemblyInfo.cs
-C:\Users\user\source\repos\MeetMeProject\MeetMe.Common\obj\Release\netstandard2.0\MeetMe.Common.dll
-C:\Users\user\source\repos\MeetMeProject\MeetMe.Common\obj\Release\netstandard2.0\MeetMe.Common.pdb

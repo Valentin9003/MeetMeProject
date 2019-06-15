@@ -13,11 +13,15 @@ using Microsoft.Extensions.DependencyInjection;
 using MeetMe.Data.Models.Enums;
 using AutoMapper.QueryableExtensions;
 using AutoMapper;
+using Microsoft.Extensions.DependencyInjection.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using MeetMe.Services.Models.Profile.ChildProfilePictureServiceModels;
 using MeetMe.Services.Models.Profile;
 using System.IO;
 using System.Threading;
+using Z.EntityFramework.Plus;
+using Microsoft.EntityFrameworkCore.Proxies;
+
 
 namespace MeetMe.Services.Implementations
 {
@@ -48,7 +52,7 @@ namespace MeetMe.Services.Implementations
          }
 
         public async Task<bool> SafeProfileInformationAsync(string UserId,string FirstName, string Biography, DateTime BirthDay,
-            string City, string Country, EyeColor EyeColor, double Height,
+            City City, Country Country, EyeColor EyeColor, double Height,
             int Weight, string LastName, LookingFor LookingFor, Sex Sex)
         {
 
@@ -192,39 +196,42 @@ namespace MeetMe.Services.Implementations
 
         public async Task<List<FriendsServiceModel>> GetFriendsAsync(string userId, int page)
         {
-           var friendsList = await  db
-                .Friends
-                .Where(u => (u.UserId == userId || u.ContactId == userId) && u.IsAccepted == true)
-                .OrderBy(u=> u.UserId)
-                .ThenBy(c=>c.ContactId)
-                .Select
-                (m => new FriendsServiceModel
-                {
-                    FirstName = m.ContactId == userId ? m.User.FirstName : m.Contact.FirstName,
+           
+            var friendsList = await db
+                 .Friends
+                 .Where(u => (u.UserId == userId || u.ContactId == userId) && u.IsAccepted == true)
+                 .OrderBy(u => u.UserId)
+                 .ThenBy(c => c.ContactId)
 
-                    LastName = m.ContactId == userId ? m.User.LastName : m.Contact.LastName,
+            .Select
+            (m => new FriendsServiceModel   
+            {
 
-                    UserId = m.ContactId == userId ? m.UserId : m.ContactId,
+                FirstName = (m.ContactId == userId ? m.User.FirstName : m.Contact.FirstName),
 
-                    ProfilePicture = m.ContactId == userId ? m.User
-                .Pictures
-                .Where(p => p.isProfilePicture == true)
-                .Select(b => b.PictureByteArray)
-                .SingleOrDefault() :
-                 m.Contact.Pictures
-                .Where(p => p.isProfilePicture == true)
-                .Select(b => b.PictureByteArray)
-                .SingleOrDefault()
-                })
-                .OrderBy(o => o.FirstName)
-                .ThenBy(th => th.LastName)
-                .Skip((page - 1) * ServicesDataConstraints.FriendsServicePageSize)
-                .Take(ServicesDataConstraints.FriendsServicePageSize)
-                .ToListAsync();
+                LastName = (m.ContactId == userId ? m.User.LastName : m.Contact.LastName),
+
+                UserId = (m.ContactId == userId ? m.UserId : m.ContactId),
+
+                ProfilePicture = (m.ContactId == userId ? m.User
+            .Pictures
+            .Where(p => p.isProfilePicture == true)
+            .Select(b => b.PictureByteArray)
+            .SingleOrDefault() :
+             m.Contact.Pictures
+            .Where(p => p.isProfilePicture == true)
+            .Select(b => b.PictureByteArray)
+            .SingleOrDefault())
+            })
+            .OrderBy(o => o.FirstName)
+            .ThenBy(th => th.LastName)
+            .Skip((page - 1) * ServicesDataConstraints.FriendsServicePageSize)
+            .Take(ServicesDataConstraints.FriendsServicePageSize)
+            .ToListAsync();
 
             return friendsList;
-             
 
+            
 
             
 
@@ -245,9 +252,26 @@ namespace MeetMe.Services.Implementations
 
         }
 
-        public Task<bool> deleteFriend(string userId, string friendId)
+        public async Task<bool> DeleteFriendAsync(string userId, string friendId)
         {
-            throw new NotImplementedException();
+            var friendConnectionExist = await db
+                .Friends
+                .Where(u => (u.ContactId == userId || u.ContactId == friendId) && (u.UserId == userId || u.UserId == friendId) && u.IsAccepted == true)
+                .AnyAsync();
+            if (friendConnectionExist)
+            {
+               var checkForDeleted = await db.Friends
+               .Where(u => (u.ContactId == userId || u.ContactId == friendId) && (u.UserId == userId || u.UserId == friendId) && u.IsAccepted == true)
+                .DeleteAsync();
+
+                if (checkForDeleted == 1)
+                {
+                    return true;
+                }
+
+            }
+            return false;
+               
         }
     }
 }

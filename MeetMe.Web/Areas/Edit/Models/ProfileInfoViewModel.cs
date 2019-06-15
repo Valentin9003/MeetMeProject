@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MeetMe.Common.Mapping;
 using MeetMe.Data;
 using MeetMe.Data.Models;
 using MeetMe.Data.Models.Enums;
@@ -7,11 +8,12 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using MeetMe.Services.Models.Profile;
 using System.Threading.Tasks;
 
 namespace MeetMe.Web.Areas.Edit.Models
 {
-    public class ProfileInfoViewModel
+    public class ProfileInfoViewModel: IMapFrom<ProfileInfoServiceModel>
     {
         [Display(Name ="Име")]
       [StringLength(20, ErrorMessage = DataConstants.UserFirstNameMaxLengthErrorMessage)]
@@ -20,11 +22,11 @@ namespace MeetMe.Web.Areas.Edit.Models
         [StringLength(20, ErrorMessage = DataConstants.UserLastNameMaxLengthErrorMessage)]
         public string LastName { get; set; }
         [Display(Name = "Държава")]
-        [StringLength(30, ErrorMessage = DataConstants.UserCountryMaxLengthErrorMessage)]
-        public string Country { get; set; }
+       
+        public Country Country { get; set; }
         [Display(Name = "Град")]
-        [StringLength(20, ErrorMessage = DataConstants.UserCityMaxLengthErrorMessage)]
-        public string City { get; set; }
+       
+        public City City { get; set; }
         [Display(Name = "Дата на раждане")]
         public DateTime BirthDay { get; set; }
 

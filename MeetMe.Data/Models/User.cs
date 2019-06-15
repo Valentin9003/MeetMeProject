@@ -15,18 +15,22 @@ namespace MeetMe.Data.Models
                                           
         public bool IsOnline { get; set; }
 
+       
+        public DateTime  lastEntryDate { get; set; }
+        
         [StringLength(20, ErrorMessage = DataConstants.UserFirstNameMaxLengthErrorMessage)]
         public string FirstName { get; set; }
-        
+       
         [StringLength(20, ErrorMessage = DataConstants.UserLastNameMaxLengthErrorMessage)]
         public string LastName { get; set; }
         
-        [StringLength(30, ErrorMessage = DataConstants.UserCountryMaxLengthErrorMessage)]
-        public string Country { get; set; }
         
-        [StringLength(20, ErrorMessage = DataConstants.UserCityMaxLengthErrorMessage)]
-        public string City { get; set; }
+        public Country Country { get; set; }
+        
+       
+        public City City { get; set; }
 
+        
         public DateTime BirthDay { get; set; }
         
         
@@ -54,15 +58,17 @@ namespace MeetMe.Data.Models
         public List<Picture> Pictures { get; set; } = new List<Picture>();
 
         
-        public List<Friends> Friends { get; set; } = new List<Friends>();             //self
-        public List<Friends> Contacts { get; set; } = new List<Friends>();
+        public List<Friends> Friends { get; set; } = new List<Friends>();         // Sent Requests
 
-       
+        public List<Friends> Contacts { get; set; } = new List<Friends>();       //Received Requests
 
 
-        
 
-         public  List<Messages> Send { get; set; } = new List<Messages>();           //Send Messages
+
+
+
+
+         public  List<Messages> Send { get; set; } = new List<Messages>();           //Sent Messages
         public  List<Messages> Received { get; set; } = new List<Messages>();        //Received Messages
 
        

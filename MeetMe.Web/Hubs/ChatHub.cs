@@ -11,22 +11,23 @@ namespace MeetMe.Web.Hubs
 {
     public class ChatHub : Hub
     {
-        
+        //TODO: ChatHub
+
         //public ChatHub()
         //{
-          
+
         //}
         //public async Task SendMessage(string message, string targetUserName)
         //{
         //    var userName = this.Context.User.Identity.Name;
         //    if (true)
         //    {
-            
+
         //    }
         //    else
         //    {
-                
-                
+
+
         //    }
         //}
         //public async Task Recieve(object user, string message)
@@ -34,5 +35,6 @@ namespace MeetMe.Web.Hubs
 
 
         //}
+
     }
 }

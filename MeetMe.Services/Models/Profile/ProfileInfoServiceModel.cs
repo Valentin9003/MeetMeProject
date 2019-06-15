@@ -15,9 +15,9 @@ namespace MeetMe.Services.Models.Profile
 
         public string LastName { get; set; }
 
-        public string Country { get; set; }
+        public Country Country { get; set; }
 
-        public string City { get; set; }
+        public Country City { get; set; }
 
         public DateTime BirthDay { get; set; }
 

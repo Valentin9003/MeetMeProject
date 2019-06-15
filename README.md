@@ -1,5 +1,6 @@
 # MeetMeProject 
 [![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://GitHub.com/Naereen/)
+![Build Status](https://circleci.com/gh/<your github name>/<repo name>.svg?style=shield&circle-token=:circle-token)
 
 DATING SITE
 

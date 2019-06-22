@@ -40,7 +40,7 @@ namespace MeetMe.Web.Infrastructure.Extensions
                 var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<User>>();
                 var db = serviceScope.ServiceProvider.GetRequiredService<MeetMeDbContext>();
 
-
+                var uploadedUsersIds = new List<string>();
 
 
                 for (int i = 0; i < 20; i++)
@@ -53,19 +53,28 @@ namespace MeetMe.Web.Infrastructure.Extensions
                     user.Wait();
                     if (user.Result == null)
                     {
+                        var currentUserNumber = i;
+                        var currentUserEmail = currentEmail;
+                       
+                        var currentUserIdGuid = Guid.NewGuid().ToString();
 
                         User currentUser = new User()
                         {
+                            Id = currentUserIdGuid,
                             Email = currentEmail,
                             UserName = currentPassword,
-                            Pictures = getPhotos(),
+                            Pictures = GetPhotos(),
+                            Friends = AddFriends(currentUserIdGuid, uploadedUsersIds),
+                           
                         };
-
-                        currentUser.Pictures[i].isProfilePicture = true;
+                       
+                        currentUser.Pictures[i].IsProfilePicture = true;
 
                         Task<IdentityResult> createUser = userManager.CreateAsync(currentUser, currentPassword);
 
                         createUser.Wait();
+
+                        uploadedUsersIds.Add(currentUserIdGuid);
                     }
 
                 }
@@ -76,8 +85,39 @@ namespace MeetMe.Web.Infrastructure.Extensions
 
         }
 
+
+        // Add friendships between users
+        private static List<Friends> AddFriends( string currentUserId, List<string> ids)
+        {
+
+            var friendsResultList = new List<Friends>();
+
+           
+
+            for (int i = 0; i < ids.Count(); i++)
+            {
+               
+               
+                Friends friend = new Friends()
+                {
+                    UserId = currentUserId,
+                    ContactId = ids[i],
+                    IsAccepted = true,
+
+
+
+                };
+                friendsResultList.Add(friend);
+                
+            }
+
+
+
+            return friendsResultList;
+        }
+
         //get and add picture in list
-        private static List<Picture> getPhotos()
+        private static List<Picture> GetPhotos()
         {
 
             List<Picture> pictures = new List<Picture>();
@@ -98,6 +138,7 @@ namespace MeetMe.Web.Infrastructure.Extensions
                 }
                 pictures.Add(new Picture
                 {
+                    PictureId = Guid.NewGuid().ToString(),
                     PictureByteArray = arr,
                     Description = $"Description_{i.ToString()}",
                 });
@@ -134,10 +175,11 @@ namespace MeetMe.Web.Infrastructure.Extensions
 
                 if (testUser.Result == null)
                 {
-                    User Administrator = new User();
-                    Administrator.Email = ProjectConstants.AdministratorEmail;
-                    Administrator.UserName = ProjectConstants.AdministratorEmail;
-
+                    User Administrator = new User()
+                    {
+                        Email = ProjectConstants.AdministratorEmail,
+                        UserName = ProjectConstants.AdministratorEmail,
+                    };
                     Task<IdentityResult> newUser = userManager.CreateAsync(Administrator, "Administrator123");
                     newUser.Wait();
 

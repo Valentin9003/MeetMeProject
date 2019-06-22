@@ -17,7 +17,7 @@ namespace MeetMe.Data.Models
         [StringLength(100,ErrorMessage = DataConstants.PictureDescriptionMaxLengthErrorMessage)]
         public string Description { get; set; }
         
-        public bool isProfilePicture { get; set; } = false;
+        public bool IsProfilePicture { get; set; } = false;
         
         public string UserId {get;set;}
        

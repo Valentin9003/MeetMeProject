@@ -10,7 +10,7 @@ using MeetMe.Services.Models.Profile.ChildProfilePictureServiceModels;
 
 namespace MeetMe.Services.Models.Profile
 {
-   public class ProfilePictureServiceModel
+   public class ProfilePictureServiceModel:IMapFrom<Picture>
     {
         public string Id { get; set; }
 

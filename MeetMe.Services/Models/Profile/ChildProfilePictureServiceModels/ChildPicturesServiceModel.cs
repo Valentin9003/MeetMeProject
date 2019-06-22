@@ -9,7 +9,7 @@ namespace MeetMe.Services.Models.Profile.ChildProfilePictureServiceModels
     {
         public string Id { get; set; }
 
-        [Required]
+     //DODO   [Required]
         [MaxLength(10 * 1024 * 1024)]
         public byte[] PictureByteArray { get; set; }
     }

@@ -32,9 +32,9 @@ namespace MeetMe.Data
             /*Primary Keys*/
             base.OnModelCreating(builder);
             builder.Entity<Friends>().HasKey(k => new { k.UserId, k.ContactId });
-            builder.Entity<Messages>().HasAlternateKey(k=> new {k.SenderId,k.RecievedId });
-            builder.Entity<User>().HasAlternateKey(k => k.Id);
-            builder.Entity<Picture>().HasAlternateKey(k => k.PictureId);
+            builder.Entity<Messages>().HasKey(k=> new {k.SenderId,k.RecievedId });
+            builder.Entity<User>().HasKey(k => k.Id);
+            builder.Entity<Picture>().HasKey(k => k.PictureId);
            
            
             
@@ -42,28 +42,46 @@ namespace MeetMe.Data
 
 
             //Relations beetwin Picture and User
-            builder.Entity<User>().HasMany(p => p.Pictures).WithOne(u => u.User).HasForeignKey(fk => fk.PictureId);
-            builder.Entity<Picture>().HasOne(u => u.User).WithMany(p => p.Pictures).HasForeignKey(fk => fk.UserId);
+            builder.Entity<User>()
+                .HasMany(p => p.Pictures)
+                .WithOne(u => u.User)
+                .HasForeignKey(fk => fk.UserId); 
 
            //Relation beetwin User and Friends
-            builder.Entity<User>().HasMany(f => f.Friends).WithOne(u => u.User).HasForeignKey(u => u.UserId);
-            builder.Entity<User>().HasMany(f => f.Contacts).WithOne(u => u.Contact).HasForeignKey(u => u.ContactId);
-            builder.Entity<Friends>().HasOne(u => u.User).WithMany(fr => fr.Friends).HasForeignKey(fk => fk.UserId).OnDelete(DeleteBehavior.Restrict);
-            builder.Entity<Friends>().HasOne(u => u.Contact).WithMany(fr => fr.Contacts).HasForeignKey(fk => fk.ContactId).OnDelete(DeleteBehavior.Restrict);
+           
+            builder.Entity<Friends>()
+                .HasOne(u => u.User)
+                .WithMany(fr => fr.Friends)
+                .HasForeignKey(fk => fk.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Friends>()
+                .HasOne(u => u.Contact)
+                .WithMany(fr => fr.Contacts)
+                .HasForeignKey(fk => fk.ContactId)
+                .OnDelete(DeleteBehavior.Restrict);
            
 
            
             //Implementation Message and User
-            builder.Entity<Messages>().HasOne(ru => ru.Received).WithMany(r => r.Received).HasForeignKey(fk =>  fk.RecievedId).OnDelete(DeleteBehavior.Restrict);
-            builder.Entity<User>().HasMany(r => r.Received).WithOne(ru => ru.Received).HasForeignKey(fk => fk.RecievedId);
-            builder.Entity<Messages>().HasOne(s => s.Sender).WithMany(sd => sd.Send).HasForeignKey(fk => fk.SenderId).OnDelete(DeleteBehavior.Restrict);
-            builder.Entity<User>().HasMany(sd => sd.Send).WithOne(s => s.Sender).HasForeignKey(fk => fk.SenderId);
+            builder.Entity<Messages>()
+                .HasOne(ru => ru.Received)
+                .WithMany(r => r.Received)
+                .HasForeignKey(fk =>  fk.RecievedId)
+                .OnDelete(DeleteBehavior.Restrict);
+         
+            builder.Entity<Messages>()
+                .HasOne(s => s.Sender)
+                .WithMany(sd => sd.Send)
+                .HasForeignKey(fk => fk.SenderId)
+                .OnDelete(DeleteBehavior.Restrict);
+         
 
              base.OnModelCreating(builder);
 
-           
-            /*Seed Method*/
-            /*Check caskade delete on all entitys*/
+
+
+            /*Check cascade delete for all entities*/
 
         }
     }

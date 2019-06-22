@@ -16,7 +16,7 @@ namespace MeetMe.Data.Models
         public bool IsOnline { get; set; }
 
        
-        public DateTime  lastEntryDate { get; set; }
+        public DateTime  LastEntryDate { get; set; }
         
         [StringLength(20, ErrorMessage = DataConstants.UserFirstNameMaxLengthErrorMessage)]
         public string FirstName { get; set; }

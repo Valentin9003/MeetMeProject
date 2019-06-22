@@ -15,12 +15,14 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using MeetMe.Services.Models;
 using Microsoft.Extensions.DependencyInjection;
-
+using Microsoft.EntityFrameworkCore.Proxies;
 using MeetMe.Web.Controllers;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
 using System.Threading;
 using MeetMe.Web.Areas.Edit.Models.ChildViewModels;
+using MeetMe.Services.Models.Profile;
+using MeetMe.Services.Models.Profile.ChildProfilePictureServiceModels;
 
 namespace MeetMe.Web.Areas.Edit.Controllers
 {
@@ -32,14 +34,14 @@ namespace MeetMe.Web.Areas.Edit.Controllers
         private readonly UserManager<User> userManager;
         private readonly IMapper mapper;
         private readonly IProfileService profileService;
-        private readonly MeetMeDbContext context;
+        private readonly MeetMeDbContext db;
 
         public ProfileController(UserManager<User> userManager, IProfileService profileService,
-              MeetMeDbContext context, IMapper mapper)
+              MeetMeDbContext db, IMapper mapper)
         {
             this.userManager = userManager;
             this.profileService = profileService;
-            this.context = context;
+            this.db = db;
             this.mapper = mapper;
 
         }
@@ -106,18 +108,114 @@ namespace MeetMe.Web.Areas.Edit.Controllers
             var user = await userManager.GetUserAsync(User);
             var userId = await userManager.GetUserIdAsync(user);
 
+            //var jj = db.Picture.Where(p => p.UserId == userId).ToList();
+            //var pic = this.db.Users.Where(u => u.Id == userId).Include(p => p.Pictures).Select(a => a.Pictures);
+            //List<Picture> ll = db.Users.Where(u => u.Id == userId).Include(p => p.Pictures).FirstOrDefault().Pictures.ToList();
+            //     //=== PROBA
+            //     //var pic = db.Picture.Where(p => p.UserId == userId).ToList();
+            //     //var idlidt = db.Users.Where(u => u.Id == userId).Include(p => p.Pictures).Select(l => l.Id).ToList();
+            //     //var userPictures = db.Users.Where(u => u.Id == userId)
+            //     //    .Include(o => o.Pictures)
+            //     //  .SelectMany(p => p.Pictures).AsQueryable().Select(k => k.PictureByteArray)/*.ToArray();*/;
+
+            //  var model =  db.User.Where(u => u.Id == userId)
+            //      .Include(p => p.Pictures).ToList()
+            //     .Select(p => new ProfilePictureServiceModel
+            //     {
+            //         Id = p.Pictures
+            //.Where(pp => pp.IsProfilePicture == true)
+            //.Select(i => i.PictureId).FirstOrDefault(),
+
+            //         PictureByteArray = p.Pictures
+            //.Where(pp => pp.IsProfilePicture == true)
+            //.Select(cpp => cpp.PictureByteArray)
+            //.FirstOrDefault(),
+
+            //         allPage = (p.Pictures.Count() - 1) % ServicesDataConstraints.EditProfilePictureServicePageSize == 0 ? ((p.Pictures.Count() - 1) / ServicesDataConstraints.EditProfilePictureServicePageSize) : (((p.Pictures.Count() - 1) / ServicesDataConstraints.EditProfilePictureServicePageSize) + 1),//Math.Floor((((decimal)p.Pictures.Count()-1) / ServicesDataConstraints.EditProfilePictureServicePageSize)),
+
+            //         Pictures = p.Pictures
+            //.Where(f => f.IsProfilePicture == false)
+            //.OrderByDescending(o => o.PictureId)
+            //.Skip((page - 1) * ServicesDataConstraints.EditProfilePictureServicePageSize)
+            //.Take(ServicesDataConstraints.EditProfilePictureServicePageSize)
+            //.Select(k =>
+            //new ChildPicturesServiceModel
+            //{
+            //    PictureByteArray = k.PictureByteArray,
+            //    Id = k.PictureId,
+
+            //})
+            //.ToList()
+            //     }).FirstOrDefault();
+
+
+
+
+            //     //  var model = await db.Users.Where(u => u.Id == userId)
+            //     //     .Select(p => new 
+            //     //     {
+            //     //         Id = p.Pictures
+            //     //.Where(pp => pp.isProfilePicture == true)
+            //     //.Select(i => i.PictureId).FirstOrDefault(),
+
+            //     //         PictureByteArray = p.Pictures
+            //     //.Where(pp => pp.isProfilePicture == true)
+            //     //.Select(cpp => cpp.PictureByteArray)
+            //     //.FirstOrDefault(),
+
+            //     // allPage = (p.Pictures.Count() - 1) % ServicesDataConstraints.EditProfilePictureServicePageSize == 0 ? ((p.Pictures.Count() - 1) / ServicesDataConstraints.EditProfilePictureServicePageSize) : (((p.Pictures.Count() - 1) / ServicesDataConstraints.EditProfilePictureServicePageSize) + 1),//Math.Floor((((decimal)p.Pictures.Count()-1) / ServicesDataConstraints.EditProfilePictureServicePageSize)),
+
+
+            //     //.OrderByDescending(o => o.PictureId)
+            //     //.Skip((page - 1) * ServicesDataConstraints.EditProfilePictureServicePageSize)
+            //     //.Take(ServicesDataConstraints.EditProfilePictureServicePageSize)
+
+            //     //  }).FirstOrDefaultAsync();
+
+            //     var model2 = db.Users.Where(u => u.Id == userId).Include(k => k.Pictures)
+            //      // .Include(p=>p.Pictures)
+            //      .Select(p => new
+            //      {
+
+            //          Pictures = p.Pictures
+            // .Where(f => f.IsProfilePicture == false)
+            //      });//.AsEnumerable()
+            //         //                                        //.OrderByDescending(o => o.PictureId)
+            //         //                                        //.Skip((page - 1) * ServicesDataConstraints.EditProfilePictureServicePageSize)
+            //         //                                        //.Take(ServicesDataConstraints.EditProfilePictureServicePageSize)
+
+            //     //.Select(k =>
+            //     //new
+            //     //{
+            //     //    //  PictureByteArrayh = k.PictureByteArray,
+            //     //    Id = k.PictureId,
+
+            //     //})
+            //     //     }).FirstOrDefault();
+            //     var model3 =  db.Users.Where(u => u.Id == userId).Include(l => l.Pictures).Select(po => po.Pictures)
+
+            //.ToList();
+
+            // //.OrderByDescending(o => o.PictureId)
+            // //.Skip((page - 1) * ServicesDataConstraints.EditProfilePictureServicePageSize)
+            // //.Take(ServicesDataConstraints.EditProfilePictureServicePageSize)
+
+            //     //----PROBA
+
             var profilePictures = await profileService.EditProfilePictureAsync(userId, page);
 
-            var viewResult = new EditProfilePictureViewModel();
-            viewResult.Id = profilePictures.Id;
-            viewResult.PictureByteArray = profilePictures.PictureByteArray;
-            viewResult.Pictures = profilePictures.Pictures.Select(p =>
-           new ChildEditProfilePictureViewModel { PictureByteArray = p.PictureByteArray, Id = p.Id }).ToList();
-            viewResult.maxPage = (int)profilePictures.allPage;
-            viewResult.previousPage = page - 1;
-            viewResult.nextPage = page + 1;
-            viewResult.currentPage = page;
+            var viewResult = new EditProfilePictureViewModel() {
+            Id = profilePictures.Id,
+           PictureByteArray = profilePictures.PictureByteArray,
+            Pictures = profilePictures.Pictures.Select(p =>
+           new ChildEditProfilePictureViewModel { PictureByteArray = p.PictureByteArray, Id = p.Id }).ToList(), //remove tolist
+            maxPage = (int)profilePictures.allPage,
+            previousPage = page - 1,
+            nextPage = page + 1,
+            currentPage = page,
+        };
 
+            var userZaBreakPiont = await userManager.GetUserAsync(User);
             return View(viewResult);
         }
         [HttpPost]

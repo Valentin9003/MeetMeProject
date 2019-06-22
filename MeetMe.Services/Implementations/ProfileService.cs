@@ -21,6 +21,8 @@ using System.IO;
 using System.Threading;
 using Z.EntityFramework.Plus;
 using Microsoft.EntityFrameworkCore.Proxies;
+using Microsoft.EntityFrameworkCore.Relational;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 
 namespace MeetMe.Services.Implementations
@@ -81,50 +83,94 @@ namespace MeetMe.Services.Implementations
         public async Task<ProfilePictureServiceModel> EditProfilePictureAsync(string id, int page)
         {
             var user = await db.Users.FindAsync(id);
-            var model = await db.Users.Where(u => u.Id == id).Select(p => new ProfilePictureServiceModel
-            {
-                Id = p.Pictures
-                .Where(pp => pp.isProfilePicture == true)
-                .Select(i => i.PictureId).FirstOrDefault(),
 
-                PictureByteArray = p.Pictures
-                .Where(pp => pp.isProfilePicture == true)
-                .Select(cpp => cpp.PictureByteArray)
-                .FirstOrDefault(),
 
-                allPage = (p.Pictures.Count() - 1) % ServicesDataConstraints.EditProfilePictureServicePageSize == 0 ? ((p.Pictures.Count() - 1) / ServicesDataConstraints.EditProfilePictureServicePageSize) : (((p.Pictures.Count() - 1) / ServicesDataConstraints.EditProfilePictureServicePageSize) + 1),//Math.Floor((((decimal)p.Pictures.Count()-1) / ServicesDataConstraints.EditProfilePictureServicePageSize)),
+            //var userPictures = await db.Users.Where(u => u.Id == id)
+            //    .Include(p => p.Pictures).Select(p => p.Pictures).FirstOrDefaultAsync();
 
-                Pictures = p.Pictures
-                .Where(f=> f.isProfilePicture == false)
-                .OrderByDescending(o=>o.PictureId)
-                .Skip((page - 1) * ServicesDataConstraints.EditProfilePictureServicePageSize)
-                .Take(ServicesDataConstraints.EditProfilePictureServicePageSize)
-                .Select(k =>
-                new ChildPicturesServiceModel
-                {
-                    PictureByteArray = k.PictureByteArray,
-                    Id = k.PictureId,
-                   
-                })
-                .ToList()
-            }).FirstOrDefaultAsync();
+            //var ProfilePictureId = userPictures.Where(pp => pp.IsProfilePicture == true).Select(i => i.PictureId).FirstOrDefault();
 
-               return model;
+            //var ProfilePictureByteArray = userPictures.Where(pp => pp.IsProfilePicture == true).Select(i => i.PictureByteArray).FirstOrDefault();
+
+            //var allPage = (userPictures.Count - 1) % ServicesDataConstraints.EditProfilePictureServicePageSize == 0 ?
+            //   ((userPictures.Count - 1) / ServicesDataConstraints.EditProfilePictureServicePageSize) :
+            //   (((userPictures.Count - 1) / ServicesDataConstraints.EditProfilePictureServicePageSize) + 1);
+
+
+            //var pictures = userPictures.Where(pp => pp.IsProfilePicture != true).Select(p => new ChildPicturesServiceModel
+            //{
+            //    Id = p.PictureId,
+            //    PictureByteArray = p.PictureByteArray
+            //}
+            //).Take(ServicesDataConstraints.EditProfilePictureServicePageSize).ToList();
+            //var model = new ProfilePictureServiceModel()
+            //{
+            //    Id = ProfilePictureId,
+            //    PictureByteArray = ProfilePictureByteArray,
+            //    allPage = allPage,
+            //    Pictures = pictures,
+
+            //};
+
+
+
+            //==ORIGINAL
+            var model =  db.User.Where(u => u.Id == id)
+                .Include(p => p.Pictures).ToList()
+               .Select(p => new ProfilePictureServiceModel
+               {
+                   Id = p.Pictures
+          .Where(pp => pp.IsProfilePicture == true)
+          .Select(i => i.PictureId).FirstOrDefault(),
+
+                   PictureByteArray = p.Pictures
+          .Where(pp => pp.IsProfilePicture == true)
+          .Select(cpp => cpp.PictureByteArray)
+          .FirstOrDefault(),
+
+                   allPage = (p.Pictures.Count() - 1) % ServicesDataConstraints.EditProfilePictureServicePageSize == 0 ? ((p.Pictures.Count() - 1) / ServicesDataConstraints.EditProfilePictureServicePageSize) : (((p.Pictures.Count() - 1) / ServicesDataConstraints.EditProfilePictureServicePageSize) + 1),//Math.Floor((((decimal)p.Pictures.Count()-1) / ServicesDataConstraints.EditProfilePictureServicePageSize)),
+
+                   Pictures = p.Pictures
+          .Where(f => f.IsProfilePicture == false)
+          .OrderByDescending(o => o.PictureId)
+          .Skip((page - 1) * ServicesDataConstraints.EditProfilePictureServicePageSize)
+          .Take(ServicesDataConstraints.EditProfilePictureServicePageSize)
+          .Select(k =>
+          new ChildPicturesServiceModel
+          {
+              PictureByteArray = k.PictureByteArray,
+              Id = k.PictureId,
+
+          })
+          .ToList()
+               }).FirstOrDefault();
+          
+
+            //var dd = new ProfilePictureServiceModel()
+            //{
+            //    Id = "12",
+            //    PictureByteArray = new byte[10],
+            //    allPage = 3,
+            //    Pictures = new List<ChildPicturesServiceModel>()
+
+            //};
+
+            return model;
         }
 
         public async Task<bool> UploadProfilePictureAsync(IFormFile picture, string userId)
         {
-           
+
             byte[] byteArray = new byte[1024 * 1024 * 10];
             if (picture == null)
             {
                 return false;
             }
-            
+
             using (MemoryStream memoryStream = new MemoryStream())
             {
                 await picture.CopyToAsync(memoryStream, CancellationToken.None);
-              
+
                 byteArray = memoryStream.ToArray();
             }
 
@@ -133,24 +179,27 @@ namespace MeetMe.Services.Implementations
                 return false;
             }
             var ProfilePictureExist = await db.Picture
-                .Where(k => k.isProfilePicture == true && k.UserId == userId)
+                .Where(k => k.IsProfilePicture == true && k.UserId == userId)
                 .AnyAsync();
             if (ProfilePictureExist)
             {
                 var CurrentProfilePicture = await db
                     .Picture
-                    .Where(k => k.isProfilePicture == true && k.UserId == userId)
+                    .Where(k => k.IsProfilePicture == true && k.UserId == userId)
                     .FirstOrDefaultAsync();
 
-                CurrentProfilePicture.isProfilePicture = false;
+                CurrentProfilePicture.IsProfilePicture = false;
 
                 await db.SaveChangesAsync();
             }
 
-            var newPicture = new Picture();
-            newPicture.isProfilePicture = true;
-            newPicture.PictureByteArray = byteArray;
-            newPicture.UserId = userId;
+            var newPicture = new Picture()
+            {
+                PictureId = Guid.NewGuid().ToString(), 
+            IsProfilePicture = true,
+            PictureByteArray = byteArray,
+            UserId = userId,
+            };
             await db.Picture.AddAsync(newPicture);
 
             await db.SaveChangesAsync();
@@ -161,16 +210,16 @@ namespace MeetMe.Services.Implementations
         public async Task<bool> ChooseProfilePictureAsync(string futurePictureId, string currentPictureId, string userId)
         {
             var currentProfilePictureExist =  await db
-                .Picture.Where(p => p.UserId == userId && p.isProfilePicture == true)
+                .Picture.Where(p => p.UserId == userId && p.IsProfilePicture == true)
                 .AnyAsync();
             if (currentProfilePictureExist)
             {
                var currentProfilePicture = await db
                     .Picture
-                    .Where(p => p.UserId == userId && p.isProfilePicture == true)
+                    .Where(p => p.UserId == userId && p.IsProfilePicture == true)
                     .FirstOrDefaultAsync();
 
-                currentProfilePicture.isProfilePicture = false;
+                currentProfilePicture.IsProfilePicture = false;
 
                 await db.SaveChangesAsync();
             }
@@ -183,7 +232,7 @@ namespace MeetMe.Services.Implementations
                 var newProfilePicture = await db
                     .Picture.FirstOrDefaultAsync(p => p.UserId == userId && p.PictureId == futurePictureId);
 
-                newProfilePicture.isProfilePicture = true;
+                newProfilePicture.IsProfilePicture = true;
 
                 await db.SaveChangesAsync();
             }
@@ -215,11 +264,11 @@ namespace MeetMe.Services.Implementations
 
                 ProfilePicture = (m.ContactId == userId ? m.User
             .Pictures
-            .Where(p => p.isProfilePicture == true)
+            .Where(p => p.IsProfilePicture == true)
             .Select(b => b.PictureByteArray)
             .SingleOrDefault() :
              m.Contact.Pictures
-            .Where(p => p.isProfilePicture == true)
+            .Where(p => p.IsProfilePicture == true)
             .Select(b => b.PictureByteArray)
             .SingleOrDefault())
             })
@@ -260,17 +309,17 @@ namespace MeetMe.Services.Implementations
                 .AnyAsync();
             if (friendConnectionExist)
             {
-               var checkForDeleted = await db.Friends
-               .Where(u => (u.ContactId == userId || u.ContactId == friendId) && (u.UserId == userId || u.UserId == friendId) && u.IsAccepted == true)
-                .DeleteAsync();
+                var FriendShip = await db.Friends
+                .Where(u => (u.ContactId == userId || u.ContactId == friendId) && (u.UserId == userId || u.UserId == friendId) && u.IsAccepted == true)
+                .FirstOrDefaultAsync();
+                      db.Friends.Remove(FriendShip);
+               await  db.SaveChangesAsync();
 
-                if (checkForDeleted == 1)
-                {
-                    return true;
-                }
+                return true;
+                
 
             }
-            return false;
+                return false;
                
         }
     }

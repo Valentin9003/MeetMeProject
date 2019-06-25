@@ -63,8 +63,8 @@ namespace MeetMe.Web
             services.AddAuthentication()
             .AddFacebook(options =>
             {
-                options.AppId = "2617203478350569";
-                options.AppSecret = "24843157ec3dc2dcfe9219c8f8525ed0";
+                options.AppId = "*****************";
+                options.AppSecret = "****************************";
             });
             services.AddSignalR();
             services.AddRazorPages();

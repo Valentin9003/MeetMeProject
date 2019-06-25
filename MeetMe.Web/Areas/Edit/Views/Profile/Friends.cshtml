@@ -5,16 +5,7 @@
 }
 
 <style>
-    .a {
-   color:green;
-   background-color:yellow;
    
-    }
-    .mark{
-        background-color:yellow;
-      
-        
-    }
 </style>
 
 <partial name="_NavigationMenuEditProfile"/>
@@ -54,12 +45,12 @@
                         <img src="@imgSrc" style="width:130px; height:130px" />
                         <div><br /></div>
                         <div><a asp-area="Edit" asp-controller="Profile" asp-action="View" asp-fragment="@Model.Friends[(row * 5) + col].UserId"></a></div>
-                        <div class="alert-danger">
-                            <form style="Background:white" class="col-lg-1" method="post" asp-area="Edit" asp-controller="Profile" asp-action="Friends">
+                        <div>
+                            <form style="background-color:white" class="col-lg-1" method="post" asp-area="Edit" asp-controller="Profile" asp-action="Friends">
                                 <input type="hidden" value="@Model.Friends[(row * 5) + col].UserId" name="FriendId" />
-                                <a href="Линк към Профила"><mark>Профил</mark></a>
+                                <a class="alert-info" href="Линк към Профила" >Профил</a>
                                 <br/>
-                                <button type="submit" class="btn-group-sm">Изтрий приятел</button>
+                                <button type="submit" class="btn-group-sm btn-danger">Изтрий приятел</button>
                             </form>
                             <div style="background-color:white"><br /></div>
                         </div>

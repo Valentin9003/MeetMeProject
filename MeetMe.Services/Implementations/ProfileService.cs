@@ -85,36 +85,6 @@ namespace MeetMe.Services.Implementations
             var user = await db.Users.FindAsync(id);
 
 
-            //var userPictures = await db.Users.Where(u => u.Id == id)
-            //    .Include(p => p.Pictures).Select(p => p.Pictures).FirstOrDefaultAsync();
-
-            //var ProfilePictureId = userPictures.Where(pp => pp.IsProfilePicture == true).Select(i => i.PictureId).FirstOrDefault();
-
-            //var ProfilePictureByteArray = userPictures.Where(pp => pp.IsProfilePicture == true).Select(i => i.PictureByteArray).FirstOrDefault();
-
-            //var allPage = (userPictures.Count - 1) % ServicesDataConstraints.EditProfilePictureServicePageSize == 0 ?
-            //   ((userPictures.Count - 1) / ServicesDataConstraints.EditProfilePictureServicePageSize) :
-            //   (((userPictures.Count - 1) / ServicesDataConstraints.EditProfilePictureServicePageSize) + 1);
-
-
-            //var pictures = userPictures.Where(pp => pp.IsProfilePicture != true).Select(p => new ChildPicturesServiceModel
-            //{
-            //    Id = p.PictureId,
-            //    PictureByteArray = p.PictureByteArray
-            //}
-            //).Take(ServicesDataConstraints.EditProfilePictureServicePageSize).ToList();
-            //var model = new ProfilePictureServiceModel()
-            //{
-            //    Id = ProfilePictureId,
-            //    PictureByteArray = ProfilePictureByteArray,
-            //    allPage = allPage,
-            //    Pictures = pictures,
-
-            //};
-
-
-
-            //==ORIGINAL
             var model =  db.User.Where(u => u.Id == id)
                 .Include(p => p.Pictures).ToList()
                .Select(p => new ProfilePictureServiceModel
@@ -146,14 +116,7 @@ namespace MeetMe.Services.Implementations
                }).FirstOrDefault();
           
 
-            //var dd = new ProfilePictureServiceModel()
-            //{
-            //    Id = "12",
-            //    PictureByteArray = new byte[10],
-            //    allPage = 3,
-            //    Pictures = new List<ChildPicturesServiceModel>()
-
-            //};
+           
 
             return model;
         }

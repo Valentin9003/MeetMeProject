@@ -17,6 +17,8 @@ using MeetMe.Web.Infrastructure.Extensions;
 using MeetMe.Data.Models;
 using AutoMapper;
 using MeetMe.Web.Infrastructure.Mapping;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Facebook;
 
 namespace MeetMe.Web
 {
@@ -52,29 +54,19 @@ namespace MeetMe.Web
                 .AddEntityFrameworkStores<MeetMeDbContext>();
             services.AddSignalR();
             services.AddAutoMapper(typeof(Startup));
-            //var mappingConfig = new MapperConfiguration(mc =>
-            //{
-            //    mc.AddProfile(new AutoMapperProfile());
-            //});
-            //IMapper mapper = mappingConfig.CreateMapper();
-            //services.AddSingleton(mapper);
+           
            
             services.AddControllersWithViews(option => option.Filters
                .Add(new AutoValidateAntiforgeryTokenAttribute())
                );
-            //services.AddAuthentication();
-            //services.AddAuthentication(options =>
-            //{
-            //    //options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            //    //options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            //    //options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            //})
-            //.AddFacebook(options =>
-            //{
-            //    options.AppId = "Authentication:Facebook:2617203478350569";
-            //    options.AppSecret = "Authentication:Facebook:24843157ec3dc2dcfe9219c8f8525ed0";
-            //});
-            //services.AddSignalR();
+            services.AddAuthentication();
+            services.AddAuthentication()
+            .AddFacebook(options =>
+            {
+                options.AppId = "2617203478350569";
+                options.AppSecret = "24843157ec3dc2dcfe9219c8f8525ed0";
+            });
+            services.AddSignalR();
             services.AddRazorPages();
             services.AddAuthentication();
             services.AddMvc();
@@ -88,24 +80,16 @@ namespace MeetMe.Web
             app.Seed(); // Add Users and Pictures in DataBase
             app.AddAdministrator();
 
-
-           
+            if (env.IsDevelopment())
+            {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
-            
-         
-            
-            //if (env.IsDevelopment())
-            //{
-            //    app.UseDeveloperExceptionPage();
-            //    app.UseDatabaseErrorPage();
-            //}
-            //else
-            //{
-            //    app.UseExceptionHandler("/Home/Error");
-            //    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-            //    app.UseHsts();
-            //}
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
+            }
 
 
             app.UseHttpsRedirection();
@@ -118,22 +102,7 @@ namespace MeetMe.Web
             app.UseAuthentication();
             app.UseAuthorization();
 
-            //app.UseMvc(routes =>
-            //{
-            //    routes.MapRoute(
-            //       name: "Profile",
-            //       template: "{area:exists}/{controller=ProfileController}/{action=Info}"
-            //        );
-            //routes.MapRoute(
-            //   name: "EditProfilePicture",
-            //   template: "{area:exists}/{controller=ProfileController}/{action=ProfilePicture}/{page?}"
-            //    );
-
-            //routes.MapRoute(
-            //    name: "default",
-            //    template: "{controller=Home}/{action=Index}/{id?}");
-            //  });
-
+           
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -143,6 +112,10 @@ namespace MeetMe.Web
                 endpoints.MapControllerRoute(
                   name: "EditProfilePicture",
                   pattern: "{area:exists}/{controller=ProfileController}/{action=ProfilePicture}/{page?}");
+
+                endpoints.MapControllerRoute(
+               name: "Search",
+               pattern: "{area:exists}/{controller=SearchController}/{action=Index}");
 
                 endpoints.MapControllerRoute(
                     name: "default",

@@ -29,6 +29,8 @@
 
 
   <ItemGroup>
+    <Folder Include="Areas\Search\Models\" />
+    <Folder Include="Areas\Search\Views\" />
     <Folder Include="Hubs\" />
   </ItemGroup>
 

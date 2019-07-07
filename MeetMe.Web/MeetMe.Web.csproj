@@ -24,13 +24,14 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0-preview6.19304.10" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.0.0-preview6.19304.6" />
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="3.0.0-preview-18579-0056" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0-preview5-19264-04" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0-preview6.19304.6" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0-preview6-19319-03" />
   </ItemGroup>
 
 
   <ItemGroup>
-    <Folder Include="Areas\Search\Models\" />
-    <Folder Include="Areas\Search\Views\" />
+    <Folder Include="Areas\Identity\" />
     <Folder Include="Hubs\" />
   </ItemGroup>
 

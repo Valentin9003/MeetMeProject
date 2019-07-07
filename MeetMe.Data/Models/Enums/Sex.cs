@@ -6,9 +6,9 @@ namespace MeetMe.Data.Models.Enums
 {
     public enum Sex
     {
-        Друго = 1,
-        Мъж = 2,
-        Жена = 3
-        
+        Друг = 0,
+        Мъж = 1,
+        Жена = 2,
+        Тайна = 3
     }
 }

@@ -6,9 +6,10 @@ namespace MeetMe.Data.Models.Enums
 {
     public enum LookingFor
     {
-        Друго = 1,
-        Мъже = 2,
-        Жени = 3
+        Друго = 0,
+        Мъже = 1,
+        Жени = 2,
+        Тайна = 3
        
     }
 }

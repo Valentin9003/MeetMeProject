@@ -12,6 +12,7 @@ namespace MeetMe.Data.Models.Enums
         Англия = 3,
         Румъния = 4,
         Америка = 5, 
+        Тайна = 6
          
 
     }

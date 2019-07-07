@@ -9,5 +9,7 @@ namespace MeetMe.Services
         public  const int   EditProfilePictureServicePageSize = 10;
 
         public const int FriendsServicePageSize = 15;
+
+        public const int SearchServicePageSize = 15;
     }
 }

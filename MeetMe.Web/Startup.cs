@@ -19,6 +19,8 @@ using AutoMapper;
 using MeetMe.Web.Infrastructure.Mapping;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Facebook;
+using MeetMe.Web.Hubs;
+using Microsoft.VisualStudio.Web.BrowserLink;
 
 namespace MeetMe.Web
 {
@@ -63,8 +65,8 @@ namespace MeetMe.Web
             services.AddAuthentication()
             .AddFacebook(options =>
             {
-                options.AppId = "*****************";
-                options.AppSecret = "****************************";
+                options.AppId = "2617203478350569";
+                options.AppSecret = "24843157ec3dc2dcfe9219c8f8525ed0";
             });
             services.AddSignalR();
             services.AddRazorPages();
@@ -82,6 +84,7 @@ namespace MeetMe.Web
 
             if (env.IsDevelopment())
             {
+                app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }
@@ -91,8 +94,8 @@ namespace MeetMe.Web
                 app.UseHsts();
             }
 
-
-            app.UseHttpsRedirection();
+            
+;            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseCookiePolicy();
@@ -102,9 +105,9 @@ namespace MeetMe.Web
             app.UseAuthentication();
             app.UseAuthorization();
 
-           
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<ChatHub>("/ChatHub");
                 endpoints.MapControllerRoute(
                 name: "Profile",
                 pattern: "{area:exists}/{controller=ProfileController}/{action=Info}");
@@ -112,6 +115,10 @@ namespace MeetMe.Web
                 endpoints.MapControllerRoute(
                   name: "EditProfilePicture",
                   pattern: "{area:exists}/{controller=ProfileController}/{action=ProfilePicture}/{page?}");
+
+                endpoints.MapControllerRoute(
+              name: "SearchResult",
+              pattern: "{area:exists}/{controller=SearchController}/{action=SearchResult}/{page?}");
 
                 endpoints.MapControllerRoute(
                name: "Search",

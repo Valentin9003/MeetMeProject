@@ -1,28 +1,17 @@
-﻿using System;
+﻿using AutoMapper;
+using MeetMe.Data;
+using MeetMe.Data.Models;
+using MeetMe.Services;
+using MeetMe.Web.Areas.Edit.Models;
+using MeetMe.Web.Areas.Edit.Models.ChildViewModels;
+using MeetMe.Web.Controllers;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using MeetMe.Services;
-using MeetMe.Data.Models;
-using MeetMe.Web.Areas.Edit.Models;
-using System.Security.Claims;
-using MeetMe.Data;
-using AutoMapper.QueryableExtensions;
-using AutoMapper;
-using Microsoft.AspNetCore.Http;
-using MeetMe.Services.Models;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore.Proxies;
-using MeetMe.Web.Controllers;
-using Microsoft.EntityFrameworkCore;
-using System.IO;
-using System.Threading;
-using MeetMe.Web.Areas.Edit.Models.ChildViewModels;
-using MeetMe.Services.Models.Profile;
-using MeetMe.Services.Models.Profile.ChildProfilePictureServiceModels;
 
 namespace MeetMe.Web.Areas.Edit.Controllers
 {
@@ -50,7 +39,7 @@ namespace MeetMe.Web.Areas.Edit.Controllers
 
 
         [HttpGet]
-        
+
         public async Task<IActionResult> Info()
         {
 
@@ -76,6 +65,7 @@ namespace MeetMe.Web.Areas.Edit.Controllers
             /*Async Аction to change user profile information*/
             if (!ModelState.IsValid)
             {
+                var r = ModelState.DefaultIfEmpty();
                 return View(model);
             }
             var user = await userManager.FindByEmailAsync(User.Identity.Name);
@@ -205,16 +195,17 @@ namespace MeetMe.Web.Areas.Edit.Controllers
 
             var profilePictures = await profileService.EditProfilePictureAsync(userId, page);
 
-            var viewResult = new EditProfilePictureViewModel() {
-            Id = profilePictures.Id,
-           PictureByteArray = profilePictures.PictureByteArray,
-            Pictures = profilePictures.Pictures.Select(p =>
-           new ChildEditProfilePictureViewModel { PictureByteArray = p.PictureByteArray, Id = p.Id }).ToList(), //remove tolist
-            maxPage = (int)profilePictures.allPage,
-            previousPage = page - 1,
-            nextPage = page + 1,
-            currentPage = page,
-        };
+            var viewResult = new EditProfilePictureViewModel()
+            {
+                Id = profilePictures.Id,
+                PictureByteArray = profilePictures.PictureByteArray,
+                Pictures = profilePictures.Pictures.Select(p =>
+               new ChildEditProfilePictureViewModel { PictureByteArray = p.PictureByteArray, Id = p.Id }).ToList(), //remove tolist
+                maxPage = (int)profilePictures.allPage,
+                previousPage = page - 1,
+                nextPage = page + 1,
+                currentPage = page,
+            };
 
             var userZaBreakPiont = await userManager.GetUserAsync(User);
             return View(viewResult);
@@ -261,7 +252,7 @@ namespace MeetMe.Web.Areas.Edit.Controllers
             /*Async Аction to select user profile picture from the currents pictures*/
             var user = await userManager.GetUserAsync(User);
             var userId = user.Id;
-            
+
             var friendsListResult = await profileService.GetFriendsAsync(userId, page);
 
             var friendsList = mapper.Map<List<ChildFriendsViewModel>>(friendsListResult);
@@ -287,12 +278,12 @@ namespace MeetMe.Web.Areas.Edit.Controllers
         public async Task<IActionResult> Friends(string friendId)
         {
             var user = await userManager.FindByEmailAsync(User.Identity.Name);
-           
-            var userId = user.Id;
-            
 
-             var isSuccessful = await  profileService.DeleteFriendAsync(userId, friendId);
-           
+            var userId = user.Id;
+
+
+            var isSuccessful = await profileService.DeleteFriendAsync(userId, friendId);
+
             if (isSuccessful)
             {
                 return RedirectToAction(nameof(HomeController.Index), "Home", new { Area = string.Empty });

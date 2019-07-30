@@ -1,0 +1,63 @@
+﻿@model  SearchByCriteriaViewModel
+@{
+    ViewData["Title"] = "SearchCriteria";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    
+<br/>
+    <partial name="_NavigationMenuSearch" />
+<br/>
+
+<div class="container wrapper">
+
+    <form method="get" class="form" asp-area="Search" asp-controller="SearchFor" asp-action="SearchByCriteriaResult">
+
+
+
+        <br />
+        <div class="row">
+            <div class="form-group-sm col-lg-8 col-md-8">
+                <label class="Enums" asp-for="Country"></label>
+                <select class="Enums form-control-static" asp-for="Country" asp-items="Html.GetEnumSelectList<Country>()"></select>
+                <span asp-validation-for="Country" class="danger"></span>
+            </div>
+
+            <div class="form-group-sm col-lg-4 col-md-4">
+                <label class="Enums" asp-for="City"></label>
+                <select class="Enums form-control-static" asp-for="City" asp-items="Html.GetEnumSelectList<City>()"></select>
+                <span asp-validation-for="City" class="danger"></span>
+            </div>
+        </div>
+        <br />
+
+        <div class="row">
+            <div class="form-group-sm col-lg-8 col-md-8">
+                <label class="Enums" asp-for="Sex"></label>
+                <select class="Enums form-control-static" asp-for="Sex" asp-items="Html.GetEnumSelectList<Sex>()"></select>
+                <span asp-validation-for="Sex" class="danger"></span>
+            </div>
+
+            <div class="form-group-sm col-lg-4 col-md-4">
+                <label class="Enums" asp-for="LookingFor"></label>
+                <select class="Enums form-control-static" asp-for="LookingFor" asp-items="Html.GetEnumSelectList<LookingFor>()"></select>
+                <span asp-validation-for="LookingFor" class="danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group-sm col-lg-8 col-md-8">
+                <label class="Enums" asp-for="EyeColor"></label>
+                <select class="Enums form-control-static" asp-for="EyeColor" asp-items="Html.GetEnumSelectList<EyeColor>()"></select>
+                <span asp-validation-for="EyeColor" class="danger"></span>
+            </div>
+
+            
+        </div>
+
+
+        <button type="submit" class="btn btn-warning">Търсене..</button>
+    </form>
+
+
+</div>
+

@@ -1,26 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AutoMapper;
+using MeetMe.Data;
+using MeetMe.Data.Models;
+using MeetMe.Data.Models.Enums;
+using MeetMe.Web.Hubs;
+using MeetMe.Web.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MeetMe.Data;
-using Microsoft.AspNetCore.Mvc;
-using MeetMe.Web.Infrastructure.Extensions;
-using MeetMe.Data.Models;
-using AutoMapper;
-using MeetMe.Web.Infrastructure.Mapping;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.Facebook;
-using MeetMe.Web.Hubs;
-using Microsoft.VisualStudio.Web.BrowserLink;
 
 namespace MeetMe.Web
 {
@@ -45,19 +36,20 @@ namespace MeetMe.Web
             services.AddDbContext<MeetMeDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<User>(options => {
+            services.AddDefaultIdentity<User>(options =>
+            {
 
                 options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireNonAlphanumeric = false;
-           } )
+            })
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<MeetMeDbContext>();
             services.AddSignalR();
             services.AddAutoMapper(typeof(Startup));
-           
-           
+
+
             services.AddControllersWithViews(option => option.Filters
                .Add(new AutoValidateAntiforgeryTokenAttribute())
                );
@@ -78,7 +70,7 @@ namespace MeetMe.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseDataBaseMigration();
+           // app.UseDataBaseMigration();
             app.Seed(); // Add Users and Pictures in DataBase
             app.AddAdministrator();
 
@@ -94,8 +86,8 @@ namespace MeetMe.Web
                 app.UseHsts();
             }
 
-            
-;            app.UseHttpsRedirection();
+
+; app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseCookiePolicy();
@@ -117,18 +109,44 @@ namespace MeetMe.Web
                   pattern: "{area:exists}/{controller=ProfileController}/{action=ProfilePicture}/{page?}");
 
                 endpoints.MapControllerRoute(
-              name: "SearchResult",
-              pattern: "{area:exists}/{controller=SearchController}/{action=SearchResult}/{page?}");
+            name: "SearchByNameResult",
+            pattern: "{area:exists}/{controller=SearchForController}/{action=SearchByUserName}/{FirstName?}/{LastName?}/{page?}"
+
+            );
+                endpoints.MapControllerRoute(
+       name: "SearchByUserNameResult",
+       pattern: "{area:exists}/{controller=SearchForController}/{action=SearchByUserNameResult}/{page?}"
+
+       );
+                endpoints.MapControllerRoute(
+        name: "SearchByCriteriaResult",
+        pattern: "{area:exists}/{controller=SearchForController}/{action=SearchByCriteriaResult}/{Sex?}/{Country?}/{City?}/{Lookingfor?}/{Eyecolor?}/{page?}"
+
+
+        );
+
+                //          endpoints.MapControllerRoute(
+                //name: "Index",
+                //pattern: "{area:exists}/{controller=SearchForController}/{action=Index}"
+
+                //);
+                //  endpoints.MapControllerRoute(
+                //name: "SearchResult",
+                //pattern: "{area:exists}/{controller=SearchForController}/{action=SearchResult}/{page?}");
+
+
 
                 endpoints.MapControllerRoute(
-               name: "Search",
-               pattern: "{area:exists}/{controller=SearchController}/{action=Index}");
+          name: "SearchByCriteria",
+          pattern: "{area:exists}/{controller=SearchForController}/{action=SearchByCriteria}");
+
+
 
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-               
+
                 endpoints.MapRazorPages();
             });
         }

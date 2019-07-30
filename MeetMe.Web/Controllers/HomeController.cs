@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using MeetMe.Web.Models;
 using Microsoft.AspNetCore.Mvc;
-using MeetMe.Web.Models;
+using System.Diagnostics;
 
 namespace MeetMe.Web.Controllers
 {

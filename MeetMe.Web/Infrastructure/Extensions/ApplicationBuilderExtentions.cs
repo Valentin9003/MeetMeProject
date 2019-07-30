@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using MeetMe.Data;
 using MeetMe.Data.Models;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-using MeetMe.Data;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 
 namespace MeetMe.Web.Infrastructure.Extensions
@@ -55,7 +54,7 @@ namespace MeetMe.Web.Infrastructure.Extensions
                     {
                         var currentUserNumber = i;
                         var currentUserEmail = currentEmail;
-                       
+
                         var currentUserIdGuid = Guid.NewGuid().ToString();
 
                         User currentUser = new User()
@@ -65,9 +64,9 @@ namespace MeetMe.Web.Infrastructure.Extensions
                             UserName = currentPassword,
                             Pictures = GetPhotos(),
                             Friends = AddFriends(currentUserIdGuid, uploadedUsersIds),
-                           
+
                         };
-                       
+
                         currentUser.Pictures[i].IsProfilePicture = true;
 
                         Task<IdentityResult> createUser = userManager.CreateAsync(currentUser, currentPassword);
@@ -87,17 +86,17 @@ namespace MeetMe.Web.Infrastructure.Extensions
 
 
         // Add friendships between users
-        private static List<Friends> AddFriends( string currentUserId, List<string> ids)
+        private static List<Friends> AddFriends(string currentUserId, List<string> ids)
         {
 
             var friendsResultList = new List<Friends>();
 
-           
+
 
             for (int i = 0; i < ids.Count(); i++)
             {
-               
-               
+
+
                 Friends friend = new Friends()
                 {
                     UserId = currentUserId,
@@ -108,7 +107,7 @@ namespace MeetMe.Web.Infrastructure.Extensions
 
                 };
                 friendsResultList.Add(friend);
-                
+
             }
 
 

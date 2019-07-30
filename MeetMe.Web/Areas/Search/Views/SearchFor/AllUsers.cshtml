@@ -1,0 +1,84 @@
+﻿@model SearchResultViewModel
+@{
+    ViewData["Title"] = "Всички";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .pagination {
+        position:center;
+    }
+    
+        .pagination > li>a {
+           
+            background-color: black;
+            position:center;
+        }
+</style>
+
+
+
+@if (Model.Results.Count == 0)
+{
+    <div style="text-align:center"><strong>Няма открити резултати</strong></div>
+}
+
+
+@{
+    int rowCounter = Model.Results.Count % 5 == 0 ? (Model.Results.Count / 5) : ((Model.Results.Count / 5) + 1);
+}
+
+<br />
+<partial name="_NavigationMenuSearch" />
+<br />
+<div class="container">
+
+    <br />
+
+    @for (int row = 0; row < rowCounter; row++)
+    {
+        <br />
+        <div class="row">
+
+            @for (int col = 0; col < 5; col++)
+            {
+                <div class="col-lg-2">
+
+
+
+                    @if (((row * 5) + col) < Model.Results.Count())
+                    {
+                        var base64 = Convert.ToBase64String(Model.Results[(row * 5) + col].PrifilePicture);
+                        var imgSrc = String.Format("data:image/gif;base64,{0}", @base64);
+                        <div>@Model.Results[(row * 5) + col].FirstName</div>
+                        <div>@Model.Results[(row * 5) + col].LastName</div>
+                        <div> <img src="@imgSrc" style="width:130px; height:130px" /></div>
+                        <div><br /></div>
+                        <a href="BLABLABLA">Отвори Профил</a>
+
+
+                    }
+
+                </div>
+
+            }
+        </div>
+
+    }
+</div>
+
+
+
+@(Model.MaxPage)
+@if (Model.MaxPage > 1)
+{
+    <ul class="pagination">
+        <li ><a asp-route-page="@Model.PreviousPage"> <span aria-hidden="true">&laquo;</span></a></li>
+        <li><a asp-route-page="@Model.CurrentPage">@Model.CurrentPage</a></li>
+        <li ><a asp-route-page="@Model.NextPage">&raquo;</a> </li>
+    </ul>
+
+
+
+}
+

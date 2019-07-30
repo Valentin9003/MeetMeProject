@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MeetMe.Common
+﻿namespace MeetMe.Common
 {
     public class Class1
     {

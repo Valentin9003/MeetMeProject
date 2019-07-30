@@ -1,16 +1,13 @@
 ﻿using AutoMapper;
-using AutoMapper.Execution;
-using System;
 using MeetMe.Common.Mapping;
-using System.Collections.Generic;
+using System;
 using System.Linq;
-using System.Threading.Tasks;
 
 
 
 namespace MeetMe.Web.Infrastructure.Mapping
 {
-    public class AutoMapperProfile: Profile
+    public class AutoMapperProfile : Profile
     {
         public AutoMapperProfile()
         {
@@ -50,7 +47,7 @@ namespace MeetMe.Web.Infrastructure.Mapping
                 .Select(Activator.CreateInstance)
                 .Cast<IHaveCustomMapping>()
                 .ToList()
-                .ForEach(mapping =>mapping.ConfigureMapping(this));
+                .ForEach(mapping => mapping.ConfigureMapping(this));
         }
     }
 }

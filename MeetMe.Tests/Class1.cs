@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MeetMe.Tests
+﻿namespace MeetMe.Tests
 {
     public class Class1
     {

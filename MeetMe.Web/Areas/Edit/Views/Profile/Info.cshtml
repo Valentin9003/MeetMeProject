@@ -47,13 +47,13 @@
 <form method="post" class="form">
     <div class="input form-group-sm">
         <label asp-for="FirstName"></label>
-        <input asp-for="FirstName" class="form-control" />
+        <input asp-for="FirstName" class="form-control" placeholder="Иван"/>
         <span asp-validation-for="FirstName" class="danger"></span>
     </div>
 
-    <div class="form-group-sm">
+    <div class="input form-group-sm">
         <label asp-for="LastName"></label>
-        <input asp-for="LastName" class="form-control" />
+        <input asp-for="LastName" class="form-control" placeholder="Иванов"/>
         <span asp-validation-for="LastName" class="danger"></span>
     </div>
 
@@ -61,13 +61,13 @@
 
     <div class="form-group-sm">
         <label asp-for="Height"></label>
-        <input asp-for="Height" class="form-control" />
+        <input asp-for="Height" class="form-control" placeholder="0,1 - 2,5 метра" />
         <span asp-validation-for="Height" class="danger"></span>
     </div>
 
     <div class="form-group-sm">
         <label asp-for="Weight"></label>
-        <input asp-for="Weight" class="form-control " />
+        <input asp-for="Weight" class="form-control" placeholder="1 - 500  кг." />
         <span asp-validation-for="Weight" class="danger"></span>
     </div>
     <br />

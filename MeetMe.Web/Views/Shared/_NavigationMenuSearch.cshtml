@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+    <style>
+     a {
+            color: white;
+        }
+
+        container {
+            background-color: black;
+        }
+    </style>
+<br />
+<div class="container" style="background-color:black">
+    <div class="row">
+        <div class="col-sm-3"><a asp-area="Search" asp-controller="SearchFor" asp-action="SearchByUsername">Търсене по име на потребитела</a></div>
+        <div class="col-sm-3"><a asp-area="Search" asp-controller="SearchFor" asp-action="SearchByName">Търсене по име</a></div>
+        <div class="col-sm-3"><a asp-area="Search" asp-controller="SearchFor" asp-action="SearchByCriteria">Търсене по външен вид</a></div>
+        <div class="col-sm-3"><a asp-area="Search" asp-controller="SearchFor" asp-action="All">Всички</a></div>
+    </div>
+</div>
+<br />
+

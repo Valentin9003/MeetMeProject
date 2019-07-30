@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MeetMe.Data.Models.Enums
+﻿namespace MeetMe.Data.Models.Enums
 {
-   public  enum EyeColor
+    public enum EyeColor
     {
         Други = 0,
         Кафяви = 1,
@@ -12,7 +8,7 @@ namespace MeetMe.Data.Models.Enums
         Зелени = 3,
         Пъстри = 4,
         Тайна = 5
-        
+
 
 
     }

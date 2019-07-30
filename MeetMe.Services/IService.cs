@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MeetMe.Services
+﻿namespace MeetMe.Services
 {
     public interface IService
     {

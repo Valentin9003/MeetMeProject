@@ -1,28 +1,19 @@
-﻿using MeetMe.Data;
+﻿using AutoMapper;
+using MeetMe.Data;
 using MeetMe.Data.Models;
-using MeetMe.Services.Models;
+using MeetMe.Data.Models.Enums;
+using MeetMe.Services.Models.Profile;
+using MeetMe.Services.Models.Profile.ChildProfilePictureServiceModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
-using MeetMe.Data.Models.Enums;
-using AutoMapper.QueryableExtensions;
-using AutoMapper;
-using Microsoft.Extensions.DependencyInjection.Abstractions;
-using Microsoft.EntityFrameworkCore;
-using MeetMe.Services.Models.Profile.ChildProfilePictureServiceModels;
-using MeetMe.Services.Models.Profile;
 using System.IO;
+using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Z.EntityFramework.Plus;
-using Microsoft.EntityFrameworkCore.Proxies;
-using Microsoft.EntityFrameworkCore.Relational;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 
 namespace MeetMe.Services.Implementations
@@ -32,28 +23,28 @@ namespace MeetMe.Services.Implementations
         private readonly MeetMeDbContext db;
         public readonly UserManager<User> userManager;
         public readonly IMapper mapper;
-       
+
         public ProfileService(MeetMeDbContext db, UserManager<User> userManager, IMapper mapper)
         {
             this.db = db;
             this.userManager = userManager;
             this.mapper = mapper;
-           
+
         }
 
-      
+
 
         public async Task<ProfileInfoServiceModel> GetProfileInformationAsync(string id)
         {
             var user = await db.Users.FindAsync(id);
-          
-           var userProfilInfo = mapper.Map<ProfileInfoServiceModel>(user);
-           
-           return userProfilInfo;
 
-         }
+            var userProfilInfo = mapper.Map<ProfileInfoServiceModel>(user);
 
-        public async Task<bool> SafeProfileInformationAsync(string UserId,string FirstName, string Biography, DateTime BirthDay,
+            return userProfilInfo;
+
+        }
+
+        public async Task<bool> SafeProfileInformationAsync(string UserId, string FirstName, string Biography, DateTime BirthDay,
             City City, Country Country, EyeColor EyeColor, double Height,
             int Weight, string LastName, LookingFor LookingFor, Sex Sex)
         {
@@ -85,7 +76,7 @@ namespace MeetMe.Services.Implementations
             var user = await db.Users.FindAsync(id);
 
 
-            var model =  db.User.Where(u => u.Id == id)
+            var model = db.User.Where(u => u.Id == id)
                 .Include(p => p.Pictures).ToList()
                .Select(p => new ProfilePictureServiceModel
                {
@@ -114,9 +105,9 @@ namespace MeetMe.Services.Implementations
           })
           .ToList()
                }).FirstOrDefault();
-          
 
-           
+
+
 
             return model;
         }
@@ -158,10 +149,10 @@ namespace MeetMe.Services.Implementations
 
             var newPicture = new Picture()
             {
-                PictureId = Guid.NewGuid().ToString(), 
-            IsProfilePicture = true,
-            PictureByteArray = byteArray,
-            UserId = userId,
+                PictureId = Guid.NewGuid().ToString(),
+                IsProfilePicture = true,
+                PictureByteArray = byteArray,
+                UserId = userId,
             };
             await db.Picture.AddAsync(newPicture);
 
@@ -172,15 +163,15 @@ namespace MeetMe.Services.Implementations
 
         public async Task<bool> ChooseProfilePictureAsync(string futurePictureId, string currentPictureId, string userId)
         {
-            var currentProfilePictureExist =  await db
+            var currentProfilePictureExist = await db
                 .Picture.Where(p => p.UserId == userId && p.IsProfilePicture == true)
                 .AnyAsync();
             if (currentProfilePictureExist)
             {
-               var currentProfilePicture = await db
-                    .Picture
-                    .Where(p => p.UserId == userId && p.IsProfilePicture == true)
-                    .FirstOrDefaultAsync();
+                var currentProfilePicture = await db
+                     .Picture
+                     .Where(p => p.UserId == userId && p.IsProfilePicture == true)
+                     .FirstOrDefaultAsync();
 
                 currentProfilePicture.IsProfilePicture = false;
 
@@ -208,7 +199,7 @@ namespace MeetMe.Services.Implementations
 
         public async Task<List<FriendsServiceModel>> GetFriendsAsync(string userId, int page)
         {
-           
+
             var friendsList = await db
                  .Friends
                  .Where(u => (u.UserId == userId || u.ContactId == userId) && u.IsAccepted == true)
@@ -216,7 +207,7 @@ namespace MeetMe.Services.Implementations
                  .ThenBy(c => c.ContactId)
 
             .Select
-            (m => new FriendsServiceModel   
+            (m => new FriendsServiceModel
             {
 
                 FirstName = (m.ContactId == userId ? m.User.FirstName : m.Contact.FirstName),
@@ -243,9 +234,9 @@ namespace MeetMe.Services.Implementations
 
             return friendsList;
 
-            
 
-            
+
+
 
         }
 
@@ -254,13 +245,14 @@ namespace MeetMe.Services.Implementations
             var friendsListCount = await db
                 .Friends
                 .Where(u => u.UserId == userId || u.ContactId == userId && u.IsAccepted == true)
-                .ToAsyncEnumerable().Count();
+                .CountAsync();
 
             return friendsListCount % ServicesDataConstraints.FriendsServicePageSize == 0 ?
                 friendsListCount / ServicesDataConstraints.FriendsServicePageSize :
                 (friendsListCount % ServicesDataConstraints.FriendsServicePageSize) + 1;
+            //TODO CHANGE TO COUNTASYNC!
 
-            
+
 
         }
 
@@ -275,15 +267,15 @@ namespace MeetMe.Services.Implementations
                 var FriendShip = await db.Friends
                 .Where(u => (u.ContactId == userId || u.ContactId == friendId) && (u.UserId == userId || u.UserId == friendId) && u.IsAccepted == true)
                 .FirstOrDefaultAsync();
-                      db.Friends.Remove(FriendShip);
-               await  db.SaveChangesAsync();
+                db.Friends.Remove(FriendShip);
+                await db.SaveChangesAsync();
 
                 return true;
-                
+
 
             }
-                return false;
-               
+            return false;
+
         }
     }
 }

@@ -1,8 +1,5 @@
 ﻿using MeetMe.Web.Areas.Edit.Models.ChildViewModels;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MeetMe.Web.Areas.Edit.Models
 {
@@ -14,6 +11,6 @@ namespace MeetMe.Web.Areas.Edit.Models
 
         public int allPages { get; set; }
 
-        public List<ChildFriendsViewModel> Friends {get;set;}
+        public List<ChildFriendsViewModel> Friends { get; set; }
     }
 }

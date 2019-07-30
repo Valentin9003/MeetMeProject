@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MeetMe.Data.Models.Enums
+﻿namespace MeetMe.Data.Models.Enums
 {
     public enum Country
     {
@@ -11,9 +7,9 @@ namespace MeetMe.Data.Models.Enums
         Гърция = 2,
         Англия = 3,
         Румъния = 4,
-        Америка = 5, 
+        Америка = 5,
         Тайна = 6
-         
+
 
     }
 }

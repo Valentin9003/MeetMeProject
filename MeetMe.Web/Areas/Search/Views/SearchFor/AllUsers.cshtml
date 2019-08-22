@@ -3,16 +3,15 @@
     ViewData["Title"] = "Всички";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<link href="~/css/Pagination.css" rel="stylesheet" type="text/css" />
 <style>
     .pagination {
-        position:center;
+        position: center;
     }
-    
-        .pagination > li>a {
-           
+
+        .pagination > li > a {
             background-color: black;
-            position:center;
+            position: center;
         }
 </style>
 
@@ -31,6 +30,7 @@
 <br />
 <partial name="_NavigationMenuSearch" />
 <br />
+<h4 class="alert-warning" style="text-align:center;">Всички потребители</h4>
 <div class="container">
 
     <br />
@@ -69,16 +69,14 @@
 
 
 
-@(Model.MaxPage)
 @if (Model.MaxPage > 1)
 {
-    <ul class="pagination">
-        <li ><a asp-route-page="@Model.PreviousPage"> <span aria-hidden="true">&laquo;</span></a></li>
-        <li><a asp-route-page="@Model.CurrentPage">@Model.CurrentPage</a></li>
-        <li ><a asp-route-page="@Model.NextPage">&raquo;</a> </li>
-    </ul>
+    <div class="pagination container">
+        <div class=" @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"> <a class="@(Model.CurrentPage == 1 ? "isDisabled" : "link")" asp-route-page="@Model.PreviousPage"> <span aria-disabled="true">&laquo;</span></a> </div>
+        <div class="page"><a asp-route-page="@Model.CurrentPage"><span class="link">@Model.CurrentPage</span></a> </div>
+        <div class="page @(Model.CurrentPage == Model.MaxPage ? "disabled" : string.Empty)">  <a class="@(Model.CurrentPage == Model.MaxPage ? "isDisabled" : "link")" asp-route-page="@Model.NextPage"> <span aria-disabled="true">&raquo;</span></a> </div>
 
 
-
+    </div>
 }
 

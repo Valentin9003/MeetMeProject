@@ -1,0 +1,35 @@
+﻿.pagination {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    bottom: 2%;
+    left: 50%;
+    right: 50%;
+}
+
+.page {
+    margin: 1%;
+}
+
+.link:hover {
+    color: black;
+    background-color: yellow;
+}
+
+.link {
+    color: yellow;
+    background-color: black;
+    padding: 3px;
+    font-size: 20px;
+    
+}
+
+.isDisabled {
+    pointer-events: none;
+    padding: 3px;
+    background-color: black;
+    color: red;
+}

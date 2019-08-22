@@ -4,13 +4,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<link href="~/css/Pagination.css" rel="stylesheet" type="text/css" />
 <style>
-   
 </style>
 
-<partial name="_NavigationMenuEditProfile"/>
+<partial name="_NavigationMenuEditProfile" />
 
-<h4 class="alert-warning" style="text-align:center;">Редактиране на приятелите..</h4>
+<h4 class="alert-warning" style="text-align:center;">Редактиране на приятелите</h4>
 <br />
 
 @if (Model.Friends.Count == 0)
@@ -48,8 +48,8 @@
                         <div>
                             <form style="background-color:white" class="col-lg-1" method="post" asp-area="Edit" asp-controller="Profile" asp-action="Friends">
                                 <input type="hidden" value="@Model.Friends[(row * 5) + col].UserId" name="FriendId" />
-                                <a class="alert-info" href="Линк към Профила" >Профил</a>
-                                <br/>
+                                <a class="alert-info" href="Линк към Профила">Профил</a>
+                                <br />
                                 <button type="submit" class="btn-group-sm btn-danger">Изтрий приятел</button>
                             </form>
                             <div style="background-color:white"><br /></div>
@@ -64,12 +64,14 @@
     }
 </div>
 <br />
+
 @if (Model.allPages > 1)
 {
-    <ul class="pagination">
-        <li class="@(Model.currentPage == 1 ? "disabled" : string.Empty)"><a asp-route-page="@Model.previousPage"> <span aria-hidden="true">&laquo;</span></a></li>
-        <li><a a asp-route-page="@Model.currentPage">@Model.currentPage</a></li>
-        <li class="@(Model.currentPage == Model.allPages ? "disabled" : string.Empty)"><a a asp-route-page="@Model.nextPage"> <span aria-hidden="true">&raquo;</span></a></li>
-    </ul>
-}
+    <div class="pagination container">
+        <div class=" @(Model.currentPage == 1 ? "disabled" : string.Empty)"> <a class="@(Model.currentPage == 1 ? "isDisabled" : "link")" asp-route-page="@Model.previousPage"> <span aria-disabled="true">&laquo;</span></a> </div>
+        <div class="page"><a asp-route-page="@Model.currentPage"><span class="link">@Model.currentPage</span></a> </div>
+        <div class="page @(Model.currentPage == Model.allPages ? "disabled" : string.Empty)">  <a class="@(Model.currentPage == Model.allPages ? "isDisabled" : "link")" asp-route-page="@Model.nextPage"> <span aria-disabled="true">&raquo;</span></a> </div>
 
+
+    </div>
+}

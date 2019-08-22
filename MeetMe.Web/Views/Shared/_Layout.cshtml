@@ -21,8 +21,8 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MeetMe.Web</a>
-               
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MeetMeProject</a>
+            
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -37,10 +37,22 @@
                             <a class="navbar-brand" asp-area="Edit" asp-controller="Profile" asp-action="Info">Профил</a>
                         </li>
                         <li>
-                            <a class="navbar-brand"  asp-area="Search" asp-controller="SearchFor" asp-action="SearchByName">Търсене..</a>
+                            <a class="navbar-brand" asp-area="Search" asp-controller="SearchFor" asp-action="SearchByName">Търсене</a>
                         </li>
+                        <li>
+                            <a class="navbar-brand" asp-area="" asp-page="/messages">Съобщения</a>
+                        </li>
+                        <li>
+                            <a class="navbar-brand" asp-area="" asp-page="/chat">Чат</a>
+                        </li>
+                        @if (User.IsInRole("Administrator"))
+                        {
+                            <li>
+                                <a class="navbar-brand" asp-area="Administrator" asp-controller="Admin" asp-action="Index">Администраоор</a>
+                            </li>
+                        }
                         <li class="nav-item">
-                            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Privacy">Поверителност</a>
                         </li>
                     </ul>
                 </div>
@@ -55,12 +67,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2019 - MeetMe.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-
+   
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>

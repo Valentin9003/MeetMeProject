@@ -8,7 +8,7 @@ namespace MeetMe.Data
     public class MeetMeDbContext : IdentityDbContext<User>
     {
 
-
+       
         public MeetMeDbContext(DbContextOptions<MeetMeDbContext> options)
         : base(options)
         {

@@ -101,7 +101,7 @@ namespace MeetMe.Services.Implementations
 
         public async Task<int> SearchByUserNameMaxPageSizeAsync(string UserName, string CurrentUserId)
         {
-            //TODO: UperCase
+           //TODO: RIGHT NAMING
             var CountOfUsers = await db
                 .Users
                .AsNoTracking()

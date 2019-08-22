@@ -28,15 +28,7 @@ namespace MeetMe.Web.Areas.Search.Controllers
 
 
 
-        //ToDo: Search
-
-        //[HttpGet]
-        //public async Task<IActionResult> Index()
-        //{
-        //    var ViewSearchModel = "dsad";
-
-        //    return View(ViewSearchModel);
-        //}
+       
 
         [HttpGet]
         public IActionResult SearchByName()
@@ -50,8 +42,8 @@ namespace MeetMe.Web.Areas.Search.Controllers
 
         [HttpGet]
         
-        //[Route("/Search/SearchFor/SearchByNameResult/{FirstName?}/{LastName?}/{page?}", Name = "SearchByUserName")]
-        public async Task<IActionResult> SearchByNameResult(string FirstName, string LastName,int page = 1) //TODO not work routing, page is not binding
+        [Route("/Search/SearchFor/SearchByNameResult/{FirstName?}/{LastName?}/{page?}")]
+        public async Task<IActionResult> SearchByNameResult(string FirstName, string LastName,int page = 1)
         {
             var currentUser = await userManager.GetUserAsync(User);
             var currentUserId = currentUser.Id;
@@ -123,7 +115,7 @@ namespace MeetMe.Web.Areas.Search.Controllers
         }
 
         [HttpGet]
-        
+        [Route("/Search/SearchFor/SearchByUserNameResult/{UserName?}/{page?}")]
         public async Task<IActionResult> SearchByUserNameResult(SearchByUserNameViewModel model, [FromRoute]int page = 1 )
         {
            

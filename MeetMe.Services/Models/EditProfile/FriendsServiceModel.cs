@@ -1,4 +1,4 @@
-﻿namespace MeetMe.Services.Models.Profile
+﻿namespace MeetMe.Services.Models.EditProfile
 {
     public class FriendsServiceModel
     {

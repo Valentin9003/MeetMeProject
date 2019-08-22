@@ -1,0 +1,29 @@
+﻿#sendButton {
+    background-color: black;
+    color: greenyellow;
+    margin-left: 44%;
+}
+
+.form-control {
+    border-color: green;
+    color: navajowhite;
+    border-bottom-style: solid;
+    border-radius: 10px;
+}
+
+.message > span {
+    margin: 5px;
+}
+
+.message {
+    display: flex;
+    flex-flow: row;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: 2px solid blue;
+    color: black;
+    font-family: Cambria;
+    border-radius: 30px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}

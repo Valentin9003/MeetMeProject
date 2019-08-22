@@ -1,5 +1,5 @@
 ﻿using MeetMe.Common.Mapping;
-using MeetMe.Services.Models.Profile;
+using MeetMe.Services.Models.EditProfile;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 

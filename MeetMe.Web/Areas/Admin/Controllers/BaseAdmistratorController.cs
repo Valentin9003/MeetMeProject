@@ -11,9 +11,6 @@ namespace MeetMe.Web.Areas.Admin.Controllers
     [Area("Admin")]
     public abstract class BaseAdministratorController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+       
     }
 }

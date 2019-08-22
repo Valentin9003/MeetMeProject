@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.SignalR;
 
 namespace MeetMe.Web
 {
@@ -32,7 +33,7 @@ namespace MeetMe.Web
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
             });
-
+           
             services.AddDbContext<MeetMeDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -49,6 +50,7 @@ namespace MeetMe.Web
             services.AddSignalR();
             services.AddAutoMapper(typeof(Startup));
 
+           
 
             services.AddControllersWithViews(option => option.Filters
                .Add(new AutoValidateAntiforgeryTokenAttribute())
@@ -60,17 +62,26 @@ namespace MeetMe.Web
                 options.AppId = "2617203478350569";
                 options.AppSecret = "24843157ec3dc2dcfe9219c8f8525ed0";
             });
-            services.AddSignalR();
+           
             services.AddRazorPages();
+           
             services.AddAuthentication();
-            services.AddMvc();
+           services.AddMvc()
+                .AddRazorPagesOptions(options=> 
+                {
+                    options.Conventions.AuthorizePage("/chat");
+                });
             services.AddDomainServices();
+          
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+      
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-           // app.UseDataBaseMigration();
+           
+           // app.UseDataBaseMigration(); TODO: NotWork
             app.Seed(); // Add Users and Pictures in DataBase
             app.AddAdministrator();
 
@@ -84,63 +95,26 @@ namespace MeetMe.Web
             {
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
-            }
-
-
-; app.UseHttpsRedirection();
+            } app.UseHttpsRedirection();
+           
             app.UseStaticFiles();
-
+            
             app.UseCookiePolicy();
 
             app.UseRouting();
 
-            app.UseAuthentication();
+           app.UseAuthentication();
             app.UseAuthorization();
+            app.UseCors();
+            
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHub<ChatHub>("/ChatHub");
-                endpoints.MapControllerRoute(
-                name: "Profile",
-                pattern: "{area:exists}/{controller=ProfileController}/{action=Info}");
+                endpoints.MapHub<ChatHub>("/chatHub");
 
                 endpoints.MapControllerRoute(
-                  name: "EditProfilePicture",
-                  pattern: "{area:exists}/{controller=ProfileController}/{action=ProfilePicture}/{page?}");
-
-                endpoints.MapControllerRoute(
-            name: "SearchByNameResult",
-            pattern: "{area:exists}/{controller=SearchForController}/{action=SearchByUserName}/{FirstName?}/{LastName?}/{page?}"
-
-            );
-                endpoints.MapControllerRoute(
-       name: "SearchByUserNameResult",
-       pattern: "{area:exists}/{controller=SearchForController}/{action=SearchByUserNameResult}/{page?}"
-
-       );
-                endpoints.MapControllerRoute(
-        name: "SearchByCriteriaResult",
-        pattern: "{area:exists}/{controller=SearchForController}/{action=SearchByCriteriaResult}/{Sex?}/{Country?}/{City?}/{Lookingfor?}/{Eyecolor?}/{page?}"
-
-
-        );
-
-                //          endpoints.MapControllerRoute(
-                //name: "Index",
-                //pattern: "{area:exists}/{controller=SearchForController}/{action=Index}"
-
-                //);
-                //  endpoints.MapControllerRoute(
-                //name: "SearchResult",
-                //pattern: "{area:exists}/{controller=SearchForController}/{action=SearchResult}/{page?}");
-
-
-
-                endpoints.MapControllerRoute(
-          name: "SearchByCriteria",
-          pattern: "{area:exists}/{controller=SearchForController}/{action=SearchByCriteria}");
-
-
+                name: "profile",
+                pattern: "{area:exists}/{controller=profilecontroller}/{action=info}");
 
                 endpoints.MapControllerRoute(
                     name: "default",
@@ -148,6 +122,7 @@ namespace MeetMe.Web
 
 
                 endpoints.MapRazorPages();
+             
             });
         }
     }

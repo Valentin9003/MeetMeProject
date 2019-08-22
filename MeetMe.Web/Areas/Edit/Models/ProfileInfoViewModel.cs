@@ -1,7 +1,7 @@
 ﻿using MeetMe.Common.Mapping;
 using MeetMe.Data;
 using MeetMe.Data.Models.Enums;
-using MeetMe.Services.Models.Profile;
+using MeetMe.Services.Models.EditProfile;
 using System;
 using System.ComponentModel.DataAnnotations;
 

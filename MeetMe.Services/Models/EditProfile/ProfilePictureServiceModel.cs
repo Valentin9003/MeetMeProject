@@ -1,11 +1,11 @@
 ﻿
 using MeetMe.Common.Mapping;
 using MeetMe.Data.Models;
-using MeetMe.Services.Models.Profile.ChildProfilePictureServiceModels;
+using MeetMe.Services.Models.EditProfile.ChildProfilePictureServiceModels;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace MeetMe.Services.Models.Profile
+namespace MeetMe.Services.Models.EditProfile
 {
     public class ProfilePictureServiceModel : IMapFrom<Picture>
     {

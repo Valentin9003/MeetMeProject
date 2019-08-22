@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MeetMe.Services.Models.Profile.ChildProfilePictureServiceModels
+namespace MeetMe.Services.Models.EditProfile.ChildProfilePictureServiceModels
 {
     public class ChildPicturesServiceModel
     {

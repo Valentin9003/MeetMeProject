@@ -3,7 +3,7 @@ using MeetMe.Data.Models;
 using MeetMe.Data.Models.Enums;
 using System;
 
-namespace MeetMe.Services.Models.Profile
+namespace MeetMe.Services.Models.EditProfile
 {
     public class ProfileInfoServiceModel : IMapFrom<User>
     {

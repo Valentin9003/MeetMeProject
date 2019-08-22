@@ -4,20 +4,7 @@
         Layout = "~/Views/Shared/_Layout.cshtml";
     }*@
 
-@*<style>
-        ul.pagination > li {
-            background-color: black;
-            border-radius: 3%;
-        }
-
-            ul.pagination > li > span {
-                color: red;
-                background-color: red;
-                position: center;
-                background-color: black;
-                border-radius: 3%;
-            }
-    </style>*@
+<link href="~/css/Pagination.css" rel="stylesheet" type="text/css" />
 
 
 
@@ -34,25 +21,26 @@
 <br />
 <partial name="_NavigationMenuSearch" />
 <br />
+<h4 class="alert-warning" style="text-align:center;">Търсене по име</h4>
 <div class="container">
 
     <br />
 
     @for (int row = 0; row < rowCounter; row++)
-{
+    {
         <br />
         <div class="row">
 
             @for (int col = 0; col < 5; col++)
-{
+            {
                 <div class="col-lg-2">
 
 
 
                     @if (((row * 5) + col) < Model.Results.Count())
-{
-    var base64 = Convert.ToBase64String(Model.Results[(row * 5) + col].PrifilePicture);
-    var imgSrc = String.Format("data:image/gif;base64,{0}", @base64);
+                    {
+                        var base64 = Convert.ToBase64String(Model.Results[(row * 5) + col].PrifilePicture);
+                        var imgSrc = String.Format("data:image/gif;base64,{0}", @base64);
                         <div>@Model.Results[(row * 5) + col].FirstName</div>
                         <div>@Model.Results[(row * 5) + col].LastName</div>
                         <div> <img src="@imgSrc" style="width:130px; height:130px" /></div>
@@ -60,22 +48,29 @@
                         <a href="BLABLABLA">Отвори Профил</a>
 
 
-}
+                    }
 
                 </div>
 
-}
+            }
         </div>
 
-}
+    }
 </div>
 
-    <ul>
+@if (Model.MaxPage > 1)
+{
+  
 
-        <li><a asp-area="Search" asp-controller="SearchFor" asp-action="SearchByNameResult" asp-route-FirstName="@ViewBag.FirstName" asp-route-LastName="@ViewBag.LastName" asp-route-page="@Model.PreviousPage"> <span>pr</span></a></li>
-        <li><a asp-route-page="@Model.CurrentPage">@Model.CurrentPage</a></li>
-        <li><a asp-area="Search" asp-controller="SearchFor" asp-action="SearchByNameResult" asp-route-FirstName="@ViewBag.FirstName" asp-route-LastName="@ViewBag.LastName" asp-route-page="@Model.NextPage"> <span>sl</span></a></li>
-    </ul>
+    <div class="pagination container">
+        <div class=" @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"> <a class="@(Model.CurrentPage == 1 ? "isDisabled" : "link")" asp-area="Search" asp-controller="SearchFor" asp-action="SearchByNameResult" asp-route-FirstName="@ViewBag.FirstName" asp-route-LastName="@ViewBag.LastName" asp-route-page="@Model.PreviousPage"> <span aria-disabled="true">&laquo;</span></a> </div>
+        <div class="page"><a asp-route-page="@Model.CurrentPage"><span class="link">@Model.CurrentPage</span></a> </div>
+        <div class="page @(Model.CurrentPage == Model.MaxPage ? "disabled" : string.Empty)">  <a class="@(Model.CurrentPage == Model.MaxPage ? "isDisabled" : "link")" asp-area="Search" asp-controller="SearchFor" asp-action="SearchByNameResult" asp-route-FirstName="@ViewBag.FirstName" asp-route-LastName="@ViewBag.LastName" asp-route-page="@Model.NextPage"> <span aria-disabled="true">&raquo;</span></a> </div>
+
+
+    </div>
+
+}
 
 
 

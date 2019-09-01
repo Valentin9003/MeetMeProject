@@ -80,8 +80,8 @@ namespace MeetMe.Web
       
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-           
-           // app.UseDataBaseMigration(); TODO: NotWork
+
+            // app.UseDataBaseMigration(); TODO: Needed Changes
             app.Seed(); // Add Users and Pictures in DataBase
             app.AddAdministrator();
 

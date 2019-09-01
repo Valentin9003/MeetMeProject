@@ -128,9 +128,7 @@ namespace MeetMe.Web.Areas.Edit.Controllers
             var userId = user.Id;
             
 
-            //-------------------------------------------
-            //  Check the image extension
-            //-------------------------------------------
+           
             if (Path.GetExtension(picture.FileName).ToLower() != ".jpg"
                 && Path.GetExtension(picture.FileName).ToLower() != ".png"
                 && Path.GetExtension(picture.FileName).ToLower() != ".gif"

@@ -76,7 +76,7 @@ namespace MeetMe.Data
 
 
 
-            /*Check cascade delete for all entities*/
+            //TODO: Check delete
 
         }
     }

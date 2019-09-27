@@ -1,5 +1,5 @@
 # MeetMeProject 
-[![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://www.linkedin.com/in/valentin-stoev)
+[![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://github.com/Valentin9003)
 
 DATING SITE
 

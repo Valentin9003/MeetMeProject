@@ -23,8 +23,6 @@ namespace MeetMe.Web.Infrastructure.Extensions
             {
                 serviceScope.ServiceProvider.GetService<MeetMeDbContext>().Database.Migrate();
 
-
-
             }
 
             return app;
@@ -37,19 +35,20 @@ namespace MeetMe.Web.Infrastructure.Extensions
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<User>>();
+
                 var db = serviceScope.ServiceProvider.GetRequiredService<MeetMeDbContext>();
 
                 var uploadedUsersIds = new List<string>();
 
-
                 for (int i = 0; i < 20; i++)
                 {
-
-
                     var currentEmail = $"valentin_{i}@abv.bg";
                     var currentPassword = $"valentin_{i}@abv.bg";
+
                     Task<User> user = userManager.FindByEmailAsync(currentEmail);
+
                     user.Wait();
+
                     if (user.Result == null)
                     {
                         var currentUserNumber = i;
@@ -75,55 +74,38 @@ namespace MeetMe.Web.Infrastructure.Extensions
 
                         uploadedUsersIds.Add(currentUserIdGuid);
                     }
-
                 }
-
-
             }
             return app;
-
         }
-
 
         // Add friendships between users
         private static List<Friends> AddFriends(string currentUserId, List<string> ids)
         {
-
             var friendsResultList = new List<Friends>();
-
-
 
             for (int i = 0; i < ids.Count(); i++)
             {
-
-
                 Friends friend = new Friends()
                 {
                     UserId = currentUserId,
                     ContactId = ids[i],
                     IsAccepted = true,
-
-
-
                 };
+
                 friendsResultList.Add(friend);
-
             }
-
-
-
             return friendsResultList;
         }
 
         //get and add picture in list
         private static List<Picture> GetPhotos()
         {
-
             List<Picture> pictures = new List<Picture>();
+
             for (int i = 1; i < 21; i++)
             {
                 var filePath = Path.GetFullPath($"wwwroot\\images\\profile\\{i}.png");
-
 
                 byte[] arr = new byte[10 * 1024 * 1024];
 
@@ -135,6 +117,7 @@ namespace MeetMe.Web.Infrastructure.Extensions
                 {
                     arr = reader.ToArray();
                 }
+
                 pictures.Add(new Picture
                 {
                     PictureId = Guid.NewGuid().ToString(),
@@ -156,9 +139,9 @@ namespace MeetMe.Web.Infrastructure.Extensions
 
                 Task<IdentityResult> roleResult;
 
-
                 //Check that there is an Administrator role and create if not
                 Task<bool> hasAdminRole = roleManager.RoleExistsAsync(ProjectConstants.AdministratorRole);
+
                 hasAdminRole.Wait();
 
                 if (!hasAdminRole.Result)
@@ -170,6 +153,7 @@ namespace MeetMe.Web.Infrastructure.Extensions
                 //Check if the admin user exists and create it if not
 
                 Task<User> testUser = userManager.FindByEmailAsync(ProjectConstants.AdministratorEmail);
+
                 testUser.Wait();
 
                 if (testUser.Result == null)
@@ -179,7 +163,9 @@ namespace MeetMe.Web.Infrastructure.Extensions
                         Email = ProjectConstants.AdministratorEmail,
                         UserName = ProjectConstants.AdministratorEmail,
                     };
+
                     Task<IdentityResult> newUser = userManager.CreateAsync(Administrator, "Administrator123");
+
                     newUser.Wait();
 
                     if (newUser.Result.Succeeded)
@@ -187,13 +173,8 @@ namespace MeetMe.Web.Infrastructure.Extensions
                         Task<IdentityResult> newUserRole = userManager.AddToRoleAsync(Administrator, "Administrator");
                         newUserRole.Wait();
                     }
-
-
                 }
-
-
                 return app;
-
             }
         }
     }

@@ -14,22 +14,18 @@ namespace MeetMe.Web.Models
         public string LastName { get; set; }
 
         public byte[] ProfilePicture = new byte[10 * 10 * 1024];
-        public bool IsOnline { get; set; }
 
+        public bool IsOnline { get; set; }
 
         public DateTime LastEntryDate { get; set; }
 
         public Country Country { get; set; }
 
-
         public City City { get; set; }
-
 
         public DateTime BirthDay { get; set; }
 
-
         public Sex Sex { get; set; }
-
 
         public LookingFor LookingFor { get; set; }
 
@@ -41,9 +37,6 @@ namespace MeetMe.Web.Models
 
         public List<ChildProfilePictureViewModel> Pictures { get; set; } = new List<ChildProfilePictureViewModel>();
 
-
         public List<ChildProfileFriendsViewModel> Friends { get; set; } = new List<ChildProfileFriendsViewModel>();
-
-      
     }
 }

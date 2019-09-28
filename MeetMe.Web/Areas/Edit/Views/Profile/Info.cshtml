@@ -9,36 +9,32 @@
 <style>
     .form-group-sm {
         color: black;
-    
     }
+
     .form-control {
-   background-color:darkgray;
-   border-color:black;
+        background-color: darkgray;
+        border-color: black;
     }
     /*.Enums{
         width: 100px;
         height:50px;
-       
+
 
     }*/
-    a 
-    {
-        color:white;
-        
+    a {
+        color: white;
     }
-    .text-info
-    {
-        border:double; 
-        border-color:black;
+
+    .text-info {
+        border: double;
+        border-color: black;
     }
-    .Enums
-    {
-        border:double;
-        border-left-color:green;
-        border-right-color:red;
+
+    .Enums {
+        border: double;
+        border-left-color: green;
+        border-right-color: red;
     }
-   
-     
 </style>
 
 <partial name="_NavigationMenuEditProfile" />
@@ -47,17 +43,17 @@
 <form method="post" class="form">
     <div class="input form-group-sm">
         <label asp-for="FirstName"></label>
-        <input asp-for="FirstName" class="form-control" placeholder="Иван"/>
+        <input asp-for="FirstName" class="form-control" placeholder="Иван" />
         <span asp-validation-for="FirstName" class="danger"></span>
     </div>
 
     <div class="input form-group-sm">
         <label asp-for="LastName"></label>
-        <input asp-for="LastName" class="form-control" placeholder="Иванов"/>
+        <input asp-for="LastName" class="form-control" placeholder="Иванов" />
         <span asp-validation-for="LastName" class="danger"></span>
     </div>
 
-  
+
 
     <div class="form-group-sm">
         <label asp-for="Height"></label>
@@ -96,7 +92,7 @@
 
 
         </div>
-       
+
         <div class="row">
             <div class="form-group-sm col-lg-6 col-md-6">
                 <label class="Enums" asp-for="Country"></label>
@@ -116,34 +112,23 @@
 
 
 
-        <br />
+    <br />
 
 
-        <div class="form-group-lg col-lg-12">
-            <label asp-for="Biography" class="text-area"></label>
-            <textarea class="text-info col-lg-12 col-md-12 col-sm-12 col-xs-12" asp-for="Biography" rows="2" cols="140"></textarea>
-            <span asp-validation-for="Biography" class="danger"></span>
-        </div>
-        <br />
-        <div class="form-group-sm">
-            <label asp-for="BirthDay"></label>
-            <input asp-for="BirthDay" class="navbar-form">
-            <span asp-validation-for="BirthDay" class="bg-primary"></span>
+    <div class="form-group-lg col-lg-12">
+        <label asp-for="Biography" class="text-area"></label>
+        <textarea class="text-info col-lg-12 col-md-12 col-sm-12 col-xs-12" asp-for="Biography" rows="2" cols="140"></textarea>
+        <span asp-validation-for="Biography" class="danger"></span>
+    </div>
+    <br />
+    <div class="form-group-sm">
+        <label asp-for="BirthDay"></label>
+        <input asp-for="BirthDay" class="navbar-form">
+        <span asp-validation-for="BirthDay" class="bg-primary"></span>
 
-        </div>
+    </div>
 
-
-
-
-
-
-
-
-
-
-
-
-        <button type="submit" class="btn btn-warning">Запази промените!</button>
+    <button type="submit" class="btn btn-warning">Запази промените!</button>
 </form>
 
 

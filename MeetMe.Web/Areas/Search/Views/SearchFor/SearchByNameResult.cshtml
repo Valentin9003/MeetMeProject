@@ -7,7 +7,6 @@
 <link href="~/css/Pagination.css" rel="stylesheet" type="text/css" />
 
 
-
 @if (Model.Results.Count == 0)
 {
     <div style="text-align:center"><strong>Няма открити резултати</strong></div>
@@ -19,9 +18,13 @@
 }
 
 <br />
+
 <partial name="_NavigationMenuSearch" />
+
 <br />
+
 <h4 class="alert-warning" style="text-align:center;">Търсене по име</h4>
+
 <div class="container">
 
     <br />
@@ -29,13 +32,12 @@
     @for (int row = 0; row < rowCounter; row++)
     {
         <br />
+
         <div class="row">
 
             @for (int col = 0; col < 5; col++)
             {
                 <div class="col-lg-2">
-
-
 
                     @if (((row * 5) + col) < Model.Results.Count())
                     {
@@ -47,29 +49,20 @@
                         <div><br /></div>
                         <a href="BLABLABLA">Отвори Профил</a>
 
-
                     }
-
                 </div>
-
             }
         </div>
-
     }
 </div>
 
 @if (Model.MaxPage > 1)
 {
-  
-
     <div class="pagination container">
         <div class=" @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"> <a class="@(Model.CurrentPage == 1 ? "isDisabled" : "link")" asp-area="Search" asp-controller="SearchFor" asp-action="SearchByNameResult" asp-route-FirstName="@ViewBag.FirstName" asp-route-LastName="@ViewBag.LastName" asp-route-page="@Model.PreviousPage"> <span aria-disabled="true">&laquo;</span></a> </div>
         <div class="page"><a asp-route-page="@Model.CurrentPage"><span class="link">@Model.CurrentPage</span></a> </div>
         <div class="page @(Model.CurrentPage == Model.MaxPage ? "disabled" : string.Empty)">  <a class="@(Model.CurrentPage == Model.MaxPage ? "isDisabled" : "link")" asp-area="Search" asp-controller="SearchFor" asp-action="SearchByNameResult" asp-route-FirstName="@ViewBag.FirstName" asp-route-LastName="@ViewBag.LastName" asp-route-page="@Model.NextPage"> <span aria-disabled="true">&raquo;</span></a> </div>
-
-
     </div>
-
 }
 
 

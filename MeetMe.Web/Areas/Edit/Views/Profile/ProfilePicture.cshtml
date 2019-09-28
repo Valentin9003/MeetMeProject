@@ -3,7 +3,7 @@
     ViewData["Title"] = "Редактиране на профилна снимка";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    <link href="~/css/Pagination.css" rel="stylesheet" type="text/css" />
+<link href="~/css/Pagination.css" rel="stylesheet" type="text/css" />
 <style>
     img {
         /*height: 500px;*/
@@ -15,8 +15,6 @@
 <partial name="_NavigationMenuEditProfile" />
 
 <h4 class="alert-warning" style="text-align:center;">Редактиране на профила</h4>
-
-
 
 
 @{ if (Model.PictureByteArray != null)
@@ -95,7 +93,7 @@ else
                             </form>
                             <form class="col-lg-1" asp-area="Edit" asp-controller="Profile" asp-action="DeletePicture">
                                 <input type="hidden" value="@Model.Pictures[(row * 5) + col].Id" name="pictureId" />
-                                <button type="submit" class="btn-group-sm" >Изтрий</button>
+                                <button type="submit" class="btn-group-sm">Изтрий</button>
 
                             </form>
                             <div style="background-color:white"><br /></div>
@@ -118,7 +116,5 @@ else
         <div class=" @(Model.currentPage == 1 ? "disabled" : string.Empty)"> <a class="@(Model.currentPage == 1 ? "isDisabled" : "link")" asp-route-page="@Model.previousPage"> <span aria-disabled="true">&laquo;</span></a> </div>
         <div class="page"><a asp-route-page="@Model.currentPage"><span class="link">@Model.currentPage</span></a> </div>
         <div class="page @(Model.currentPage == Model.maxPage ? "disabled" : string.Empty)">  <a class="@(Model.currentPage == Model.maxPage ? "isDisabled" : "link")" asp-route-page="@Model.nextPage"> <span aria-disabled="true">&raquo;</span></a> </div>
-
-
     </div>
 }

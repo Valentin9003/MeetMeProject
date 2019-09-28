@@ -33,7 +33,7 @@ namespace MeetMe.Web
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
             });
-           
+
             services.AddDbContext<MeetMeDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -48,65 +48,77 @@ namespace MeetMe.Web
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<MeetMeDbContext>();
             services.AddSignalR();
-            services.AddAutoMapper(typeof(Startup));
 
-           
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddControllersWithViews(option => option.Filters
                .Add(new AutoValidateAntiforgeryTokenAttribute())
                );
+
             services.AddAuthentication();
+
             services.AddAuthentication()
             .AddFacebook(options =>
             {
                 options.AppId = "2617203478350569";
                 options.AppSecret = "24843157ec3dc2dcfe9219c8f8525ed0";
             });
-           
+
             services.AddRazorPages();
-           
+
             services.AddAuthentication();
-           services.AddMvc()
-                .AddRazorPagesOptions(options=> 
-                {
-                    options.Conventions.AuthorizePage("/chat");
-                });
+
+            services.AddMvc()
+                 .AddRazorPagesOptions(options =>
+                 {
+                     options.Conventions.AuthorizePage("/chat");
+                 });
+
             services.AddDomainServices();
-          
+
             services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-      
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
             // app.UseDataBaseMigration(); TODO: Needed Changes
+
             app.Seed(); // Add Users and Pictures in DataBase
+
             app.AddAdministrator();
 
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
+
                 app.UseDeveloperExceptionPage();
+
                 app.UseDatabaseErrorPage();
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+
                 app.UseHsts();
-            } app.UseHttpsRedirection();
-           
+
+            }
+            app.UseHttpsRedirection();
+
             app.UseStaticFiles();
-            
+
             app.UseCookiePolicy();
 
             app.UseRouting();
 
-           app.UseAuthentication();
+            app.UseAuthentication();
+
             app.UseAuthorization();
+
             app.UseCors();
-            
+
 
             app.UseEndpoints(endpoints =>
             {
@@ -120,9 +132,8 @@ namespace MeetMe.Web
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-
                 endpoints.MapRazorPages();
-             
+
             });
         }
     }

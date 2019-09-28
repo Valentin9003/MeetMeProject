@@ -21,9 +21,5 @@ namespace MeetMe.Web.Areas.Edit.Models
 
         public int previousPage { get; set; }
         public List<ChildEditProfilePictureViewModel> Pictures { get; set; }
-
-
-
-
     }
 }

@@ -9,7 +9,5 @@
         public string LastName { get; set; }
 
         public byte[] ProfilePicture { get; set; }
-
-
     }
 }

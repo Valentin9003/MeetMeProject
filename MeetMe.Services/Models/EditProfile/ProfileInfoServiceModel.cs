@@ -18,24 +18,16 @@ namespace MeetMe.Services.Models.EditProfile
 
         public DateTime BirthDay { get; set; }
 
-
         public Sex Sex { get; set; }
-
 
         public LookingFor LookingFor { get; set; }
 
-
-
         public double Height { get; set; }
 
-
         public int Weight { get; set; }
-
 
         public EyeColor EyeColor { get; set; }
 
         public string Biography { get; set; }
-
-
     }
 }

@@ -32,8 +32,6 @@ namespace MeetMe.Services.Implementations
 
         }
 
-
-
         public async Task<ProfileInfoServiceModel> GetProfileInformationAsync(string id)
         {
             var user = await db.Users.FindAsync(id);
@@ -41,7 +39,6 @@ namespace MeetMe.Services.Implementations
             var userProfilInfo = mapper.Map<ProfileInfoServiceModel>(user);
 
             return userProfilInfo;
-
         }
 
         public async Task<bool> SafeProfileInformationAsync(string UserId, string FirstName, string Biography, DateTime BirthDay,
@@ -75,40 +72,35 @@ namespace MeetMe.Services.Implementations
         {
             var user = await db.Users.FindAsync(id);
 
-
             var model = db.User.Where(u => u.Id == id)
-                .Include(p => p.Pictures).ToList()
-               .Select(p => new ProfilePictureServiceModel
-               {
-                   Id = p.Pictures
-          .Where(pp => pp.IsProfilePicture == true)
-          .Select(i => i.PictureId).FirstOrDefault(),
+                            .Include(p => p.Pictures).ToList()
+                           .Select(p => new ProfilePictureServiceModel
+                           {
+                               Id = p.Pictures
+                      .Where(pp => pp.IsProfilePicture == true)
+                      .Select(i => i.PictureId).FirstOrDefault(),
 
-                   PictureByteArray = p.Pictures
-          .Where(pp => pp.IsProfilePicture == true)
-          .Select(cpp => cpp.PictureByteArray)
-          .FirstOrDefault(),
+                               PictureByteArray = p.Pictures
+                      .Where(pp => pp.IsProfilePicture == true)
+                      .Select(cpp => cpp.PictureByteArray)
+                      .FirstOrDefault(),
 
-                   allPage = (p.Pictures.Count() - 1) % ServicesDataConstraints.EditProfilePictureServicePageSize == 0 ? ((p.Pictures.Count() - 1) / ServicesDataConstraints.EditProfilePictureServicePageSize) : (((p.Pictures.Count() - 1) / ServicesDataConstraints.EditProfilePictureServicePageSize) + 1),
-               
+                               allPage = (p.Pictures.Count() - 1) % ServicesDataConstraints.EditProfilePictureServicePageSize == 0 ? ((p.Pictures.Count() - 1) / ServicesDataConstraints.EditProfilePictureServicePageSize) : (((p.Pictures.Count() - 1) / ServicesDataConstraints.EditProfilePictureServicePageSize) + 1),
 
-                   Pictures = p.Pictures
-          .Where(f => f.IsProfilePicture == false)
-          .OrderByDescending(o => o.PictureId)
-          .Skip((page - 1) * ServicesDataConstraints.EditProfilePictureServicePageSize)
-          .Take(ServicesDataConstraints.EditProfilePictureServicePageSize)
-          .Select(k =>
-          new ChildPicturesServiceModel
-          {
-              PictureByteArray = k.PictureByteArray,
-              Id = k.PictureId,
+                               Pictures = p.Pictures
+                      .Where(f => f.IsProfilePicture == false)
+                      .OrderByDescending(o => o.PictureId)
+                      .Skip((page - 1) * ServicesDataConstraints.EditProfilePictureServicePageSize)
+                      .Take(ServicesDataConstraints.EditProfilePictureServicePageSize)
+                      .Select(k =>
+                      new ChildPicturesServiceModel
+                      {
+                          PictureByteArray = k.PictureByteArray,
+                          Id = k.PictureId,
 
-          })
-          .ToList()
-               }).FirstOrDefault();
-
-
-
+                      })
+                      .ToList()
+                           }).FirstOrDefault();
 
             return model;
         }
@@ -133,9 +125,11 @@ namespace MeetMe.Services.Implementations
             {
                 return false;
             }
+
             var ProfilePictureExist = await db.Picture
                 .Where(k => k.IsProfilePicture == true && k.UserId == userId)
                 .AnyAsync();
+
             if (ProfilePictureExist)
             {
                 var CurrentProfilePicture = await db
@@ -155,6 +149,7 @@ namespace MeetMe.Services.Implementations
                 PictureByteArray = byteArray,
                 UserId = userId,
             };
+
             await db.Picture.AddAsync(newPicture);
 
             await db.SaveChangesAsync();
@@ -167,6 +162,7 @@ namespace MeetMe.Services.Implementations
             var currentProfilePictureExist = await db
                 .Picture.Where(p => p.UserId == userId && p.IsProfilePicture == true)
                 .AnyAsync();
+
             if (currentProfilePictureExist)
             {
                 var currentProfilePicture = await db
@@ -234,11 +230,6 @@ namespace MeetMe.Services.Implementations
             .ToListAsync();
 
             return friendsList;
-
-
-
-
-
         }
 
         public async Task<int> GetFriendsMaxPageSizeAsync(string userId)
@@ -251,9 +242,6 @@ namespace MeetMe.Services.Implementations
             return friendsListCount % ServicesDataConstraints.FriendsServicePageSize == 0 ?
                 friendsListCount / ServicesDataConstraints.FriendsServicePageSize :
                 (friendsListCount / ServicesDataConstraints.FriendsServicePageSize) + 1;
-            
-
-
 
         }
 
@@ -263,6 +251,7 @@ namespace MeetMe.Services.Implementations
                 .Friends
                 .Where(u => (u.ContactId == userId || u.ContactId == friendId) && (u.UserId == userId || u.UserId == friendId) && u.IsAccepted == true)
                 .AnyAsync();
+
             if (friendConnectionExist)
             {
                 var FriendShip = await db.Friends
@@ -272,8 +261,6 @@ namespace MeetMe.Services.Implementations
                 await db.SaveChangesAsync();
 
                 return true;
-
-
             }
             return false;
 
@@ -282,8 +269,11 @@ namespace MeetMe.Services.Implementations
         public async Task<bool> DeletePictureAsync(string pictureId)
         {
             var picture = await db.Picture.Where(p => p.PictureId == pictureId).FirstOrDefaultAsync();
+
             db.Picture.Remove(picture);
+
             await db.SaveChangesAsync();
+
             return true;
         }
     }

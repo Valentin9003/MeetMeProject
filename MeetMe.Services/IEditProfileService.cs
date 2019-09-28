@@ -16,7 +16,7 @@ namespace MeetMe.Services
             DateTime BirthDay, City City, Country Country, EyeColor EyeColor,
             double Height, int Weight, string LastName, LookingFor LookingFor, Sex Sex);
 
-        Task<ProfilePictureServiceModel> EditProfilePictureAsync(string id, int page);
+        Task<ProfilePictureServiceModel> EditProfilePictureAsync(string Id, int Page);
 
 
         Task<bool> UploadProfilePictureAsync(IFormFile picture, string userId);

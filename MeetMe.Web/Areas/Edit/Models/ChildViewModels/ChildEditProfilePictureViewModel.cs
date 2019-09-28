@@ -10,9 +10,5 @@ namespace MeetMe.Web.Areas.Edit.Models
         [Required]
         [MaxLength(10 * 1024 * 1024)]
         public byte[] PictureByteArray { get; set; }
-
-
-
-
     }
 }

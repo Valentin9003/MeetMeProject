@@ -18,6 +18,5 @@ namespace MeetMe.Services.Models.EditProfile
         public decimal allPage { get; set; }
 
         public List<ChildPicturesServiceModel> Pictures { get; set; }
-
     }
 }

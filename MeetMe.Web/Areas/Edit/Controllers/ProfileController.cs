@@ -20,23 +20,22 @@ namespace MeetMe.Web.Areas.Edit.Controllers
     public class ProfileController : BaseProfileController
 
     {
-       
+
 
         private readonly UserManager<User> userManager;
         private readonly IMapper mapper;
         private readonly IEditProfileService profileService;
-       
 
-        public ProfileController(UserManager<User> userManager, IEditProfileService profileService,
-             IMapper mapper)
+
+        public ProfileController(UserManager<User> userManager, IEditProfileService profileService, IMapper mapper)
         {
             this.userManager = userManager;
+
             this.profileService = profileService;
-           
+
             this.mapper = mapper;
 
         }
-
 
 
         [HttpGet]
@@ -50,6 +49,7 @@ namespace MeetMe.Web.Areas.Edit.Controllers
             {
                 return NotFound(ProjectConstants.UnregisteredUserErrorMessage);
             }
+
             var user = await userManager.FindByEmailAsync(User.Identity.Name);
 
             var userId = await userManager.GetUserIdAsync(user);
@@ -60,6 +60,7 @@ namespace MeetMe.Web.Areas.Edit.Controllers
 
             return View(model);
         }
+
         [HttpPost]
         public async Task<IActionResult> Info([FromForm]ProfileInfoViewModel model)
         {
@@ -69,6 +70,7 @@ namespace MeetMe.Web.Areas.Edit.Controllers
                 var r = ModelState.DefaultIfEmpty();
                 return View(model);
             }
+
             var user = await userManager.FindByEmailAsync(User.Identity.Name);
 
             var userId = await userManager.GetUserIdAsync(user);
@@ -90,8 +92,10 @@ namespace MeetMe.Web.Areas.Edit.Controllers
                 TempData["SaveChanges"] = "Успешно записахте промените!";
                 return RedirectToAction(nameof(HomeController.Index), "Home", new { Area = string.Empty });
             }
+
             return View(model);
         }
+
         [HttpGet]
         [Route("Edit/Profile/ProfilePicture/{page?}")]
         public async Task<IActionResult> ProfilePicture(int page = 1)
@@ -99,9 +103,8 @@ namespace MeetMe.Web.Areas.Edit.Controllers
             /*Async Аction to visualize user profile picture*/
 
             var user = await userManager.GetUserAsync(User);
+
             var userId = await userManager.GetUserIdAsync(user);
-            
-         
 
             var profilePictures = await profileService.EditProfilePictureAsync(userId, page);
 
@@ -110,7 +113,7 @@ namespace MeetMe.Web.Areas.Edit.Controllers
                 Id = profilePictures.Id,
                 PictureByteArray = profilePictures.PictureByteArray,
                 Pictures = profilePictures.Pictures.Select(p =>
-               new ChildEditProfilePictureViewModel { PictureByteArray = p.PictureByteArray, Id = p.Id }).ToList(), 
+               new ChildEditProfilePictureViewModel { PictureByteArray = p.PictureByteArray, Id = p.Id }).ToList(),
                 maxPage = (int)profilePictures.allPage,
                 previousPage = page - 1,
                 nextPage = page + 1,
@@ -118,31 +121,31 @@ namespace MeetMe.Web.Areas.Edit.Controllers
             };
 
             var userZaBreakPiont = await userManager.GetUserAsync(User);
+
             return View(viewResult);
         }
+
         [HttpPost]
         public async Task<IActionResult> UploadProfilePicture(IFormFile picture)
         {
             /*Async Аction to UPLOAD user profile picture*/
             var user = await userManager.FindByEmailAsync(User.Identity.Name);
-            var userId = user.Id;
-            
 
-           
+            var userId = user.Id;
+
             if (Path.GetExtension(picture.FileName).ToLower() != ".jpg"
-                && Path.GetExtension(picture.FileName).ToLower() != ".png"
-                && Path.GetExtension(picture.FileName).ToLower() != ".gif"
-                && Path.GetExtension(picture.FileName).ToLower() != ".jpeg")
+                          && Path.GetExtension(picture.FileName).ToLower() != ".png"
+                          && Path.GetExtension(picture.FileName).ToLower() != ".gif"
+                          && Path.GetExtension(picture.FileName).ToLower() != ".jpeg")
             {
-                TempData["FormatError"] = "Файлът трябва да бъде един от следните формати: .JPG .PNG .GIF .JPEG"; 
-                   
+                TempData["FormatError"] = "Файлът трябва да бъде един от следните формати: .JPG .PNG .GIF .JPEG";
+
                 return RedirectToAction(nameof(ProfileController.ProfilePicture), "Profile", new { Area = "Edit" });
-               
-                
+
             }
 
-
             var isSuccessful = await profileService.UploadProfilePictureAsync(picture, userId);
+
             if (isSuccessful)
             {
                 TempData["SaveChanges"] = "Успешно добавихте нова профилна снимка!";
@@ -150,8 +153,6 @@ namespace MeetMe.Web.Areas.Edit.Controllers
             }
 
             return BadRequest();
-            
-
 
         }
         [HttpPost]
@@ -160,9 +161,11 @@ namespace MeetMe.Web.Areas.Edit.Controllers
             /*Async Аction to visualize the current user friends */
 
             var user = await userManager.GetUserAsync(User);
+
             var userId = user.Id;
 
             var isSuccessful = await profileService.ChooseProfilePictureAsync(futurePictureId, currentPictureId, userId);
+
             if (isSuccessful)
             {
                 TempData["SaveChanges"] = "Успешно променихте вашата профилна снимка!";
@@ -170,8 +173,8 @@ namespace MeetMe.Web.Areas.Edit.Controllers
             }
 
             return BadRequest();
-
         }
+
         [HttpPost]
         public async Task<IActionResult> DeletePicture(string pictureId)
         {
@@ -182,9 +185,10 @@ namespace MeetMe.Web.Areas.Edit.Controllers
                 TempData["SaveChanges"] = "Успешно изтрихте снимка!";
                 return RedirectToAction(nameof(HomeController.Index), "Home", new { Area = string.Empty });
             }
+
             return BadRequest();
-            
         }
+
         [HttpGet]
         public async Task<IActionResult> Friends(int page = 1)
         {
@@ -195,9 +199,6 @@ namespace MeetMe.Web.Areas.Edit.Controllers
             var friendsListResult = await profileService.GetFriendsAsync(userId, page);
 
             var friendsList = mapper.Map<List<ChildFriendsViewModel>>(friendsListResult);
-
-
-
 
             var maxPage = await profileService.GetFriendsMaxPageSizeAsync(userId);
 
@@ -213,6 +214,7 @@ namespace MeetMe.Web.Areas.Edit.Controllers
 
             return View(model);
         }
+
         [HttpPost]
         public async Task<IActionResult> Friends(string friendId)
         {
@@ -220,7 +222,6 @@ namespace MeetMe.Web.Areas.Edit.Controllers
             var user = await userManager.FindByEmailAsync(User.Identity.Name);
 
             var userId = user.Id;
-
 
             var isSuccessful = await profileService.DeleteFriendAsync(userId, friendId);
 

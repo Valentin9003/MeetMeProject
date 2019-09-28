@@ -26,10 +26,6 @@ namespace MeetMe.Web.Areas.Search.Controllers
             this.mapper = mapper;
         }
 
-
-
-       
-
         [HttpGet]
         public IActionResult SearchByName()
         {
@@ -41,31 +37,31 @@ namespace MeetMe.Web.Areas.Search.Controllers
 
 
         [HttpGet]
-        
         [Route("/Search/SearchFor/SearchByNameResult/{FirstName?}/{LastName?}/{page?}")]
-        public async Task<IActionResult> SearchByNameResult(string FirstName, string LastName,int page = 1)
+        public async Task<IActionResult> SearchByNameResult(string FirstName, string LastName, int page = 1)
         {
             var currentUser = await userManager.GetUserAsync(User);
             var currentUserId = currentUser.Id;
-            var maxPage = await  searchService.SearchByNameMaxPageSizeAsync(FirstName,LastName, currentUserId);
+            var maxPage = await searchService.SearchByNameMaxPageSizeAsync(FirstName, LastName, currentUserId);
             var foundUsers = await searchService.SearchByNameAsync(FirstName, LastName, currentUserId, page);
-           var foundUsersResult =  mapper.Map<List<ChildSearchResultViewModel>>(foundUsers);
+            var foundUsersResult = mapper.Map<List<ChildSearchResultViewModel>>(foundUsers);
 
-            ViewBag.FirstName =  FirstName;
-            ViewBag.LastName =  LastName;
+            ViewBag.FirstName = FirstName;
+            ViewBag.LastName = LastName;
 
             var viewModel = new SearchResultViewModel()
             {
                 PreviousPage = page - 1,
-            NextPage = page + 1,
-            CurrentPage = page,
-            MaxPage = maxPage,
-            Results = foundUsersResult,
+                NextPage = page + 1,
+                CurrentPage = page,
+                MaxPage = maxPage,
+                Results = foundUsersResult,
             };
 
 
             return View(viewModel);
         }
+
         [HttpGet]
         public IActionResult SearchByCriteria()
         {
@@ -75,7 +71,7 @@ namespace MeetMe.Web.Areas.Search.Controllers
 
         [HttpGet]
         [Route("/Search/SearchFor/SearchByCriteriaResult/{Sex?}/{Country?}/{City?}/{Lookingfor?}/{Eyecolor?}/{page?}")]
-        public async Task<IActionResult> SearchByCriteriaResult(SearchByCriteriaViewModel model,[FromRoute]int page = 1)
+        public async Task<IActionResult> SearchByCriteriaResult(SearchByCriteriaViewModel model, [FromRoute]int page = 1)
         {
 
             var currentUser = await userManager.GetUserAsync(User);
@@ -100,14 +96,11 @@ namespace MeetMe.Web.Areas.Search.Controllers
 
             };
 
-
-            
-
-            return View( ViewModel);
+            return View(ViewModel);
         }
 
         [HttpGet]
-        public  IActionResult SearchByUserName()
+        public IActionResult SearchByUserName()
         {
             var ViewModel = new SearchByUserNameViewModel();
 
@@ -116,15 +109,17 @@ namespace MeetMe.Web.Areas.Search.Controllers
 
         [HttpGet]
         [Route("/Search/SearchFor/SearchByUserNameResult/{UserName?}/{page?}")]
-        public async Task<IActionResult> SearchByUserNameResult(SearchByUserNameViewModel model, [FromRoute]int page = 1 )
+        public async Task<IActionResult> SearchByUserNameResult(SearchByUserNameViewModel model, [FromRoute]int page = 1)
         {
-           
+
             var currentUser = await userManager.GetUserAsync(User);
             var currentUserId = currentUser.Id;
             var foundResults = await searchService.SearchByUserNameAsync(model.UserName, currentUserId, page);
-            var childModels =  mapper.Map<List<ChildSearchResultViewModel>>(foundResults);
+            var childModels = mapper.Map<List<ChildSearchResultViewModel>>(foundResults);
             var maxPage = await searchService.SearchByUserNameMaxPageSizeAsync(model.UserName, currentUserId);
+
             ViewBag.UserName = model.UserName;
+
             var ViewModel = new SearchResultViewModel()
             {
                 CurrentPage = page,
@@ -134,7 +129,7 @@ namespace MeetMe.Web.Areas.Search.Controllers
                 Results = childModels,
 
             };
-            
+
 
             return View(ViewModel);
         }
@@ -144,16 +139,16 @@ namespace MeetMe.Web.Areas.Search.Controllers
         public async Task<IActionResult> AllUsers([FromRoute]int page = 1)
         {
             var user = await userManager.GetUserAsync(User);
-            var UserId =  user.Id;
+            var UserId = user.Id;
 
-            var Users =  await searchService.AllAsync(UserId,page);
+            var Users = await searchService.AllAsync(UserId, page);
             var ChildViewModel = mapper.Map<List<ChildSearchResultViewModel>>(Users);
             int MaxPage = await searchService.AllMaxPageAsync();
             var ViewModel = new SearchResultViewModel()
             {
                 CurrentPage = page,
-                PreviousPage = page-1,
-                NextPage = page+1,
+                PreviousPage = page - 1,
+                NextPage = page + 1,
                 MaxPage = MaxPage,
                 Results = ChildViewModel
             };

@@ -14,13 +14,19 @@
 </style>
 
 <br />
+
 <partial name="_NavigationMenuSearch" />
+
 <br />
+
 <h4 class="alert-warning" style="text-align:center;">Търсене по потребителско име</h4>
-<br/>
+
+<br />
+
 <div class="container wrapper">
 
     <form method="get" class="form" asp-area="Search" asp-controller="SearchFor" asp-action="SearchByUserNameResult">
+
         <div class="row">
 
             <div class="input form-group col-lg-12 col-md-12 col-sm-12">
@@ -28,8 +34,13 @@
                 <input asp-for="UserName" class="form-control" placeholder="Потребителско име">
                 <span asp-validation-for="UserName" class="danger"></span>
             </div>
+
         </div>
+
         <br />
+
         <button type="submit" class="btn btn-warning">Търсене..</button>
+
     </form>
+
 </div>

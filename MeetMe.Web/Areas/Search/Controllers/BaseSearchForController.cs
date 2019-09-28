@@ -7,6 +7,5 @@ namespace MeetMe.Web.Areas.Search.Controllers
     [Authorize]
     public abstract class BaseSearchForController : Controller
     {
-
     }
 }

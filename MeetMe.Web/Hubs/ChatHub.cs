@@ -24,15 +24,10 @@ namespace MeetMe.Web.Hubs
     //    public static HashSet<string> connectedIds;
 
     //}
-   
+
     [Authorize]
     public class ChatHub : Hub
     {
-
-
-
-
-
         //TODO: ChatHub
         //private readonly IChatHubService service;
         //private readonly HubConnectionContext connection;
@@ -51,7 +46,7 @@ namespace MeetMe.Web.Hubs
         //    this.ctn = ctn;
         //}
 
-            public async Task SendMessage( string message)
+        public async Task SendMessage(string message)
         {
             var user = Context.User.Identity.Name;
 
@@ -132,34 +127,28 @@ namespace MeetMe.Web.Hubs
 
     }
 
-
-
-
     // Finds the ASP.NET user ID
-//    public class UserIdProvider : IUserIdProvider
-//    {
-//        // Get Current UserID from ASP.NET Identity
-//        public readonly MeetMeDbContext db;
-//        public readonly UserManager<User> userManager;
-//        public UserIdProvider(MeetMeDbContext db, UserManager<User> userManager)
-//        {
-//            this.db = db;
-//            this.userManager = userManager;
+    //    public class UserIdProvider : IUserIdProvider
+    //    {
+    //        // Get Current UserID from ASP.NET Identity
+    //        public readonly MeetMeDbContext db;
+    //        public readonly UserManager<User> userManager;
+    //        public UserIdProvider(MeetMeDbContext db, UserManager<User> userManager)
+    //        {
+    //            this.db = db;
+    //            this.userManager = userManager;
 
-//        }
-     
-//        public string GetUserId(HubConnectionContext connection)
-//        {
-//            var userId = userManager
-//                .FindByEmailAsync(connection.User.Identity.Name)
-//                .GetAwaiter()
-//                .GetResult()
-//                .Id;
+    //        }
 
-//            return userId.ToString();
-//        }
-//    }
+    //        public string GetUserId(HubConnectionContext connection)
+    //        {
+    //            var userId = userManager
+    //                .FindByEmailAsync(connection.User.Identity.Name)
+    //                .GetAwaiter()
+    //                .GetResult()
+    //                .Id;
 
-
-
+    //            return userId.ToString();
+    //        }
+    //    }
 }

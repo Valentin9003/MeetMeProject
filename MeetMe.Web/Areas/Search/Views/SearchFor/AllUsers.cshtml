@@ -1,9 +1,12 @@
 ﻿@model SearchResultViewModel
+
 @{
     ViewData["Title"] = "Всички";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <link href="~/css/Pagination.css" rel="stylesheet" type="text/css" />
+
 <style>
     .pagination {
         position: center;
@@ -28,9 +31,13 @@
 }
 
 <br />
+
 <partial name="_NavigationMenuSearch" />
+
 <br />
+
 <h4 class="alert-warning" style="text-align:center;">Всички потребители</h4>
+
 <div class="container">
 
     <br />
@@ -44,8 +51,6 @@
             {
                 <div class="col-lg-2">
 
-
-
                     @if (((row * 5) + col) < Model.Results.Count())
                     {
                         var base64 = Convert.ToBase64String(Model.Results[(row * 5) + col].PrifilePicture);
@@ -56,17 +61,14 @@
                         <div><br /></div>
                         <a href="BLABLABLA">Отвори Профил</a>
 
-
                     }
 
                 </div>
-
             }
         </div>
 
     }
 </div>
-
 
 
 @if (Model.MaxPage > 1)

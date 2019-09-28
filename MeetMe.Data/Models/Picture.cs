@@ -4,7 +4,6 @@ namespace MeetMe.Data.Models
 {
     public class Picture
     {
-
         public string PictureId { get; set; }
 
         [Required]
@@ -19,8 +18,5 @@ namespace MeetMe.Data.Models
         public string UserId { get; set; }
 
         public User User { get; set; }
-
-
-
     }
 }

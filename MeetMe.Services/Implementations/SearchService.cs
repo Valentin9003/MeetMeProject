@@ -20,28 +20,23 @@ namespace MeetMe.Services.Implementations
 
         public async Task<int> SearchByCriteriaMaxPageSizeAsync(Sex sex, Country country, City city, LookingFor lookingFor, EyeColor eyes, string currentUserId)
         {
-
-
-
             var maxPageSize = await db.Users
 
-                  .Where(u => u.Sex ==  sex && u.Country == country && u.City == city
-                  && u.LookingFor == lookingFor
-                  && u.EyeColor == eyes && u.Id != currentUserId).CountAsync();
+                            .Where(u => u.Sex == sex && u.Country == country && u.City == city
+                            && u.LookingFor == lookingFor
+                            && u.EyeColor == eyes && u.Id != currentUserId).CountAsync();
 
             return maxPageSize % ServicesDataConstraints.SearchServicePageSize == 0 ?
             maxPageSize / ServicesDataConstraints.SearchServicePageSize :
                (maxPageSize / ServicesDataConstraints.SearchServicePageSize) + 1;
         }
 
-
-
         public async Task<List<SearchServiceModel>> SearchByCriteriaAsync(Sex sex, Country country, City city, LookingFor lookingFor, EyeColor eyes, string currentUserId, int page)
         {
-            
-            var users = await db.Users.Where( u => u.Sex == sex && u.Country == country && u.City == city
-                  && u.LookingFor == lookingFor
-                  && u.EyeColor == eyes && u.Id != currentUserId)
+
+            var users = await db.Users.Where(u => u.Sex == sex && u.Country == country && u.City == city
+                 && u.LookingFor == lookingFor
+                 && u.EyeColor == eyes && u.Id != currentUserId)
             .Include(p => p.Pictures)
             .Skip(ServicesDataConstraints.SearchByCriteriaPageSize * (page - 1))
             .Take(ServicesDataConstraints.SearchByCriteriaPageSize)
@@ -58,29 +53,28 @@ namespace MeetMe.Services.Implementations
             })
             .ToListAsync();
 
-
             return users;
         }
 
-        public async  Task<List<SearchServiceModel>> SearchByNameAsync(string FirstName, string LastName, string CurrentUserId, int Page)
+        public async Task<List<SearchServiceModel>> SearchByNameAsync(string FirstName, string LastName, string CurrentUserId, int Page)
         {
-           var users = await db.Users.AsNoTracking()
-            .Where(u =>
-            ((FirstName == "" || FirstName == null) ? true : u.FirstName.Contains(FirstName)) &&
-            ((LastName == "" || LastName == null) ? true : u.LastName.Contains(LastName)) && u.Id != CurrentUserId)
-            .Skip((Page - 1) * ServicesDataConstraints.SearchByNamePageSize)
-            .Take(ServicesDataConstraints.SearchByNamePageSize)
-            .Include(pic=>pic.Pictures)
-            .Select(u => new SearchServiceModel
-            {
-                FirstName = u.FirstName,
-                LastName = u.LastName,
-                Id = u.Id,
-                PrifilePicture = u.Pictures
-                .Where(p => p.IsProfilePicture == true)
-                .Select(pp => pp.PictureByteArray)
-                .FirstOrDefault()
-            }).ToListAsync();
+            var users = await db.Users.AsNoTracking()
+             .Where(u =>
+             ((FirstName == "" || FirstName == null) ? true : u.FirstName.Contains(FirstName)) &&
+             ((LastName == "" || LastName == null) ? true : u.LastName.Contains(LastName)) && u.Id != CurrentUserId)
+             .Skip((Page - 1) * ServicesDataConstraints.SearchByNamePageSize)
+             .Take(ServicesDataConstraints.SearchByNamePageSize)
+             .Include(pic => pic.Pictures)
+             .Select(u => new SearchServiceModel
+             {
+                 FirstName = u.FirstName,
+                 LastName = u.LastName,
+                 Id = u.Id,
+                 PrifilePicture = u.Pictures
+                 .Where(p => p.IsProfilePicture == true)
+                 .Select(pp => pp.PictureByteArray)
+                 .FirstOrDefault()
+             }).ToListAsync();
             var usersh = await db.Users.AsNoTracking()
           .Where(u => u.FirstName.Contains(FirstName)).ToListAsync();
 
@@ -89,10 +83,10 @@ namespace MeetMe.Services.Implementations
 
         public async Task<int> SearchByNameMaxPageSizeAsync(string FirstName, string LastName, string currentUserId)
         {
-            var  CountOfUsers = await db.Users.Where(u =>
-            ((FirstName == "" || FirstName == null) ? true : u.FirstName.Contains(FirstName)) &&
-            ((LastName == "" || LastName == null) ? true : u.LastName.Contains(LastName)) && u.Id != currentUserId)
-             .CountAsync(); 
+            var CountOfUsers = await db.Users.Where(u =>
+           ((FirstName == "" || FirstName == null) ? true : u.FirstName.Contains(FirstName)) &&
+           ((LastName == "" || LastName == null) ? true : u.LastName.Contains(LastName)) && u.Id != currentUserId)
+             .CountAsync();
 
             return CountOfUsers % ServicesDataConstraints.SearchByNamePageSize == 0 ?
                 CountOfUsers / ServicesDataConstraints.FriendsServicePageSize :
@@ -119,7 +113,7 @@ namespace MeetMe.Services.Implementations
                .Users
                .AsNoTracking()
                 .Where(u => u.UserName.Contains(UserName) && u.Id != CurrentUserId)
-               .Skip((Page -1) * ServicesDataConstraints.SearchByUserNamePageSize)
+               .Skip((Page - 1) * ServicesDataConstraints.SearchByUserNamePageSize)
                .Take(ServicesDataConstraints.SearchByUserNamePageSize)
                .Select(u => new SearchServiceModel
                {
@@ -127,8 +121,8 @@ namespace MeetMe.Services.Implementations
                    FirstName = u.FirstName,
                    LastName = u.LastName,
                    PrifilePicture = u.Pictures
-                   .Where(p=> p.IsProfilePicture == true)
-                   .Select(pp=>pp.PictureByteArray)
+                   .Where(p => p.IsProfilePicture == true)
+                   .Select(pp => pp.PictureByteArray)
                    .FirstOrDefault()
 
                }).ToListAsync();
@@ -139,7 +133,7 @@ namespace MeetMe.Services.Implementations
         {
             var users = await db
                 .Users
-                .Where(i=> i.Id != UserId)
+                .Where(i => i.Id != UserId)
                 .Skip((Page - 1) * ServicesDataConstraints.AllUserPageSize)
                 .Take(ServicesDataConstraints.AllUserPageSize)
                 .Select(u => new SearchServiceModel
@@ -158,7 +152,7 @@ namespace MeetMe.Services.Implementations
 
         public async Task<int> AllMaxPageAsync()
         {
-            var CountOfUsers = await db.Users.CountAsync()-1;
+            var CountOfUsers = await db.Users.CountAsync() - 1;
 
             return CountOfUsers % ServicesDataConstraints.AllUserPageSize == 0 ?
                 CountOfUsers / ServicesDataConstraints.AllUserPageSize :

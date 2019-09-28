@@ -11,7 +11,9 @@
         public const int SearchByNamePageSize = 15;
 
         public const int SearchByCriteriaPageSize = 15;
+
         public const int SearchByUserNamePageSize = 15;
+
         public const int AllUserPageSize = 15;
     }
 }

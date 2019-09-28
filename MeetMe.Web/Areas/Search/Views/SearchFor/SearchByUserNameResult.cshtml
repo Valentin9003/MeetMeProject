@@ -7,8 +7,6 @@
 <link href="~/css/Pagination.css" rel="stylesheet" type="text/css" />
 
 
-
-
 @if (Model.Results.Count == 0)
 {
     <div style="text-align:center"><strong>Няма открити резултати</strong></div>
@@ -20,10 +18,15 @@
 }
 
 <br />
+
 <partial name="_NavigationMenuSearch" />
+
 <br />
+
 <h4 class="alert-warning" style="text-align:center;">Търсене по потребителско име</h4>
+
 <br />
+
 <div class="container">
 
     <br />
@@ -37,8 +40,6 @@
             {
                 <div class="col-lg-2">
 
-
-
                     @if (((row * 5) + col) < Model.Results.Count())
                     {
                         var base64 = Convert.ToBase64String(Model.Results[(row * 5) + col].PrifilePicture);
@@ -48,15 +49,11 @@
                         <div> <img src="@imgSrc" style="width:130px; height:130px" /></div>
                         <div><br /></div>
                         <a href="BLABLABLA">Отвори Профил</a>
-
-
                     }
 
                 </div>
-
             }
         </div>
-
     }
 </div>
 
@@ -66,8 +63,6 @@
         <div class=" @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"> <a class="@(Model.CurrentPage == 1 ? "isDisabled" : "link")" asp-route-UserName="@ViewBag.UserName" asp-route-page="@Model.PreviousPage"> <span aria-disabled="true">&laquo;</span></a> </div>
         <div class="page"><a asp-route-page="@Model.CurrentPage"><span class="link">@Model.CurrentPage</span></a> </div>
         <div class="page @(Model.CurrentPage == Model.MaxPage ? "disabled" : string.Empty)">  <a class="@(Model.CurrentPage == Model.MaxPage ? "isDisabled" : "link")" asp-route-UserName="@ViewBag.UserName" asp-route-page="@Model.NextPage"> <span aria-disabled="true">&raquo;</span></a> </div>
-
-
     </div>
 }
 

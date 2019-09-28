@@ -10,38 +10,49 @@
     }
 </style>
 
-<br/>
-<partial name="_NavigationMenuSearch"/>
-<br/>
+<br />
+
+<partial name="_NavigationMenuSearch" />
+
+<br />
+
 <h4 class="alert-warning" style="text-align:center;">Търсене по име</h4>
 
 <div class="container wrapper">
 
     <form method="get" class="form" asp-area="Search" asp-controller="SearchFor" asp-action="SearchByNameResult">
+
         <div class="row">
-           
+
             <div class="input form-group col-lg-12 col-md-12 col-sm-12">
                 <label asp-for="FirstName"></label>
-                <input asp-for="FirstName" class="form-control" placeholder="Име" >
+                <input asp-for="FirstName" class="form-control" placeholder="Име">
                 <span asp-validation-for="FirstName" class="danger"></span>
             </div>
+
         </div>
+
         <br />
+
         <div class="row">
+
             <div class="input form-group col-lg-12 col-md-12 col-sm-12">
                 <label asp-for="LastName"></label>
-                <input asp-for="LastName" class="form-control"  placeholder="Фамилия" />
+                <input asp-for="LastName" class="form-control" placeholder="Фамилия" />
                 <span asp-validation-for="LastName" class="danger"></span>
             </div>
+
         </div>
+
         <br />
-      
+
         <br />
+
         <button type="submit" class="btn btn-warning">Търсене..</button>
+
     </form>
 
-
-    </div>
+</div>
 
 
 

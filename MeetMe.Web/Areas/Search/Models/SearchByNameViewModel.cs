@@ -15,6 +15,5 @@ namespace MeetMe.Web.Areas.Search.Models
         [FromRoute]
         [FromForm]
         public string LastName { get; set; }
-
     }
 }
